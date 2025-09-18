@@ -1,0 +1,93 @@
+
+
+.hero {
+  width: 100%;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: white;
+  transition: background-image 1s ease-in-out;
+}
+
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* adjust darkness */
+  z-index: 1;
+}
+
+
+.hero-content {
+  position: absolute;   /* place relative to .hero */
+  bottom: 30px;         /* distance from bottom */
+  right: 30px;          /* distance from right */
+  z-index: 2;           /* keep above overlay */
+  text-align: right;    /* align text to the right */
+  font-size: 20px;
+  padding: 20px 40px;
+  border-radius: 12px;
+  color: white;
+}
+.red{
+  color:red;
+}
+.modern-btn {
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: #fff;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modern-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(135deg, #4338ca, #2563eb);
+}
+
+.modern-btn:active {
+  transform: scale(0.97);
+}
+.modern-btn img{
+  width: 18px;
+  height: 18px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.modern-btn img,
+.modern-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.modern-btn:hover img,
+.modern-btn:hover svg {
+  transform: translateX(5px);
+}
+
+@media(max-width :850px){
+  .hero-ext h1{
+    font-size:40px;
+  }
+}
+@media(max-width :650px){
+  .hero-ext h1{
+    font-size:30px;
+    max-width:400px;
+    margin:auto;
+  }
+  .hero-text p{
+    font-size:14px;
+    margin: 15px auto 30px;
+  }
+}
