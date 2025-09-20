@@ -1,19 +1,42 @@
-import React from "react";
-import "./videoplayer.css"; 
+
+import React, { useRef } from 'react';
 import Intro from '../assets/intro.mp4';
 import Cross from '../assets/cross.png';
+import './videoplayer.css';
 
-const Videoplayer = () => {
-return (
- <div className="overlay">
-  <div className="modal" >
-  <video 
-    src={Intro} controls autoPlay muted ></video>
-    
-  </div>
-  <button><img src={Cross} alt="" className="close-btn" /></button>
- </div>
+
+const VideoPlayer = ({ closeVideo }) => {
+  const videoRef = useRef(null);
+
+  const handleClose = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+    closeVideo();
+  };
+
+  return (
+    <div className="overlay" onClick={handleClose}>
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="close-btn"
+          onClick={handleClose}
+          aria-label="Close video"
+        >
+          <img src={Cross} alt="close" />
+        </button>
+        <video
+          ref={videoRef}
+          src={Intro}
+          controls
+          autoPlay
+          muted
+          className="video-player"
+        />
+      </div>
+    </div>
   );
 };
 
-export default Videoplayer;
+export default VideoPlayer;

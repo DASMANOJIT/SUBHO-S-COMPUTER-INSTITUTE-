@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import './hero.css';
 import Arrow from '../assets/arrow.png';
-
+import Brochure from '../assets/BROCHURE.pdf'
 
 
 const images = [
@@ -32,7 +32,7 @@ const Hero = () => {
       <div className="hero-content">
         <h1><i>"Preparing Students For <span className="red">Success </span>In An Ever-Changing World "</i></h1>
         <p><i>Congratulation for your all round success & best wishes for your future</i></p> 
-        <button className="modern-btn">Explore us <img src={Arrow} alt="arrow" />
+        <button className="modern-btn"><a href={Brochure} rel="noopener noreferrer"> Explore us <img src={Arrow} alt="arrow" /></a>
         </button>
       </div>
     </div>
