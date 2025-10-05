@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Profile Picture Section -->
+<div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Student Dashboard</h1>
+
+    <div class="d-flex align-items-center">
+        {% if student and student.profile_pic %}
+            <!-- Profile picture -->
+            <img src="{{ student.profile_pic }}" alt="Profile Picture"
+                 class="rounded-circle border me-2" width="60" height="60"
+                 style="object-fit: cover;">
+
+            <!-- Small delete button -->
+            <form action="{{ url_for('delete_profile_pic') }}" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-sm btn-outline-danger" title="Remove">
+                    ✕
+                </button>
+            </form>
+        {% else %}
+            <!-- Upload form if no picture -->
+            <form action="{{ url_for('upload_profile_pic') }}" method="POST" enctype="multipart/form-data" class="d-flex">
+                <input type="file" name="profile_pic" accept="image/*" required class="form-control form-control-sm me-2" style="max-width: 200px;">
+                <button type="submit" class="btn btn-sm btn-primary">Upload</button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+
+
+{% if student %}
+<div class="alert alert-info">
+    School ID: {{ student.school_id }} | Class ID: {{ student.class_id }}
+</div>
+{% endif %}
+
+<div class="row">
+    <!-- Announcements -->
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-primary text-white">📢 Announcements / Meetings</div>
+            <div class="card-body">
+                {% if announcements %}
+                    {% for a in announcements %}
+                        <div class="mb-3">
+                            <h5 class="mb-1">{{ a.title }}</h5>
+                            <p>{{ a.message }}</p>
+                            {% if a.meeting_link %}
+                                {% set link = a.meeting_link if a.meeting_link.startswith('http') else 'https://' + a.meeting_link %}
+                                <p>
+                                    <a href="{{ link }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                                        Join Meeting
+                                    </a>
+                                </p>
+                            {% endif %}
+                            <small class="text-muted">Posted: {{ a.created_at }}</small>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted">No announcements yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Study Materials -->
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-success text-white">📘 Study Materials</div>
+            <div class="card-body">
+                {% if materials %}
+                    {% for m in materials %}
+                        <div class="mb-3">
+                            <h5 class="mb-1">{{ m.title }}</h5>
+                            <p>{{ m.description }}</p>
+                            {% if m.file_urls %}
+                                <h6>Files:</h6>
+                                <ul class="list-group mb-2">
+                                    {% for f in m.file_urls %}
+                                        <li class="list-group-item p-1">
+                                            <a href="{{ f }}" target="_blank">{{ f.split('/')[-1] }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            {% if m.links %}
+                                <h6>Links:</h6>
+                                <ul class="list-group mb-2">
+                                    {% for l in m.links %}
+                                        <li class="list-group-item p-1">
+                                            <a href="{{ l }}" target="_blank">{{ l }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            <small class="text-muted">Uploaded: {{ m.uploaded_at }}</small>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted">No materials yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Enlarged Profile Picture -->
+<div class="modal fade" id="profilePicModal" tabindex="-1" aria-labelledby="profilePicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center p-3">
+      <div class="modal-body">
+        {% if student and student.profile_pic %}
+            <img src="{{ student.profile_pic }}" alt="Profile Picture" class="img-fluid rounded mb-3">
+        {% else %}
+            <p class="text-muted">No profile picture uploaded.</p>
+        {% endif %}
+
+        <!-- Upload/Edit form -->
+        <form action="{{ url_for('upload_profile_pic') }}" method="POST" enctype="multipart/form-data" class="mb-2">
+            <input type="file" name="profile_pic" accept="image/*" class="form-control mb-2" required>
+            <button type="submit" class="btn btn-primary btn-sm">Upload / Update</button>
+        </form>
+
+        <!-- Delete button -->
+        {% if student and student.profile_pic %}
+        <form action="{{ url_for('delete_profile_pic') }}" method="POST">
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,6 +1,6 @@
 
 import React, { useRef } from 'react';
-import Intro from '../assets/intro.mp4';
+import Intro from '../assets/intro_3.mp4';
 import Cross from '../assets/cross.png';
 import './videoplayer.css';
 

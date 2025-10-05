@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   z-index: 9999; /* high so it sits above header/nav */
+  
 }
 
 /* modal container */

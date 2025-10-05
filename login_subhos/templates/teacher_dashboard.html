@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Teacher Dashboard</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <!-- Upload Study Material -->
+        <div class="card mb-4">
+            <div class="card-header">Upload Study Material</div>
+            <div class="card-body">
+                <form method="post" action="{{ url_for('upload_material') }}" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="title" placeholder="Title" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="description" placeholder="Description"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="school_id" required>
+                                <option value="">Select School</option>
+                                {% for s in schools %}
+                                    <option value="{{ s.id }}">{{ s.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="class_id" required>
+                                <option value="">Select Class</option>
+                                {% for c in classes %}
+                                    <option value="{{ c.id }}">{{ c.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="file" class="form-control-file" name="files" multiple>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="link" placeholder="Optional external link">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Post Announcement -->
+        <div class="card">
+            <div class="card-header">Post Announcement / Meeting Link</div>
+            <div class="card-body">
+                <form method="post" action="{{ url_for('post_announcement') }}">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="title" placeholder="Title" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="message" placeholder="Announcement message"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="meeting_link" placeholder="Meeting link (optional)">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="school_id" required>
+                                <option value="">Select School</option>
+                                {% for s in schools %}
+                                    <option value="{{ s.id }}">{{ s.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select class="form-control" name="class_id" required>
+                                <option value="">Select Class</option>
+                                {% for c in classes %}
+                                    <option value="{{ c.id }}">{{ c.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <!-- Teacher Dues -->
+        <div class="card mb-4">
+            <div class="card-header">Create/Update Due</div>
+            <div class="card-body">
+                <form method="post" action="{{ url_for('add_due') }}">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="amount" placeholder="Amount" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Due</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Teacher Materials -->
+        <div class="card mb-4">
+            <div class="card-header">Your Materials</div>
+            <div class="card-body">
+                {% for m in materials %}
+                <div class="mb-3 border-bottom pb-2">
+                    <strong>{{ m.title }}</strong><br>
+                    <small>{{ m.description }}</small><br>
+
+                    {% if m.file_urls %}
+                        <div class="mt-1">
+                            {% for f in m.file_urls %}
+                                <a href="{{ f }}" target="_blank" class="badge badge-info">📂 File</a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% if m.links %}
+                        <div class="mt-1">
+                            {% for l in m.links %}
+                                <a href="{{ l }}" target="_blank" class="badge badge-success">🔗 {{ l }}</a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <!-- Delete button -->
+                    <form action="{{ url_for('delete_material', material_id=m.id) }}" method="POST" class="mt-2">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+                {% else %}
+                <p>No materials yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Teacher Announcements -->
+        <div class="card mb-4">
+            <div class="card-header">Your Announcements</div>
+            <div class="card-body">
+                {% for a in announcements %}
+                <div class="mb-3 border-bottom pb-2">
+                    <strong>{{ a.title }}</strong><br>
+                    <small>{{ a.message }}</small><br>
+
+                    {% if a.meeting_link %}
+                        <a href="{{ a.meeting_link }}" target="_blank" class="badge badge-primary">🔗 Meeting</a><br>
+                    {% endif %}
+
+                    <small class="text-muted">Posted: {{ a.created_at }}</small>
+
+                    <!-- Delete button -->
+                    <form action="{{ url_for('delete_announcement', announcement_id=a.id) }}" method="POST" class="mt-2">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+                {% else %}
+                <p>No announcements yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Teacher Dues -->
+        <div class="card">
+            <div class="card-header">Your Dues</div>
+            <div class="card-body">
+                {% for d in dues %}
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span>💰 {{ d.amount }} | Status: {{ d.status }} | Approved: {{ d.approved }}</span>
+                </div>
+                {% else %}
+                <p>No dues.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
