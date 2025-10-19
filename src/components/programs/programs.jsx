@@ -3,8 +3,10 @@ import './programs.css'
 import Program_1 from '../assets/program1.jpeg';
 import Program_2 from '../assets/program2.jpeg';
 import Program_3 from '../assets/program3.jpeg';
+import Program_4 from '../assets/program_4.jpeg';
 import Course_1 from '../assets/CISCE_logo.png'
 import Course_2 from '../assets/cbsc.png'
+import Course_4 from '../assets/python.png';
 
 
 const Programs = () => {
@@ -29,6 +31,13 @@ const Programs = () => {
       <div className="caption">
             <img src={Course_2}  alt=""  />
             <p>CLASS 11-12(CBSE)</p>
+        </div>
+      </div>
+       <div className="program">
+      <img src={Program_4} alt="" className="card" />
+      <div className="caption">
+            <img src={Course_4}  alt=""  />
+            <p>Python </p>
         </div>
       </div>
     </div>

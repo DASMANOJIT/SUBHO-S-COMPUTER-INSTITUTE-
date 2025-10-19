@@ -5,6 +5,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap:8px;
     
   }
   
@@ -64,3 +65,77 @@
       margin:20px;
     }
   }
+  /* --- Responsive Breakpoints --- */
+
+/* Large tablets / small desktops */
+@media (max-width: 1024px) {
+  .programs {
+    gap: 12px;
+  }
+
+  .program {
+    flex: 1 1 45%;
+    height: 350px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .programs {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .program {
+    flex: 1 1 80%;
+    height: 320px;
+  }
+
+  .caption img {
+    width: 40px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .programs {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .program {
+    flex: 1 1 100%;
+    width: 100%;
+    height: 280px;
+    border-radius: 25px;
+  }
+
+  .program img {
+    border-radius: 25px;
+  }
+
+  .caption {
+    font-size: 14px;
+    padding: 20px;
+  }
+
+  .caption img {
+    width: 35px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 350px) {
+  .program {
+    height: 240px;
+  }
+
+  .caption {
+    font-size: 12px;
+  }
+
+  .caption img {
+    width: 30px;
+  }
+}

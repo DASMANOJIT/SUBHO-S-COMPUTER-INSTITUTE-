@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./navbar.css";
 import Logo from "../assets/logo.png"; // adjust path if needed
 import { Link } from "react-scroll";
-import { Link as RouterLink } from "react-router-dom";
+
 
 
 
@@ -12,7 +12,7 @@ import { Link as RouterLink } from "react-router-dom";
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [ ShowPage, setShowPage] = useState(false);
+  
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -53,9 +53,9 @@ const Navbar = () => {
 <li><Link to="programs" smooth={true} offset={-260} duration={500}>PROGRAMS</Link></li>
 <li><Link to="about" smooth={true} offset={-150} duration={500}>ABOUT US</Link></li>
 <li><Link to="campus" smooth={true} offset={-260} duration={500}>CAMPUS</Link></li>
-<li><RouterLink to="contact" onClick={() => setShowPage(true)}>ASSITANT TEACHERS </RouterLink></li>
+
 <li><Link to="contact" smooth={true} offset={-260} duration={500}>CONTACT</Link></li>
-            <li><a class="login-btn" href="http://127.0.0.1:5000/login" role="button">Login</a></li>
+            
             
           </ul>
         
@@ -78,9 +78,9 @@ const Navbar = () => {
         <Link to="programs" smooth={true} offset={-260} duration={500} onClick={() => setMenuOpen(false)}>PROGRAMS</Link>
         <Link to="about" smooth={true} offset={-150} duration={500} onClick={() => setMenuOpen(false)}>ABOUT US</Link>
         <Link to="campus" smooth={true} offset={-260} duration={500} onClick={() => setMenuOpen(false)}>CAMPUS</Link>
-        <RouterLink to="contact"  onClick={() => setMenuOpen(false)}>ASSITANT TEACHERS </RouterLink>
+        
        <Link to="contact" smooth={true} offset={-260} duration={500} onClick={() => setMenuOpen(false)}>CONTACT</Link>
-          <a href="http://127.0.0.1:5000/login" onClick={() => setMenuOpen(false)}>login/signup</a>
+          
         </div>
       </nav>
     </>

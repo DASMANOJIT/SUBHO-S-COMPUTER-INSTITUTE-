@@ -56,7 +56,7 @@ const Footer = () => {
         <div>
           <h4>Quick Links</h4>
           <ul>
-            <li><a href="#">Student Login</a></li>
+            <li><a href="#"></a></li>
             <li><a href="#">Support</a></li>
             <li><a href="#">Privacy Policy</a></li>
           </ul>
