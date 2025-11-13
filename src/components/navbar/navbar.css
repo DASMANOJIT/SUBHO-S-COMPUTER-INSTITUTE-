@@ -1,140 +1,295 @@
+:root {
+  --nav-height: 70px;
+}
 
-  .navbar {
-    position: fixed;      
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    z-index: 9999;        
-    transition: background 0.25s ease, box-shadow 0.25s ease;
-    backdrop-filter: saturate(120%) blur(4px);
-  }
-  
-  
-  .navbar.scrolled {
-    background:linear-gradient(135deg, #2f26d3, #1a70f9);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  }
-  
-  .nav-inner {
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 18px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
+/* ✅ Base Navbar Styling */
+.navbar {
+  position: fixed;
+  top: 45px;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+  backdrop-filter: saturate(120%) blur(4px);
+}
 
-  .logo {
-    height: 100px;
-  }
-  
+.navbar.scrolled {
+  background: linear-gradient(135deg, #2f26d3, #1a70f9);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
 
+/* ✅ Inner Layout */
+.nav-inner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 100px;
+}
+
+/* ✅ Desktop Links */
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+/* ✅ Login Button */
+.navbar .login {
+  background: linear-gradient(135deg, #2f26d3, #1a70f9);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 25px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(47, 38, 211, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar .login:hover {
+  background: linear-gradient(135deg, #1a70f9, #2f26d3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(26, 112, 249, 0.4);
+}
+
+/* ✅ Hamburger (Hidden on Desktop) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* ✅ Hamburger animation */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 5px);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -5px);
+}
+
+/* ✅ Mobile Menu */
+.mobile-menu {
+  position: fixed;
+  top: calc(var(--nav-height) + 45px); /* below navbar */
+  left: 0;
+  width: 100%;
+  height: calc(100vh - var(--nav-height));
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  padding-top: 40px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 10000;
+}
+
+.mobile-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ✅ Mobile Menu Links */
+.mobile-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 0;
+  transition: color 0.2s ease;
+}
+
+.mobile-menu a:hover {
+  color: #60a5fa;
+}
+
+/* ✅ Responsive Behavior */
+@media (max-width: 768px) {
   .nav-links {
-    display: flex;
-    gap: 28px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 0.4px;
-  }
-  
-  
-  .hamburger {
     display: none;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    padding: 8px;
-    z-index: 10001; 
   }
-  .hamburger span {
-    display: block;
-    width: 24px;
-    height: 3px;
-    margin: 4px 0;
-    border-radius: 2px;
-    background: #fff;
-    transition: transform 0.25s ease, opacity 0.2s ease;
-  }
-  .hamburger.open span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-  .hamburger.open span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.open span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-
-  .mobile-menu {
-    position: fixed;                
-    top: var(--nav-height);
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,0.98);
+  .hamburger {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-    padding: 10px 0;
-    transform: translateY(-12px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.22s ease, opacity 0.22s ease;
-    z-index: 10000;
   }
-  .mobile-menu.show {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-  .mobile-menu a {
-    display: block;
-    width: 100%;
-    max-width: 600px;
-    padding: 14px 22px;
-    color: #fff;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    text-align: center;
-    font-weight: 600;
-  }
-  
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* ensures vertical alignment */
+  padding: 0 50px; /* adjust if needed */
+}
 
-  @media (max-width: 768px) {
-    .nav-links { display: none; }    
-    .hamburger { display: block; }  
+.nav-links {
+  display: flex;
+  align-items: center; /* keeps links aligned with button */
+  gap: 25px; /* space between menu items */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 0;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #0973ff;
+}
+.login-btn {
+  margin-top: 2px; /* small nudge */
+  align-self: center;
+}
+
+
+/* ---------- Fix: make hamburger clickable + ensure mobile menu appears ---------- */
+/* give nav-inner a stacking context so hamburger sits above other content */
+.nav-inner {
+  position: relative;
+  z-index: 11000;
+}
+
+/* enlarge clickable area and ensure it's on top */
+.hamburger {
+  position: relative;       /* ensure it's positioned inside nav-inner */
+  z-index: 12000 !important;/* force above other elements */
+  display: none;            /* keep media query behavior intact */
+  width: 44px;              /* larger hit area */
+  height: 40px;
+  padding: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ensure bars are visible and cover full width of button */
+.hamburger span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background-color: #fff;
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+  pointer-events: none; /* allow clicks pass to button */
+}
+
+/* keep the .open animation unchanged but ensure transform origins are stable */
+.hamburger.open span:nth-child(1) {
+  transform-origin: center;
+}
+.hamburger.open span:nth-child(3) {
+  transform-origin: center;
+}
+
+/* make sure mobile menu is above everything and not clipped */
+.mobile-menu {
+  z-index: 11999 !important; /* above navbar but below hamburger if needed */
+  pointer-events: auto; /* enable interactions when shown */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ensure media query still controls when hamburger shows */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex !important;
   }
-  
-  
-  .site-content {
-    padding-top: var(--nav-height);
+  .nav-links {
+    display: none !important;
   }
-  
-  .navbar .login-btn {
-    background: #141f93;        /* Blue background */
-    color: #fff;                /* White text */
-    padding: 8px 16px;          /* Spacing inside button */
-    border-radius: 25px;        /* Rounded edges */
-    font-weight: 500;           /* Medium bold text */
-    text-decoration: none;      /* Remove underline */
-    transition: all 0.3s ease;  /* Smooth hover effect */
+}
+
+/* ----------------- Fix: prevent hidden mobile menu from blocking page ----------------- */
+/* Place at the very end of navbar.css to override previous rules */
+
+.mobile-menu {
+  /* ensure hidden menu does not block or capture pointer events */
+  height: 0 !important;
+  padding-top: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  transform: translateY(-12px) !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* When menu is shown restore full size and interactivity */
+.mobile-menu.show {
+  height: calc(100vh - var(--nav-height)) !important;
+  padding-top: 40px !important;
+  overflow: auto !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+}
+
+/* keep smooth transition (matches your previous transition) */
+.mobile-menu,
+.mobile-menu.show {
+  transition: all 0.28s ease !important;
+}
+
+/* tiny safety: ensure hidden mobile-menu can't visually cover content on desktop */
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none !important;
   }
-  
-  .navbar .login-btn:hover {
-    background: #cad2dc;        /* Darker blue on hover */
-    color: #fff;                /* Keep text white */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
-  }
-  
-  
+}

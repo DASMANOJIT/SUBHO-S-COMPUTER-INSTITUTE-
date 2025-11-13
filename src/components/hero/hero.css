@@ -91,3 +91,350 @@
     margin: 15px auto 30px;
   }
 }
+
+/* Latest Updates Section */
+.latest-updates {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  border-radius: 50px;
+  backdrop-filter: blur(6px);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.mic-icon {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.3));
+}
+
+.updates-text {
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.update-message {
+  display: inline-block;
+  font-size: 1.05rem;
+  color: #fff;
+  font-weight: 500;
+  animation: slideText 0.5s ease, fadeIn 0.5s ease;
+}
+
+/* Animation for text change */
+@keyframes slideText {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .latest-updates {
+    flex-direction: row;
+    max-width: 90%;
+    padding: 8px 16px;
+  }
+
+  .mic-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .update-message {
+    font-size: 0.9rem;
+  }
+}
+/* === Latest Updates Bar (below navbar) === */
+.updates-bar {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.9);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  gap: 12px;
+  overflow: hidden;
+  position: relative;
+  z-index: 100; /* below navbar, above hero */
+  border-top: 2px solid #3b82f6;
+  border-bottom: 2px solid #3b82f6;
+  box-shadow: 0 0 15px #3b82f6, 0 0 30px rgba(59,130,246,0.5);
+  animation: glowPulse 2s infinite;
+}
+
+/* Mic icon */
+.mic-icon {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 0 5px #60a5fa);
+}
+
+/* Scrolling container */
+.scroll-container {
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1;
+}
+
+/* Scrolling text */
+.scroll-text {
+  display: inline-block;
+  animation: scrollLeft 20s linear infinite;
+}
+
+.scroll-item {
+  display: inline-block;
+  margin-right: 60px;
+  font-weight: 600;
+  color: #f8fafc;
+  letter-spacing: 0.4px;
+  font-size: 1rem;
+}
+
+/* Animation */
+@keyframes scrollLeft {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
+}
+
+/* Glowing pulse */
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 10px #3b82f6, 0 0 20px rgba(59,130,246,0.4); }
+  50% { box-shadow: 0 0 20px #2563eb, 0 0 40px rgba(37,99,235,0.6); }
+  100% { box-shadow: 0 0 10px #3b82f6, 0 0 20px rgba(59,130,246,0.4); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .updates-bar {
+    padding: 6px 12px;
+  }
+  .mic-icon {
+    width: 22px;
+    height: 22px;
+  }
+  .scroll-item {
+    font-size: 0.85rem;
+  }
+}
+
+
+/* === App Download Icon === */
+.app-download {
+  position: fixed;
+  top: 120px; /* Adjust below navbar & notice bar */
+  right: 25px;
+  z-index: 150;
+}
+
+.app-download img {
+  width: 55px;
+  height: 55px;
+  border-radius: 15px;
+  background: white;
+  padding: 8px;
+  box-shadow: 0 0 15px rgba(59,130,246,0.6);
+  animation: glowIcon 2s infinite;
+  transition: transform 0.3s ease;
+}
+
+.app-download img:hover {
+  transform: scale(1.1);
+}
+
+@keyframes glowIcon {
+  0%, 100% { box-shadow: 0 0 10px #3b82f6, 0 0 20px rgba(37,99,235,0.4); }
+  50% { box-shadow: 0 0 25px #60a5fa, 0 0 40px rgba(59,130,246,0.7); }
+}
+
+/* === Login / Signup Overlay === */
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 40px 60px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 0 25px rgba(37,99,235,0.5);
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.close-btn img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1);
+}
+
+.login-box h2 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: #60a5fa;
+}
+
+.login-box p {
+  margin-bottom: 25px;
+  color: #f1f5f9;
+}
+
+.login-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.login-btn, .signup-btn {
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-btn:hover, .signup-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(59,130,246,0.6);
+}
+
+/* === Floating App Download Icon (inside Hero only) === */
+.app-download {
+  position: fixed;
+  bottom: 6vh; /* dynamically scales with screen height */
+  right: 2vw;
+  z-index: 200;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.app-download-link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-download img {
+  width: clamp(45px, 6vw, 75px); /* scales between 45–75px depending on screen */
+  height: clamp(45px, 6vw, 75px);
+  border-radius: 20px;
+  background: white;
+  padding: clamp(6px, 1vw, 10px);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+  animation: glowIcon 2s infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.app-download img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.8);
+}
+
+.app-caption {
+  margin-top: 4px;
+  font-size: clamp(0.7rem, 1.6vw, 1rem);
+  color: #f8fafc;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(37, 99, 235, 0.9);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Glow animation */
+@keyframes glowIcon {
+  0%, 100% {
+    box-shadow: 0 0 10px #3b82f6, 0 0 20px rgba(37, 99, 235, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px #60a5fa, 0 0 40px rgba(59, 130, 246, 0.7);
+  }
+}
+
+/* === Responsive Behavior === */
+
+/* Tablets (portrait & landscape) */
+@media (max-width: 1024px) {
+  .app-download {
+    bottom: 5vh;
+    right: 3vw;
+  }
+  .app-caption {
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 600px) {
+  .app-download {
+    bottom: 4vh;
+    right: 3vw;
+    gap: 4px;
+  }
+  .app-download img {
+    width: 50px;
+    height: 50px;
+  }
+  .app-caption {
+    font-size: 0.8rem;
+  }
+}
+
+/* Extra-small phones (under 380px width) */
+@media (max-width: 380px) {
+  .app-download {
+    bottom: 3vh;
+    right: 4vw;
+  }
+  .app-download img {
+    width: 45px;
+    height: 45px;
+    padding: 5px;
+  }
+  .app-caption {
+    font-size: 0.7rem;
+  }
+}

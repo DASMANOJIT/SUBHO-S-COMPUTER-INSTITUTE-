@@ -19,8 +19,9 @@ const Footer = () => {
     you grow!
   </p>
   <div className="app-links">
-    <a href="#"><img src={Icon_2} alt="Google Play" className="play-btn" /></a> 
-    <a href="#"><img src={Icon_1} alt="App Store" /></a>
+    <a href="https://play.google.com/store/apps/details?id=co.lily.kcqhj"><img src={Icon_2} alt="Google Play" className="play-btn" /></a> 
+    <p>OUR APP IS LIVE IN THE PLAYSTORE </p>
+    <a><img src={Icon_1} alt="App Store" /></a>
     <p>will be there soon...</p>
   </div>
   <div className="social-links">

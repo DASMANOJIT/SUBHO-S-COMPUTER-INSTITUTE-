@@ -55,7 +55,7 @@ const Navbar = () => {
 <li><Link to="campus" smooth={true} offset={-260} duration={500}>CAMPUS</Link></li>
 
 <li><Link to="contact" smooth={true} offset={-260} duration={500}>CONTACT</Link></li>
-            
+            <button className="login"><a href="https://web.classplusapp.com" target="_blank" rel="noopener noreferrer">Login</a></button>
             
           </ul>
         

@@ -38,8 +38,8 @@ const Contact =() =>{
             </h3>
             <p>Feel free to reach out through contact form or find our contact information below. Your feedback, questions, and suggestions are important to us as we strive to provide exceptional service to our institute community.</p>
              <ul>
-                <li><img src={Email} alt="" />subhabratadatta1981@gmail.com</li>
-                <li><img src={Call} alt="" />9831934306</li>
+                <li><img src={Email} alt="" />subhoscomputerinstitute@gmail.com</li>
+                <li><img src={Call} alt="" />9831934306 || 8617759263 || 7003751561 || 8336027886</li>
                 <li><img src={Locate} alt="" />MADHUSUDAN COMPLEX , S N BANERJEE ROAD , CHIRIAMORE , BARRACKPORE , KOLKATA : 700120 </li>
              </ul>
             </div>
