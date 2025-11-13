@@ -80,7 +80,7 @@ const Navbar = () => {
         <Link to="campus" smooth={true} offset={-260} duration={500} onClick={() => setMenuOpen(false)}>CAMPUS</Link>
         
        <Link to="contact" smooth={true} offset={-260} duration={500} onClick={() => setMenuOpen(false)}>CONTACT</Link>
-          
+            <Link><a href="https://web.classplusapp.com" target="_blank" rel="noopener noreferrer">Login</a></Link>
         </div>
       </nav>
     </>

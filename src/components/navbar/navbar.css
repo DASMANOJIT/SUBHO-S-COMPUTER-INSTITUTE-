@@ -293,3 +293,43 @@
     display: none !important;
   }
 }
+/* ---------- Force logo to left & hamburger to right on mobile ---------- */
+@media (max-width: 768px) {
+  .nav-inner {
+    width: 100% !important;
+    padding: 0 15px !important;
+    
+    gap: 90px !important;
+    display: flex !important;
+    justify-content: space-between !important; /* pushes items to opposite ends */
+    align-items: center !important;
+  }
+
+  .logo {
+    margin-left: 0 !important;  /* stick logo to left */
+    height: 65px !important;    /* slightly smaller for mobile */
+  }
+
+  .hamburger {
+    margin-left: auto !important;
+    margin-right: 0 !important; /* stick hamburger to right */
+    position: relative !important;
+    right: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-inner {
+    justify-content: space-between; /* ✅ logo left, hamburger right */
+    padding: 0 20px; /* optional: adds a little space on both sides */
+  }
+
+  .logo {
+    height: 70px;
+    padding: 0px; /* adjust if needed */
+  }
+
+  .hamburger {
+    margin-left: auto; /* ensures it's pushed to the far right */
+  }
+}
