@@ -41,7 +41,8 @@ const Contact = () => {
         <title>
           Contact Subho's Computer Institute Kolkata | Admission & Enquiry
         </title>
-
+<meta name="geo.region" content="IN-WB" />
+  <meta name="geo.placename" content="Kolkata" />
         <meta
           name="description"
           content="Contact Subho's Computer Institute in Kolkata for admissions, course details, ICSE/ISC/CBSE computer coaching, and programming classes. Call or visit our Barrackpore center today."

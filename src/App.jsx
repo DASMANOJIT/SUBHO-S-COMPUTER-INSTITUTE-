@@ -19,6 +19,8 @@ const App = () => {
                   <meta name="description" content="Join Subho's Computer Institute in Kolkata. Learn programming, web development and more with expert guidance." />
                   <meta name="keywords" content="computer institute kolkata, programming classes, web development course" />
                 <meta name="robots" content="index, follow" />
+                <meta name="geo.region" content="IN-WB" />
+  <meta name="geo.placename" content="Kolkata" />
                 </Helmet>
 
       <Navbar />

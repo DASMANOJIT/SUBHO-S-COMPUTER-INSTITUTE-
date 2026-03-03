@@ -16,6 +16,8 @@ const Footer = () => {
       <Helmet>
         <meta name="author" content="Subho's Computer Institute, Kolkata" />
         <meta name="robots" content="index, follow" />
+        <meta name="geo.region" content="IN-WB" />
+  <meta name="geo.placename" content="Kolkata" />
       </Helmet>
 
       <footer className="footer">

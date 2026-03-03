@@ -45,7 +45,8 @@ const Campus = () => {
           name="keywords"
           content="Subho's Computer Institute campus, computer institute gallery Kolkata, Barrackpore computer training center photos, computer lab Kolkata, programming classroom images"
         />
-
+<meta name="geo.region" content="IN-WB" />
+  <meta name="geo.placename" content="Kolkata" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Subho's Computer Institute, Kolkata" />
       </Helmet>

@@ -25,7 +25,8 @@ const About = () => {
           name="keywords"
           content="About Subho's Computer Institute, computer coaching Kolkata, ICSE computer tuition Barrackpore, ISC CBSE computer science classes, programming institute Kolkata, Shubhabrata Dutta"
         />
-
+<meta name="geo.region" content="IN-WB" />
+  <meta name="geo.placename" content="Kolkata" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Subho's Computer Institute, Kolkata" />
       </Helmet>
