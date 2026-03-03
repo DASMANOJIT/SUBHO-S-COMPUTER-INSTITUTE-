@@ -4,7 +4,7 @@ import "./navbar.css";
 import Logo from "../assets/logo.png"; // adjust path if needed
 import { Link } from "react-scroll";
 
-
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -44,6 +44,13 @@ const Navbar = () => {
 
   return (
     <>
+    <Helmet>
+            <title>Subho's Computer Institute | Learn Programming in Kolkata</title>
+            <meta name="title" content="Subho's Computer Institute Kolkata – Best Computer Course Training & IT Classes" />
+            <meta name ="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="description" content="Join Subho's Computer Institute in Kolkata. Learn programming, web development and more with expert guidance." />
+            <meta name="keywords" content="computer institute kolkata, programming classes, web development course" />
+          </Helmet>
       <nav className={`navbar ${scrolled ? "scrolled" : ""}`} role="navigation" aria-label="Main">
         <div className="nav-inner">
         <Link to="hero" smooth={true} offset={0} duration={500}> <img src={Logo} alt="Subho's logo" className="logo" /></Link>

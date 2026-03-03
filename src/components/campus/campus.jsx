@@ -5,10 +5,11 @@ import Galery_2 from '../assets/galery_2.jpeg';
 import Galery_3 from '../assets/galery_3.jpeg';
 import Galery_4 from '../assets/galery_4.jpeg';
 import Galery_5 from '../assets/galery_5.jpeg';
-import Galery_6 from '../assets/galery_6.jpg'; // new ones
+import Galery_6 from '../assets/galery_6.jpg';
 import Galery_7 from '../assets/galery_7.jpg';
 import Galery_8 from '../assets/galery_8.jpg';
 import Arrow from '../assets/arrow_c.png';
+import { Helmet } from 'react-helmet-async';
 
 const Campus = () => {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -28,35 +29,108 @@ const Campus = () => {
   };
 
   return (
-    <div>
-      <div className="campus">
-        <div className="gallery">
-          <img src={Galery_1} alt="" />
-          <img src={Galery_2} alt="" />
-          <img src={Galery_3} alt="" />
-          <img src={Galery_4} alt="" />
-          <img src={Galery_5} alt="" />
-        </div>
+    <>
+      {/* Gallery Page SEO */}
+      <Helmet>
+        <title>
+          Campus Gallery | Subho's Computer Institute Kolkata
+        </title>
 
-        <div>
-          <button className="modern-btn" onClick={() => setShowOverlay(true)}>
-            See more <img src={Arrow} alt="" />
-          </button>
-        </div>
-      </div>
+        <meta
+          name="description"
+          content="Explore the campus gallery of Subho's Computer Institute in Barrackpore, Kolkata. View our classrooms, computer labs, student activities, and learning environment."
+        />
 
-      {showOverlay && (
-        <div className="photo-overlay">
-          <span className="close-overlay" onClick={() => setShowOverlay(false)}>&times;</span>
+        <meta
+          name="keywords"
+          content="Subho's Computer Institute campus, computer institute gallery Kolkata, Barrackpore computer training center photos, computer lab Kolkata, programming classroom images"
+        />
 
-          <div className="photo-slider">
-            <button className="slider-btn prev" onClick={handlePrev}>❮</button>
-            <img src={photos[currentIndex]} alt="slider" className="slider-image" />
-            <button className="slider-btn next" onClick={handleNext}>❯</button>
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Subho's Computer Institute, Kolkata" />
+      </Helmet>
+
+      <div>
+        <div className="campus">
+          <div className="gallery">
+
+            <img 
+              src={Galery_1} 
+              alt="Computer classroom at Subho's Computer Institute Barrackpore Kolkata" 
+            />
+
+            <img 
+              src={Galery_2} 
+              alt="Students learning programming at Subho's Computer Institute Kolkata" 
+            />
+
+            <img 
+              src={Galery_3} 
+              alt="Computer lab facilities at Subho's Computer Institute in Kolkata" 
+            />
+
+            <img 
+              src={Galery_4} 
+              alt="ICSE ISC CBSE computer coaching classroom in Barrackpore" 
+            />
+
+            <img 
+              src={Galery_5} 
+              alt="Practical computer training session at Subho's Computer Institute" 
+            />
+
+          </div>
+
+          <div>
+            <button 
+              className="modern-btn" 
+              onClick={() => setShowOverlay(true)}
+            >
+              See more{" "}
+              <img 
+                src={Arrow} 
+                alt="View more campus photos of Subho's Computer Institute" 
+              />
+            </button>
           </div>
         </div>
-      )}
-    </div>
+
+        {showOverlay && (
+          <div className="photo-overlay">
+            <span 
+              className="close-overlay" 
+              onClick={() => setShowOverlay(false)}
+            >
+              &times;
+            </span>
+
+            <div className="photo-slider">
+              <button 
+                className="slider-btn prev" 
+                onClick={handlePrev}
+                aria-label="Previous image"
+              >
+                ❮
+              </button>
+
+              <img 
+                src={photos[currentIndex]} 
+                alt="Campus and computer lab environment at Subho's Computer Institute Kolkata"
+                className="slider-image" 
+              />
+
+              <button 
+                className="slider-btn next" 
+                onClick={handleNext}
+                aria-label="Next image"
+              >
+                ❯
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

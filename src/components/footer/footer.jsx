@@ -1,74 +1,168 @@
 import React from 'react';
-import './footer.css'
-import Logo from '../assets/logo.jpg'
-import Icon_1 from '../assets/appstore.jpg'
-import Icon_2 from '../assets/playst.jpg'
-import Youtube from '../assets/youtube.png'
-import Facebook from '../assets/facebook.png'
-import Instagram from '../assets/instagram.png'
+import './footer.css';
+import Logo from '../assets/logo.jpg';
+import Icon_1 from '../assets/appstore.jpg';
+import Icon_2 from '../assets/playst.jpg';
+import Youtube from '../assets/youtube.png';
+import Facebook from '../assets/facebook.png';
+import Instagram from '../assets/instagram.png';
 import { Link } from "react-scroll";
+import { Helmet } from 'react-helmet-async';
+
 const Footer = () => {
   return (
-    <footer className="footer">
-    <div className="footer-top">
-    <div className="footer-brand">
-  <img src={Logo} alt="SUBHO'S COMPUTER INSTITUTE" />
-  <p>
-    We understand that every student has unique needs and abilities,
-    that’s why our curriculum is designed to adapt to your needs and help
-    you grow!
-  </p>
-  <div className="app-links">
-    <a href="https://play.google.com/store/apps/details?id=co.lily.kcqhj"><img src={Icon_2} alt="Google Play" className="play-btn" /></a> 
-    <p>OUR APP IS LIVE IN THE PLAYSTORE </p>
-    <a><img src={Icon_1} alt="App Store" /></a>
-    <p>will be there soon...</p>
-  </div>
-  <div className="social-links">
-    <p>Visit us!</p>
-    <a href="https://www.facebook.com/subhoscomputerinstitute"><i className="fab fa-facebook"><img src={Facebook} alt="" /></i></a>
-    <a href="https://www.instagram.com/subhoscomputerinstitute/"><i className="fab fa-instagram"><img src={Instagram} alt="" /></i></a>
-    <a href="https://l.instagram.com/?u=https%3A%2F%2Fyoutube.com%2F%40subhabratadatta2889%3Fsi%3DmIvCRvlS8D8Ln1L0%26fbclid%3DPAZXh0bgNhZW0CMTEAAaeqHhd-x6R_-XhExwRGTyalwDyuV_S5-cnsBLCyrAeMDkxK5kzAzfcB87nbyQ_aem_3raOota2-i-lh5bQX8ywxQ&e=AT2oYG4x69ANwbeaCX7fNKxeOFlX7HmPo2J8mdZdx5nRvMjdoXKuWNY-HmKjXf37W3qNWRQ1TNd430RlY26Z1kvK8uZ3DsY1SAof_3ItNUDAcbUv2J4zO6L2zw"><i className="fab fa-youtube"><img src={Youtube} alt="" /></i></a>
-  </div>
-</div>
-  
-      <div className="footer-links">
-        <div>
-          <h4>Company</h4>
-          <ul>
-            <li><Link to="about" smooth={true} offset={-260} duration={500}>About Us</Link></li>
-            <li><Link to="contact" smooth={true} offset={-260} duration={500}>Contact Us</Link></li>
-            <li><Link to="" smooth={true} offset={-260} duration={500}>Careers</Link></li>
-            <li><Link to="" smooth={true} offset={-260} duration={500}>Updates</Link></li>
-          </ul>
+    <>
+      {/* Minimal SEO-safe Helmet (No duplicate title/description) */}
+      <Helmet>
+        <meta name="author" content="Subho's Computer Institute, Kolkata" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+
+      <footer className="footer">
+        <div className="footer-top">
+
+          {/* Brand Section */}
+          <div className="footer-brand">
+            <img 
+              src={Logo} 
+              alt="Subho's Computer Institute Logo - Leading Computer Training Center in Kolkata" 
+            />
+
+            <p>
+              Subho's Computer Institute in Kolkata provides ICSE, ISC & CBSE computer coaching,
+              programming courses, and practical IT training designed to help students succeed
+              in academics and future careers.
+            </p>
+
+            {/* App Links */}
+            <div className="app-links">
+              <a
+                href="https://play.google.com/store/apps/details?id=co.lily.kcqhj"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Download Subho's Computer Institute App from Google Play Store"
+              >
+                <img 
+                  src={Icon_2} 
+                  alt="Download Subho's Computer Institute App on Google Play Store" 
+                  className="play-btn" 
+                />
+              </a>
+              <p>Our App is live on Google Play Store</p>
+
+              <a
+                href="#"
+                title="Subho's Computer Institute App coming soon on Apple App Store"
+              >
+                <img 
+                  src={Icon_1} 
+                  alt="Subho's Computer Institute App coming soon to Apple App Store" 
+                />
+              </a>
+              <p>Coming soon on App Store...</p>
+            </div>
+
+            {/* Social Links */}
+            <div className="social-links">
+              <p>Visit us on Social Media</p>
+
+              <a
+                href="https://www.facebook.com/subhoscomputerinstitute"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Visit Subho's Computer Institute on Facebook"
+              >
+                <img 
+                  src={Facebook} 
+                  alt="Subho's Computer Institute Facebook Page" 
+                />
+              </a>
+
+              <a
+                href="https://www.instagram.com/subhoscomputerinstitute/"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Visit Subho's Computer Institute on Instagram"
+              >
+                <img 
+                  src={Instagram} 
+                  alt="Subho's Computer Institute Instagram Profile" 
+                />
+              </a>
+
+              <a
+                href="https://youtube.com/@subhabratadatta2889"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Visit Subho's Computer Institute on YouTube"
+              >
+                <img 
+                  src={Youtube} 
+                  alt="Subho's Computer Institute YouTube Channel" 
+                />
+              </a>
+            </div>
+          </div>
+
+          {/* Footer Links Section */}
+          <div className="footer-links">
+
+            {/* Company */}
+            <div>
+              <h4>Company</h4>
+              <ul>
+                <li>
+                  <Link to="about" smooth={true} offset={-260} duration={500}>
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link to="contact" smooth={true} offset={-260} duration={500}>
+                    Contact Us
+                  </Link>
+                </li>
+                <li>
+                  <a href="#">Careers</a>
+                </li>
+                <li>
+                  <a href="#">Updates</a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Popular Courses */}
+            <div>
+              <h4>Popular Courses</h4>
+              <ul>
+                <li><a href="#">Computer Basics Course</a></li>
+                <li><a href="#">ICSE Classes 4-10 Computer Coaching</a></li>
+                <li><a href="#">ISC Class 11-12 Computer Science</a></li>
+                <li><a href="#">CBSE Class 11-12 Computer Science</a></li>
+                <li><a href="#">Python Programming Course</a></li>
+              </ul>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+              </ul>
+            </div>
+
+          </div>
         </div>
-  
-        <div>
-          <h4>Popular Courses</h4>
-          <ul>
-            <li><a href="#">Computer Basics</a></li>
-            <li><a href="#">Class 4-10(ICSE)</a></li>
-            <li><a href="#">Class 11/12(ISC)</a></li>
-            <li><a href="#">Class 11/12(CBSE)</a></li>
-            <li><a href="#">Python</a></li>
-          </ul>
+
+        {/* Bottom Section */}
+        <div className="footer-bottom">
+          <p>
+            © 2025 Subho's Computer Institute, Kolkata. All Rights Reserved.
+          </p>
         </div>
-  
-        <div>
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="#"></a></li>
-            <li><a href="#">Support</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  
-    <div className="footer-bottom">
-      <p>© 2025 SUBHO'S COMPUTER INSTITUTE. All Rights Reserved.</p>
-    </div>
-  </footer>
+
+      </footer>
+    </>
   );
 };
 
