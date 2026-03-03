@@ -4,7 +4,7 @@ import Program_1 from '../assets/program1.jpeg';
 import Program_2 from '../assets/program2.jpeg';
 import Program_3 from '../assets/program3.jpeg';
 import Program_4 from '../assets/program_4.jpeg';
-import Course_1 from '../assets/CISCE_logo.png'
+import Course_1 from '../assets/cisce.png'
 import Course_2 from '../assets/cbsc.png'
 import Course_4 from '../assets/python.png';
 import { Helmet } from 'react-helmet-async';

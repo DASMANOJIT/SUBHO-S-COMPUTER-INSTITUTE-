@@ -2,11 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import './hero.css';
 import Arrow from '../assets/arrow.png';
-import Brochure from '../assets/fbrou.pdf';
+import Brochure from '../assets/BROCHURE.pdf';
 import Mic from '../assets/noti_2.png'; // 🎤 icon
 import AppIcon from '../assets/app_icon.png'; // ✅ your app icon (add this image in /assets)
-import CloseIcon from '../assets/close.png'; // ✅ for login modal close button
-import Play from '../assets/playst.jpg';
+
 import { Helmet } from 'react-helmet-async';
 const images = [
   new URL('../assets/hero1.jpg', import.meta.url).href,
