@@ -161,6 +161,16 @@ const Footer = () => {
           <p>
             © 2025 Subho's Computer Institute, Kolkata. All Rights Reserved.
           </p>
+          <p className="footer-credit">
+          Developed and maintained by{" "}
+          <a
+            href="https://dmstacklabs.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            DM Stack Labs
+          </a>
+        </p>
         </div>
 
       </footer>
