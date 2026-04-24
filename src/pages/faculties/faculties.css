@@ -1,0 +1,96 @@
+.faculties-page {
+  min-height: 100vh;
+  padding: 0 5% 80px;
+  background: #f5f5f5;
+}
+
+.faculties-hero {
+  max-width: 960px;
+  margin: 0 auto 36px;
+  padding: 42px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: #fff;
+  box-shadow: 0 18px 42px rgba(37, 99, 235, 0.2);
+}
+
+.page-eyebrow {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0.85;
+}
+
+.faculties-hero h1 {
+  font-size: clamp(34px, 5vw, 48px);
+  margin-bottom: 14px;
+}
+
+.page-intro {
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 760px;
+}
+
+.faculties-grid {
+  max-width: 1100px;
+  margin: 0 auto 32px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.faculty-card,
+.faculties-note {
+  background: #fff;
+  border-radius: 28px;
+  padding: 28px;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+}
+
+.faculty-card h2,
+.faculties-note h2 {
+  color: #1e3a8a;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.faculty-card p,
+.faculties-note p {
+  color: #475569;
+  line-height: 1.7;
+}
+
+.faculties-note {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .faculties-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .faculties-page {
+    padding: 0 20px 60px;
+  }
+
+  .faculties-hero {
+    padding: 28px 22px;
+    border-radius: 24px;
+  }
+
+  .page-intro {
+    font-size: 15px;
+  }
+
+  .faculty-card,
+  .faculties-note {
+    border-radius: 22px;
+    padding: 22px;
+  }
+}

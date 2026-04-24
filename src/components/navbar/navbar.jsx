@@ -1,80 +1,304 @@
-
-import React, { useState, useEffect } from "react";
-import "./navbar.css";
-import Logo from "../assets/logo.png"; // adjust path if needed
-import { Link } from "react-scroll";
-
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
+import './navbar.css';
+import Logo from '../assets/logo.png';
 
-
-
+const navItems = [
+  {
+    id: 'programs',
+    label: 'PROGRAMS',
+    path: '/programs',
+    dropdown: [
+      { label: 'ICSE / ISC', path: '/programs?category=icse-isc' },
+      { label: 'CBSE', path: '/programs?category=cbse' },
+      { label: 'Computer Courses', path: '/programs?category=computer-courses' },
+    ],
+  },
+  {
+    id: 'about',
+    label: 'ABOUT US',
+    section: 'about',
+    dropdown: [
+      { label: 'About the Institute', section: 'about' },
+      { label: 'Our Mission', section: 'about' },
+      { label: 'Our Vision', section: 'about' },
+      { label: 'Achievements', section: 'about' },
+    ],
+  },
+  {
+    id: 'campus',
+    label: 'CAMPUS',
+    section: 'campus',
+    dropdown: [
+      { label: 'Gallery', section: 'campus' },
+      { label: 'Events', section: 'campus' },
+      { label: 'Facilities', section: 'campus' },
+    ],
+  },
+  {
+    id: 'faculties',
+    label: 'FACULTIES',
+    path: '/faculties',
+    dropdown: [
+      { label: 'Teaching Faculty', path: '/faculties' },
+      { label: 'Academic Team', path: '/faculties' },
+      { label: 'Administration', path: '/faculties' },
+    ],
+  },
+  {
+    id: 'careers',
+    label: 'CAREERS',
+    path: '/careers',
+    dropdown: [
+      { label: 'Current Openings', path: '/careers' },
+      { label: 'Apply Now', path: '/careers' },
+    ],
+  },
+  { id: 'contact', label: 'CONTACT US', section: 'contact' },
+];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  
+  const [desktopDropdown, setDesktopDropdown] = useState(null);
+  const [mobileDropdown, setMobileDropdown] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isHomePage = location.pathname === '/';
+  const isSolidNavbar = scrolled || !isHomePage || menuOpen;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    onScroll();
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // close mobile menu when resizing to desktop
   useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth > 768 && menuOpen) setMenuOpen(false);
+      if (window.innerWidth > 992 && menuOpen) {
+        setMenuOpen(false);
+        setMobileDropdown(null);
+      }
     };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, [menuOpen]);
 
-  // close on Escape
   useEffect(() => {
-    const onKey = (e) => e.key === "Escape" && setMenuOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    const onKey = (event) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+        setDesktopDropdown(null);
+        setMobileDropdown(null);
+      }
+    };
+
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  // prevent background scroll when mobile menu open
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => (document.body.style.overflow = "");
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [menuOpen]);
+
+  useEffect(() => {
+    setMenuOpen(false);
+    setDesktopDropdown(null);
+    setMobileDropdown(null);
+  }, [location.pathname, location.hash]);
+
+  const getScrollOffset = () => {
+    const navbar = document.querySelector('.navbar');
+    const headerBottom = navbar ? navbar.getBoundingClientRect().bottom : 76;
+    return headerBottom + 18;
+  };
+
+  const scrollToSection = (sectionId) => {
+    if (sectionId === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const targetSection = document.getElementById(sectionId);
+    if (!targetSection) return;
+
+    window.scrollTo({
+      top: Math.max(targetSection.offsetTop - getScrollOffset(), 0),
+      behavior: 'smooth',
+    });
+  };
+
+  const handleSectionNavigation = (sectionId) => {
+    setMenuOpen(false);
+    setDesktopDropdown(null);
+    setMobileDropdown(null);
+
+    if (isHomePage) {
+      scrollToSection(sectionId);
+      return;
+    }
+
+    navigate(sectionId === 'hero' ? '/' : `/#${sectionId}`);
+  };
+
+  const handleRouteNavigation = (path) => {
+    setMenuOpen(false);
+    setDesktopDropdown(null);
+    setMobileDropdown(null);
+
+    if (`${location.pathname}${location.search}` === path || location.pathname === path) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    navigate(path);
+  };
+
+  const handleLogoNavigation = () => {
+    setMenuOpen(false);
+    setDesktopDropdown(null);
+    setMobileDropdown(null);
+
+    if (isHomePage) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    navigate('/');
+  };
+
+  const handleItemNavigation = (item) => {
+    if (item.section) {
+      handleSectionNavigation(item.section);
+      return;
+    }
+
+    if (item.path) {
+      handleRouteNavigation(item.path);
+    }
+  };
+
+  const renderPrimaryAction = (item, className = 'nav-link-item') => {
+    if (item.section) {
+      return (
+        <button
+          type="button"
+          className={className}
+          onClick={() => handleSectionNavigation(item.section)}
+        >
+          {item.label}
+        </button>
+      );
+    }
+
+    return (
+      <RouterLink
+        to={item.path}
+        className={`${className} ${location.pathname === item.path ? 'active' : ''}`}
+      >
+        {item.label}
+      </RouterLink>
+    );
+  };
 
   return (
     <>
-    <Helmet>
-            <title>Subho's Computer Institute | Learn Programming in Kolkata</title>
-            <meta name="title" content="Subho's Computer Institute Kolkata – Best Computer Course Training & IT Classes" />
-            <meta name ="viewport" content="width=device-width, initial-scale=1.0" />
-            <meta name="description" content="Join Subho's Computer Institute in Kolkata. Learn programming, web development and more with expert guidance." />
-            <meta name="keywords" content="computer institute kolkata, programming classes, web development course" />
-          <meta name="geo.region" content="IN-WB" />
-  <meta name="geo.placename" content="Kolkata" />
-          </Helmet>
-      <nav className={`navbar ${scrolled ? "scrolled" : ""}`} role="navigation" aria-label="Main">
+      <Helmet>
+        <title>Subho's Computer Institute | Learn Programming in Kolkata</title>
+        <meta
+          name="title"
+          content="Subho's Computer Institute Kolkata – Best Computer Course Training & IT Classes"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content="Join Subho's Computer Institute in Kolkata. Learn programming, web development and more with expert guidance."
+        />
+        <meta
+          name="keywords"
+          content="computer institute kolkata, programming classes, web development course"
+        />
+        <meta name="geo.region" content="IN-WB" />
+        <meta name="geo.placename" content="Kolkata" />
+      </Helmet>
+
+      <nav
+        className={`navbar ${isSolidNavbar ? 'scrolled' : ''} ${!isSolidNavbar && isHomePage ? 'home-top' : ''}`}
+        role="navigation"
+        aria-label="Main"
+      >
         <div className="nav-inner">
-        <Link to="hero" smooth={true} offset={0} duration={500}> <img src={Logo} alt="Subho's logo" className="logo" /></Link>
+          <button
+            type="button"
+            className="logo-link"
+            onClick={handleLogoNavigation}
+            aria-label="Go to homepage"
+          >
+            <img src={Logo} alt="Subho's logo" className="logo" />
+          </button>
 
           <ul className="nav-links">
-          <li><Link to="hero" smooth={true} offset={0} duration={500}>HOME</Link></li>
-<li><Link to="programs" smooth={true} offset={-260} duration={500}>PROGRAMS</Link></li>
-<li><Link to="about" smooth={true} offset={-150} duration={500}>ABOUT US</Link></li>
-<li><Link to="campus" smooth={true} offset={-260} duration={500}>CAMPUS</Link></li>
+            {navItems.map((item) => {
+              const hasDropdown = Boolean(item.dropdown?.length);
+              const isDropdownOpen = desktopDropdown === item.id;
 
-<li><Link to="contact" smooth={true} offset={-260} duration={500}>CONTACT</Link></li>
-            <button className="login"><a href="https://web.classplusapp.com" target="_blank" rel="noopener noreferrer">Login</a></button>
-            
+              return (
+                <li
+                  key={item.id}
+                  className={`nav-item ${hasDropdown ? 'has-dropdown' : ''}`}
+                  onMouseEnter={() => hasDropdown && setDesktopDropdown(item.id)}
+                  onMouseLeave={() => hasDropdown && setDesktopDropdown(null)}
+                >
+                  <div className="nav-item-row">
+                    {renderPrimaryAction(item)}
+
+                    {hasDropdown && (
+                      <button
+                        type="button"
+                        className="dropdown-toggle"
+                        aria-expanded={isDropdownOpen}
+                        aria-label={`Toggle ${item.label} menu`}
+                        onClick={() =>
+                          setDesktopDropdown((current) => (current === item.id ? null : item.id))
+                        }
+                      >
+                        <span className="dropdown-caret"></span>
+                      </button>
+                    )}
+                  </div>
+
+                  {hasDropdown && (
+                    <div className={`nav-dropdown ${isDropdownOpen ? 'show' : ''}`}>
+                      {item.dropdown.map((dropdownItem) => (
+                        <button
+                          key={dropdownItem.label}
+                          type="button"
+                          className="dropdown-link"
+                          onClick={() => handleItemNavigation(dropdownItem)}
+                        >
+                          {dropdownItem.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </li>
+              );
+            })}
+
           </ul>
-        
-    
 
           <button
-            className={`hamburger ${menuOpen ? "open" : ""}`}
+            className={`hamburger ${menuOpen ? 'open' : ''}`}
             aria-expanded={menuOpen}
             aria-label="Toggle menu"
-            onClick={() => setMenuOpen((s) => !s)}
+            onClick={() => setMenuOpen((open) => !open)}
           >
             <span></span>
             <span></span>
@@ -82,14 +306,63 @@ const Navbar = () => {
           </button>
         </div>
 
-        <div className={`mobile-menu ${menuOpen ? "show" : ""}`} role="menu" aria-hidden={!menuOpen}>
-        <Link to="hero" smooth={true} offset={0} duration={500} onClick={() => setMenuOpen(false)}>HOME</Link>
-        <Link to="programs" smooth={true} offset={-260} duration={500} onClick={() => setMenuOpen(false)}>PROGRAMS</Link>
-        <Link to="about" smooth={true} offset={-150} duration={500} onClick={() => setMenuOpen(false)}>ABOUT US</Link>
-        <Link to="campus" smooth={true} offset={-260} duration={500} onClick={() => setMenuOpen(false)}>CAMPUS</Link>
-        
-       <Link to="contact" smooth={true} offset={-260} duration={500} onClick={() => setMenuOpen(false)}>CONTACT</Link>
-            <Link><a href="https://web.classplusapp.com" target="_blank" rel="noopener noreferrer">Login</a></Link>
+        <div className={`mobile-menu ${menuOpen ? 'show' : ''}`} role="menu" aria-hidden={!menuOpen}>
+          {navItems.map((item) => {
+            const hasDropdown = Boolean(item.dropdown?.length);
+            const isOpen = mobileDropdown === item.id;
+
+            return (
+              <div key={item.id} className={`mobile-nav-group ${isOpen ? 'open' : ''}`}>
+                <div className="mobile-nav-row">
+                  {item.section ? (
+                    <button
+                      type="button"
+                      className="nav-link-item"
+                      onClick={() => handleSectionNavigation(item.section)}
+                    >
+                      {item.label}
+                    </button>
+                  ) : (
+                    <RouterLink
+                      to={item.path}
+                      className={`nav-link-item ${location.pathname === item.path ? 'active' : ''}`}
+                    >
+                      {item.label}
+                    </RouterLink>
+                  )}
+
+                  {hasDropdown && (
+                    <button
+                      type="button"
+                      className="mobile-dropdown-toggle"
+                      aria-expanded={isOpen}
+                      aria-label={`Toggle ${item.label} submenu`}
+                      onClick={() =>
+                        setMobileDropdown((current) => (current === item.id ? null : item.id))
+                      }
+                    >
+                      <span className="dropdown-caret"></span>
+                    </button>
+                  )}
+                </div>
+
+                {hasDropdown && (
+                  <div className={`mobile-submenu ${isOpen ? 'show' : ''}`}>
+                    {item.dropdown.map((dropdownItem) => (
+                      <button
+                        key={dropdownItem.label}
+                        type="button"
+                        className="mobile-submenu-link"
+                        onClick={() => handleItemNavigation(dropdownItem)}
+                      >
+                        {dropdownItem.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </nav>
     </>
@@ -97,4 +370,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

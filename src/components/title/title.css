@@ -1,14 +1,23 @@
-.title{
-    text-align:center;
-    color:#212ea0;
-    font-size:15px;
-    font-weight:600;
-    text-transform:uppercase;
-    margin: 70px 0 30px;
+.title {
+  text-align: center;
+  color: #212ea0;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 70px 0 30px;
+  padding: 0 16px;
 }
-.title h2{
-    font-size:32px;
-    color:#000f38;
-    margin-top:5px;
-    text-transform: none;
+
+.title h2 {
+  font-size: clamp(28px, 4vw, 32px);
+  color: #000f38;
+  margin-top: 5px;
+  text-transform: none;
+}
+
+@media (max-width: 600px) {
+  .title {
+    margin: 56px 0 24px;
+    font-size: 13px;
+  }
 }

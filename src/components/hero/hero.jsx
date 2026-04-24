@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import './hero.css';
 import Arrow from '../assets/arrow.png';
 import Brochure from '../assets/BROCHURE.pdf';
-import Mic from '../assets/noti_2.png'; // 🎤 icon
 import AppIcon from '../assets/app_icon.png'; // ✅ your app icon (add this image in /assets)
 
 import { Helmet } from 'react-helmet-async';
@@ -13,12 +12,6 @@ const images = [
   new URL('../assets/hero3.jpeg', import.meta.url).href,
   new URL('../assets/hero4.jpeg', import.meta.url).href,
   new URL('../assets/hero5.jpg', import.meta.url).href,
-];
-
-const updates = [
-  "🎓 Admissions are now open for the 2026 batch!",
-  "💻 Our App is live in the play store",
-  "📘 Download our App from Google Play store to experience high quality education",
 ];
 
 const Hero = () => {
@@ -42,18 +35,6 @@ const Hero = () => {
       <meta name="geo.region" content="IN-WB" />
   <meta name="geo.placename" content="Kolkata" />
       </Helmet>
-      {/* 📰 Glowing Latest Updates Bar (below navbar) */}
-      <div className="updates-bar">
-        <img src={Mic} alt="Latest announcements and admission updates - Subho's Computer Institute Kolkata" className="mic-icon" />
-        <div className="scroll-container">
-          <div className="scroll-text">
-            {updates.map((msg, i) => (
-              <span key={i} className="scroll-item">{msg}</span>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* 🧭 Floating App Download Icon (only in Hero section) */}
       <div className="app-download">
         <a

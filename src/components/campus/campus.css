@@ -1,90 +1,74 @@
-
 .gallery {
-    display: flex;
-    flex-wrap: wrap; 
-    align-items: center;
-    justify-content: center; 
-    gap: 12px; 
-    margin-bottom: 40px;
-  }
-  
-  .gallery img {
-    width: 20%;
-    border-radius: 20px;
-    padding: 8px;
-    object-fit: cover; 
-    transition: transform 0.3s ease;
-  }
-  
-  .gallery img:hover {
-    transform: scale(1.05);
-  }
-  
-  /* Tablet screens */
-  @media (max-width: 768px) {
-    .gallery img {
-      width: 30%; 
-    }
-  }
-  
-  /* Mobile screens */
-  @media (max-width: 480px) {
-    .gallery img {
-      width: 45%; 
-    }
-  }
-  .modern-btn {
-    background: linear-gradient(135deg, #4f46e5, #3b82f6);
-    color: #fff;
-    padding: 12px 28px;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  .modern-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-    background: linear-gradient(135deg, #4338ca, #2563eb);
-  }
-  
-  .modern-btn:active {
-    transform: scale(0.97);
-  }
-  .modern-btn img{
-    width: 18px;
-    height: 18px;
-    margin-left: 8px;
-    vertical-align: middle;
-    
-  }
-  .modern-btn img,
-  .modern-btn svg {
-    transition: transform 0.3s ease;
-  }
-  
-  .modern-btn:hover img,
-  .modern-btn:hover svg {
-    transform: translateX(5px);
-  }
-  .campus > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
 
+.gallery img {
+  width: clamp(180px, 20%, 260px);
+  border-radius: 20px;
+  padding: 8px;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  transition: transform 0.3s ease;
+}
 
- /* Overlay for full-screen slider */
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+.modern-btn {
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: #fff;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modern-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(135deg, #4338ca, #2563eb);
+}
+
+.modern-btn:active {
+  transform: scale(0.97);
+}
+
+.modern-btn img {
+  width: 18px;
+  height: 18px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.modern-btn img,
+.modern-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.modern-btn:hover img,
+.modern-btn:hover svg {
+  transform: translateX(5px);
+}
+
+.campus > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .photo-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.92);
   display: flex;
   align-items: center;
@@ -92,7 +76,6 @@
   z-index: 9999;
 }
 
-/* Close (X) button */
 .close-overlay {
   position: absolute;
   top: 25px;
@@ -107,22 +90,22 @@
   color: #f87171;
 }
 
-/* Slider area */
 .photo-slider {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 25px;
+  width: min(100%, 1100px);
+  padding: 0 24px;
 }
 
 .slider-image {
-  max-width: 80%;
+  max-width: min(80%, 900px);
   max-height: 80vh;
   border-radius: 12px;
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
 }
 
-/* Navigation buttons */
 .slider-btn {
   background: none;
   border: none;
@@ -134,4 +117,48 @@
 
 .slider-btn:hover {
   color: #3b82f6;
+}
+
+@media (max-width: 768px) {
+  .gallery img {
+    width: calc(50% - 12px);
+  }
+
+  .photo-slider {
+    gap: 12px;
+    padding: 0 16px;
+  }
+
+  .slider-btn {
+    font-size: 2rem;
+  }
+
+  .close-overlay {
+    top: 16px;
+    right: 20px;
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery img {
+    width: 100%;
+    max-width: 320px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 540px) {
+  .photo-slider {
+    gap: 10px;
+  }
+
+  .slider-image {
+    max-width: 100%;
+    max-height: 72vh;
+  }
+
+  .slider-btn {
+    font-size: 1.6rem;
+  }
 }

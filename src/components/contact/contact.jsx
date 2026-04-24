@@ -90,7 +90,7 @@ const Contact = () => {
                 src={Call}
                 alt="Call Subho's Computer Institute Kolkata"
               />
-              9831934306 | 8617759263 | 7003751561 | 8336027886
+              9831934306 | 8617759263 | 7003751561 
             </li>
 
             <li>

@@ -1,17 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --topbar-height: 38px;
+    --navbar-height: 76px;
+    --header-total-height: calc(var(--topbar-height) + var(--navbar-height));
+}
+
 *{
     margin:0px;
     padding: 0;
     box-sizing:border-box;
     font-family: "Roboto", sans-serif;
 }
+
+html,
 body{
     background:#f5f5f5;
-    
+    overflow-x: hidden;
 }
+
+html{
+    scroll-padding-top: var(--header-total-height);
+}
+
+#root{
+    min-height: 100vh;
+}
+
 a{
     text-decoration: none;
     color:inherit;
     line-height: 1;
     cursor:pointer;
+}
+
+.route-page-shell{
+    padding-top: calc(var(--header-total-height) + 24px);
+}
+
+#about,
+#contact,
+#programs,
+#campus{
+    scroll-margin-top: calc(var(--header-total-height) + 18px);
+}
+
+@media (max-width: 640px) {
+    :root {
+        --topbar-height: 56px;
+        --navbar-height: 72px;
+    }
+
+    .route-page-shell{
+        padding-top: calc(var(--header-total-height) + 18px);
+    }
 }

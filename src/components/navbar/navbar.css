@@ -1,335 +1,377 @@
 :root {
-  --nav-height: 70px;
+  --topbar-height: 38px;
+  --navbar-height: 76px;
+  --header-total-height: calc(var(--topbar-height) + var(--navbar-height));
+  --header-max-width: 1180px;
 }
 
-/* ✅ Base Navbar Styling */
-.navbar {
+.top-contact-bar {
   position: fixed;
-  top: 45px;
+  top: 0;
   left: 0;
   right: 0;
-  height: var(--nav-height);
+  z-index: 1100;
+  min-height: var(--topbar-height);
+  background: rgba(255, 255, 255, 0.92);
+  color: #0a2265;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+.top-contact-inner {
+  max-width: var(--header-max-width);
+  min-height: var(--topbar-height);
+  margin: 0 auto;
+  padding: 6px 18px;
   display: flex;
   align-items: center;
-  z-index: 9999;
+  justify-content: space-between;
+  gap: 12px 24px;
+  flex-wrap: wrap;
+}
+
+.top-contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #0a2265;
+  text-decoration: none;
+}
+
+.top-contact-item img {
+  width: 15px;
+  height: 15px;
+  filter: none;
+}
+
+.navbar {
+  position: fixed;
+  top: var(--topbar-height);
+  left: 0;
+  right: 0;
+  z-index: 1090;
+  height: var(--navbar-height);
+  background: rgba(7, 27, 82, 0.88);
+  backdrop-filter: saturate(140%) blur(10px);
   transition: background 0.25s ease, box-shadow 0.25s ease;
-  backdrop-filter: saturate(120%) blur(4px);
+}
+
+.navbar.home-top {
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .navbar.scrolled {
-  background: linear-gradient(135deg, #2f26d3, #1a70f9);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(135deg, #0a2265, #1d4ed8);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.18);
 }
 
-/* ✅ Inner Layout */
 .nav-inner {
   width: 100%;
-  max-width: 1100px;
+  max-width: var(--header-max-width);
+  height: 100%;
   margin: 0 auto;
   padding: 0 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 18px;
+}
+
+.logo-link {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .logo {
-  height: 100px;
+  width: auto;
+  height: auto;
+  max-height: 58px;
+  display: block;
+  object-fit: contain;
 }
 
-/* ✅ Desktop Links */
 .nav-links {
+  height: 100%;
   display: flex;
-  gap: 28px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: 1;
 }
 
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 0.4px;
-}
-
-/* ✅ Login Button */
-.navbar .login {
-  background: linear-gradient(135deg, #2f26d3, #1a70f9);
-  color: #fff;
-  padding: 10px 22px;
-  border-radius: 25px;
-  font-weight: 600;
-  letter-spacing: 0.4px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(47, 38, 211, 0.3);
+.nav-item {
+  height: 100%;
+  list-style: none;
+  position: relative;
   display: flex;
   align-items: center;
+}
+
+.nav-item-row {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav-link-item {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  padding: 0 10px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.35px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  font-family: inherit;
+  white-space: nowrap;
 }
 
-.navbar .login:hover {
-  background: linear-gradient(135deg, #1a70f9, #2f26d3);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(26, 112, 249, 0.4);
+.nav-link-item:hover,
+.nav-link-item.active,
+.nav-item:hover > .nav-item-row .nav-link-item {
+  color: #dbeafe;
 }
 
-/* ✅ Hamburger (Hidden on Desktop) */
+.dropdown-toggle,
+.mobile-dropdown-toggle {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.dropdown-caret {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.dropdown-toggle[aria-expanded='true'] .dropdown-caret,
+.mobile-dropdown-toggle[aria-expanded='true'] .dropdown-caret {
+  transform: rotate(-135deg);
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% - 8px);
+  left: 0;
+  min-width: 220px;
+  padding: 10px 0;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 1200;
+}
+
+.nav-dropdown.show,
+.nav-item:hover .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-link {
+  width: 100%;
+  display: block;
+  text-align: left;
+  padding: 12px 18px;
+  border: none;
+  background: transparent;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-link:hover {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
 .hamburger {
   display: none;
-  flex-direction: column;
-  justify-content: center;
+  width: 44px;
+  height: 40px;
   align-items: center;
-  width: 28px;
-  height: 22px;
-  background: transparent;
+  justify-content: center;
+  flex-direction: column;
+  padding: 6px;
   border: none;
+  background: transparent;
   cursor: pointer;
-  z-index: 10001;
+  z-index: 1210;
 }
 
 .hamburger span {
-  display: block;
-  width: 100%;
+  width: 28px;
   height: 3px;
-  background-color: #fff;
   margin: 3px 0;
   border-radius: 2px;
-  transition: all 0.3s ease;
+  background-color: #fff;
+  transition: all 0.25s ease;
 }
 
-/* ✅ Hamburger animation */
 .hamburger.open span:nth-child(1) {
   transform: rotate(45deg) translate(4px, 5px);
 }
+
 .hamburger.open span:nth-child(2) {
   opacity: 0;
 }
+
 .hamburger.open span:nth-child(3) {
   transform: rotate(-45deg) translate(4px, -5px);
 }
 
-/* ✅ Mobile Menu */
 .mobile-menu {
   position: fixed;
-  top: calc(var(--nav-height) + 45px); /* below navbar */
+  top: var(--header-total-height);
   left: 0;
   width: 100%;
-  height: calc(100vh - var(--nav-height));
-  background: rgba(0, 0, 0, 0.95);
+  max-height: calc(100vh - var(--header-total-height));
+  overflow-y: auto;
+  padding: 20px 20px 30px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 20px;
-  padding-top: 40px;
+  gap: 12px;
+  background: rgba(8, 15, 35, 0.98);
   opacity: 0;
   pointer-events: none;
   transform: translateY(-10px);
-  transition: all 0.3s ease;
-  z-index: 10000;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 1195;
 }
 
 .mobile-menu.show {
   opacity: 1;
-  transform: translateY(0);
   pointer-events: auto;
+  transform: translateY(0);
 }
 
-/* ✅ Mobile Menu Links */
-.mobile-menu a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 600;
+.mobile-nav-group {
+  width: 100%;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.mobile-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.mobile-menu .nav-link-item {
+  height: auto;
+  justify-content: flex-start;
   padding: 10px 0;
-  transition: color 0.2s ease;
+  font-size: 16px;
 }
 
-.mobile-menu a:hover {
-  color: #60a5fa;
+.mobile-submenu {
+  display: none;
+  margin-top: 6px;
+  padding-left: 14px;
 }
 
-/* ✅ Responsive Behavior */
-@media (max-width: 768px) {
+.mobile-submenu.show {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-submenu-link {
+  padding: 10px 0;
+  border: none;
+  background: transparent;
+  color: #dbeafe;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+@media (max-width: 1150px) {
+  .nav-link-item {
+    padding: 0 8px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 992px) {
   .nav-links {
     display: none;
   }
+
   .hamburger {
-    display: flex;
+    display: inline-flex;
   }
-}
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center; /* ensures vertical alignment */
-  padding: 0 50px; /* adjust if needed */
-}
 
-.nav-links {
-  display: flex;
-  align-items: center; /* keeps links aligned with button */
-  gap: 25px; /* space between menu items */
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li {
-  list-style: none;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 10px 0;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover {
-  color: #0973ff;
-}
-.login-btn {
-  margin-top: 2px; /* small nudge */
-  align-self: center;
-}
-
-
-/* ---------- Fix: make hamburger clickable + ensure mobile menu appears ---------- */
-/* give nav-inner a stacking context so hamburger sits above other content */
-.nav-inner {
-  position: relative;
-  z-index: 11000;
-}
-
-/* enlarge clickable area and ensure it's on top */
-.hamburger {
-  position: relative;       /* ensure it's positioned inside nav-inner */
-  z-index: 12000 !important;/* force above other elements */
-  display: none;            /* keep media query behavior intact */
-  width: 44px;              /* larger hit area */
-  height: 40px;
-  padding: 6px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ensure bars are visible and cover full width of button */
-.hamburger span {
-  display: block;
-  width: 28px;
-  height: 3px;
-  background-color: #fff;
-  margin: 3px 0;
-  border-radius: 2px;
-  transition: all 0.25s ease;
-  pointer-events: none; /* allow clicks pass to button */
-}
-
-/* keep the .open animation unchanged but ensure transform origins are stable */
-.hamburger.open span:nth-child(1) {
-  transform-origin: center;
-}
-.hamburger.open span:nth-child(3) {
-  transform-origin: center;
-}
-
-/* make sure mobile menu is above everything and not clipped */
-.mobile-menu {
-  z-index: 11999 !important; /* above navbar but below hamburger if needed */
-  pointer-events: auto; /* enable interactions when shown */
-  -webkit-overflow-scrolling: touch;
-}
-
-/* ensure media query still controls when hamburger shows */
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex !important;
-  }
-  .nav-links {
-    display: none !important;
+  .logo {
+    max-height: 54px;
   }
 }
 
-/* ----------------- Fix: prevent hidden mobile menu from blocking page ----------------- */
-/* Place at the very end of navbar.css to override previous rules */
+@media (max-width: 640px) {
+  :root {
+    --topbar-height: 56px;
+    --navbar-height: 72px;
+  }
 
-.mobile-menu {
-  /* ensure hidden menu does not block or capture pointer events */
-  height: 0 !important;
-  padding-top: 0 !important;
-  overflow: hidden !important;
-  opacity: 0 !important;
-  transform: translateY(-12px) !important;
-  pointer-events: none !important;
-  visibility: hidden !important;
-}
+  .top-contact-inner {
+    justify-content: flex-start;
+    padding: 8px 16px;
+  }
 
-/* When menu is shown restore full size and interactivity */
-.mobile-menu.show {
-  height: calc(100vh - var(--nav-height)) !important;
-  padding-top: 40px !important;
-  overflow: auto !important;
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  pointer-events: auto !important;
-  visibility: visible !important;
-}
+  .top-contact-item {
+    width: 100%;
+    font-size: 12px;
+  }
 
-/* keep smooth transition (matches your previous transition) */
-.mobile-menu,
-.mobile-menu.show {
-  transition: all 0.28s ease !important;
-}
+  .nav-inner {
+    padding: 0 16px;
+  }
 
-/* tiny safety: ensure hidden mobile-menu can't visually cover content on desktop */
-@media (min-width: 769px) {
+  .logo {
+    max-height: 50px;
+  }
+
   .mobile-menu {
-    display: none !important;
-  }
-}
-/* ---------- Force logo to left & hamburger to right on mobile ---------- */
-@media (max-width: 768px) {
-  .nav-inner {
-    width: 100% !important;
-    padding: 0 15px !important;
-    
-    gap: 90px !important;
-    display: flex !important;
-    justify-content: space-between !important; /* pushes items to opposite ends */
-    align-items: center !important;
-  }
-
-  .logo {
-    margin-left: 0 !important;  /* stick logo to left */
-    height: 65px !important;    /* slightly smaller for mobile */
-  }
-
-  .hamburger {
-    margin-left: auto !important;
-    margin-right: 0 !important; /* stick hamburger to right */
-    position: relative !important;
-    right: 0 !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-inner {
-    justify-content: space-between; /* ✅ logo left, hamburger right */
-    padding: 0 20px; /* optional: adds a little space on both sides */
-  }
-
-  .logo {
-    height: 70px;
-    padding: 0px; /* adjust if needed */
-  }
-
-  .hamburger {
-    margin-left: auto; /* ensures it's pushed to the far right */
+    padding: 18px 16px 24px;
   }
 }

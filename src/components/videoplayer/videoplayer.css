@@ -1,18 +1,13 @@
-
-
-  /* overlay covers whole screen */
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.75);
+  background: rgba(0, 0, 0, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999; /* high so it sits above header/nav */
-  
+  z-index: 9999;
 }
 
-/* modal container */
 .modal {
   position: relative;
   max-width: 900px;
@@ -22,20 +17,18 @@
   overflow: visible;
 }
 
-/* style for video element */
 .modal video {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 6px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.6);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
 }
 
-/* close button in top-right of modal */
 .close-btn {
   position: absolute;
-  top: -108px;
-  right: -248px;
+  top: -22px;
+  right: -22px;
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -46,7 +39,7 @@
   justify-content: center;
   cursor: pointer;
   z-index: 10001;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
 .close-btn img {
@@ -54,8 +47,15 @@
   height: 22px;
 }
 
-/* small responsive tweak */
 @media (max-width: 640px) {
-  .modal { width: 95%; }
-  .close-btn { top: -22px; right: -22px; width: 48px; height: 48px; }
+  .modal {
+    width: 95%;
+  }
+
+  .close-btn {
+    top: -16px;
+    right: -12px;
+    width: 44px;
+    height: 44px;
+  }
 }
