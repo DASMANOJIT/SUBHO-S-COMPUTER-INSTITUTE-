@@ -94,7 +94,7 @@ const Footer = () => {
               <h4>Company</h4>
               <ul>
                 <li>
-                  <Link to="/#about">About Us</Link>
+                  <Link to="/about/about-the-institute">About Us</Link>
                 </li>
                 <li>
                   <Link to="/#contact">Contact Us</Link>

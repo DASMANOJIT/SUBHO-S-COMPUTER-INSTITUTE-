@@ -6,10 +6,10 @@ import ContactTopBar from './components/navbar/ContactTopBar.jsx';
 import Navbar from './components/navbar/navbar.jsx';
 import Hero from './components/hero/hero.jsx';
 import Title from './components/title/title.jsx';
-import About from './components/about/about.jsx';
 import Campus from './components/campus/campus.jsx';
 import Contact from './components/contact/contact.jsx';
 import Footer from './components/footer/footer.jsx';
+import AboutInstitutePage from './pages/about/AboutInstitutePage.jsx';
 import Faculties from './pages/faculties/Faculties.jsx';
 import Administration from './pages/administration/Administration.jsx';
 import Careers from './pages/careers/Careers.jsx';
@@ -28,10 +28,6 @@ const HomePage = () => {
       </section>
 
       <div className="container">
-        <section id="about">
-          <About />
-        </section>
-
         <section id="campus">
           <Title subtitle="gallery" title="Campus Photos" />
           <Campus />
@@ -81,6 +77,14 @@ const App = () => {
             element={
               <RoutePageShell>
                 <ProgramsPage />
+              </RoutePageShell>
+            }
+          />
+          <Route
+            path="/about/about-the-institute"
+            element={
+              <RoutePageShell>
+                <AboutInstitutePage />
               </RoutePageShell>
             }
           />

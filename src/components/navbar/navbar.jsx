@@ -18,12 +18,12 @@ const navItems = [
   {
     id: 'about',
     label: 'ABOUT US',
-    section: 'about',
+    path: '/about/about-the-institute',
     dropdown: [
-      { label: 'About the Institute', section: 'about' },
-      { label: 'Our Mission', section: 'about' },
-      { label: 'Our Vision', section: 'about' },
-      { label: 'Achievements', section: 'about' },
+      { label: 'About the Institute', path: '/about/about-the-institute' },
+      { label: 'Our Mission', path: '/about/about-the-institute' },
+      { label: 'Our Vision', path: '/about/about-the-institute' },
+      { label: 'Achievements', path: '/about/about-the-institute' },
     ],
   },
   {
