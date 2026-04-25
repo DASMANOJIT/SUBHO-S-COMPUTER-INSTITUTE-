@@ -11,6 +11,7 @@ import Campus from './components/campus/campus.jsx';
 import Contact from './components/contact/contact.jsx';
 import Footer from './components/footer/footer.jsx';
 import Faculties from './pages/faculties/Faculties.jsx';
+import Administration from './pages/administration/Administration.jsx';
 import Careers from './pages/careers/Careers.jsx';
 import ProgramsPage from './pages/programs/ProgramsPage.jsx';
 import PrivacyPolicy from './pages/privacy/PrivacyPolicy.jsx';
@@ -96,6 +97,14 @@ const App = () => {
             element={
               <RoutePageShell>
                 <Faculties />
+              </RoutePageShell>
+            }
+          />
+          <Route
+            path="/faculties/administration"
+            element={
+              <RoutePageShell>
+                <Administration />
               </RoutePageShell>
             }
           />

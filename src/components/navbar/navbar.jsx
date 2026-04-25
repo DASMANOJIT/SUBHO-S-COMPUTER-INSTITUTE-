@@ -41,10 +41,8 @@ const navItems = [
     label: 'FACULTIES',
     path: '/faculties',
     dropdown: [
-       { label: 'Administration', path: '/faculties' },
+      { label: 'Administration', path: '/faculties/administration' },
       { label: 'Teaching Faculty', path: '/faculties?section=teaching-faculty' },
-      
-     
     ],
   },
   {
