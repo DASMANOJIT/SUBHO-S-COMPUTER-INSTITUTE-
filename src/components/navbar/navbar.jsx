@@ -41,9 +41,10 @@ const navItems = [
     label: 'FACULTIES',
     path: '/faculties',
     dropdown: [
-      { label: 'Teaching Faculty', path: '/faculties' },
-      { label: 'Academic Team', path: '/faculties' },
-      { label: 'Administration', path: '/faculties' },
+       { label: 'Administration', path: '/faculties' },
+      { label: 'Teaching Faculty', path: '/faculties?section=teaching-faculty' },
+      
+     
     ],
   },
   {
@@ -154,6 +155,22 @@ const Navbar = () => {
     setMobileDropdown(null);
 
     if (`${location.pathname}${location.search}` === path || location.pathname === path) {
+      const [targetPath, targetSearch = ''] = path.split('?');
+      const params = new URLSearchParams(targetSearch);
+      const sectionTarget = params.get('section');
+
+      if (sectionTarget && location.pathname === targetPath) {
+        const targetSection = document.getElementById(sectionTarget);
+
+        if (targetSection) {
+          targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+          return;
+        }
+      }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
