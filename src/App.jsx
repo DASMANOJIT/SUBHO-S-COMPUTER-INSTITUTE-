@@ -8,6 +8,8 @@ import Title from './components/title/title.jsx';
 import Campus from './components/campus/campus.jsx';
 import Contact from './components/contact/contact.jsx';
 import Footer from './components/footer/footer.jsx';
+import AppDownloadFloat from './components/appDownloadFloat/AppDownloadFloat.jsx';
+import WhatsAppFloat from './components/whatsappFloat/WhatsAppFloat.jsx';
 import HomeSeoSection, { homepageFaqs } from './components/homeSeo/HomeSeoSection.jsx';
 import PageSeo from './components/seo/PageSeo.jsx';
 import { SITE_URL, createFaqSchema, createOrganizationSchema } from './lib/seo.js';
@@ -324,6 +326,8 @@ const App = () => {
       </main>
 
       <Footer />
+      <WhatsAppFloat />
+      <AppDownloadFloat />
     </>
   );
 };

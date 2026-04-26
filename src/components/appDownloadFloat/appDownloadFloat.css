@@ -1,0 +1,95 @@
+.app-download-float {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 9998;
+  text-align: center;
+}
+
+.app-download-float-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+
+.app-download-float-icon {
+  width: clamp(48px, 5vw, 72px);
+  height: clamp(48px, 5vw, 72px);
+  border-radius: 20px;
+  background: #fff;
+  padding: clamp(6px, 1vw, 10px);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.55);
+  animation: appGlowIcon 2s infinite;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.app-download-float-link:hover .app-download-float-icon {
+  transform: scale(1.06);
+  box-shadow: 0 0 24px rgba(59, 130, 246, 0.72);
+}
+
+.app-download-float-caption {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(10, 34, 101, 0.92);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.1;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+  white-space: nowrap;
+}
+
+@keyframes appGlowIcon {
+  0%,
+  100% {
+    box-shadow: 0 0 10px #3b82f6, 0 0 20px rgba(37, 99, 235, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px #60a5fa, 0 0 36px rgba(59, 130, 246, 0.65);
+  }
+}
+
+@media (max-width: 1024px) {
+  .app-download-float {
+    left: 18px;
+    bottom: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .app-download-float {
+    left: 14px;
+    bottom: 14px;
+  }
+
+  .app-download-float-icon {
+    width: 54px;
+    height: 54px;
+  }
+
+  .app-download-float-caption {
+    min-height: 24px;
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-download-float {
+    left: 12px;
+    bottom: 12px;
+  }
+
+  .app-download-float-icon {
+    width: 50px;
+    height: 50px;
+    padding: 6px;
+  }
+}

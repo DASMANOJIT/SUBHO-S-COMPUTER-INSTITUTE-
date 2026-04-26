@@ -22,19 +22,12 @@ const Footer = () => {
             </p>
 
             <div className="footer-nap" aria-label="Institute contact details">
-              <p className="footer-nap-name">Subho&apos;s Computer Institute</p>
+             
               <p>
                 Madhusudan Complex, S.N. Banerjee Road, Barrackpore, Barrackpur Cantonment,
                 West Bengal 700120
               </p>
-              <p>
-                <a href="tel:+919831934306">Phone: +91 9831934306</a>
-              </p>
-              <p>
-                <a href="mailto:subhoscomputerinstitute@gmail.com">
-                  Email: subhoscomputerinstitute@gmail.com
-                </a>
-              </p>
+              
             </div>
 
             <div className="app-links">

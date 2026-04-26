@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './hero.css';
 import Arrow from '../assets/arrow.png';
-import AppIcon from '../assets/app_icon.png'; // ✅ your app icon (add this image in /assets)
 import { Link } from 'react-router-dom';
 const images = [
   new URL('../assets/hero1.jpg', import.meta.url).href,
@@ -22,24 +21,10 @@ const Hero = () => {
   }, []);
 
   return (
-    <>
-      <div className="app-download">
-        <a
-          href="https://play.google.com/store/apps/details?id=co.lily.kcqhj"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="app-download-link"
-          title="Download Subho's Computer Institute App from Google Play Store"
-        >
-          <img src={AppIcon} alt="Download Subho's Computer Institute learning app from Google Play Store" />
-          <span className="app-caption">Download our App</span>
-        </a>
-      </div>
-
-      <div
-        className="hero"
-        style={{ backgroundImage: `url(${images[currentIndex]})` }}
-      >
+    <div
+      className="hero"
+      style={{ backgroundImage: `url(${images[currentIndex]})` }}
+    >
         <div className="hero-content">
           <h1>Computer Institute in Barrackpore for ICSE, ISC, CBSE &amp; Programming</h1>
           <p>
@@ -54,7 +39,6 @@ const Hero = () => {
           </Link>
         </div>
       </div>
-    </>
   );
 };
 
