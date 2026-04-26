@@ -31,6 +31,26 @@
   color: #555;
 }
 
+.footer-nap {
+  margin-bottom: 22px;
+}
+
+.footer-nap-name {
+  font-weight: 700;
+  color: #0a2265;
+  margin-bottom: 8px;
+}
+
+.footer-nap a {
+  color: #0a2265;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-nap a:hover {
+  color: #1d4ed8;
+}
+
 .app-links {
   display: flex;
   align-items: center;
@@ -69,7 +89,7 @@
 }
 
 .social-links a:hover {
-  color: #6c63ff;
+  color: #1d4ed8;
 }
 
 .footer-links {
@@ -104,7 +124,7 @@
 }
 
 .footer-links ul li a:hover {
-  color: #6c63ff;
+  color: #1d4ed8;
 }
 
 .footer-bottom {

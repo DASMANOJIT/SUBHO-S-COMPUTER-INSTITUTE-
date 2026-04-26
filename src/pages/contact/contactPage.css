@@ -1,0 +1,40 @@
+.contact-page {
+  min-height: 100vh;
+  padding: 0 5% 80px;
+  background: #f5f5f5;
+}
+
+.contact-page-hero {
+  max-width: 1080px;
+  margin: 0 auto 36px;
+  padding: 42px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: #fff;
+  box-shadow: 0 18px 42px rgba(37, 99, 235, 0.2);
+}
+
+.contact-page-link-row {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px 18px;
+  flex-wrap: wrap;
+}
+
+.contact-page-link-row a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .contact-page {
+    padding: 0 20px 60px;
+  }
+
+  .contact-page-hero {
+    padding: 26px 20px;
+    border-radius: 24px;
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import PageSeo from '../../components/seo/PageSeo.jsx';
 import './careers.css';
 
 const opportunities = [
@@ -11,17 +11,17 @@ const opportunities = [
 const Careers = () => {
   return (
     <>
-      <Helmet>
-        <title>Careers | Subho's Computer Institute Kolkata</title>
-        <meta
-          name="description"
-          content="Explore career opportunities with Subho's Computer Institute in Kolkata. Join a teaching-focused environment dedicated to student success in computer education."
-        />
-        <meta
-          name="keywords"
-          content="Subho's Computer Institute careers, teaching jobs Kolkata, computer faculty jobs Barrackpore, programming instructor jobs"
-        />
-      </Helmet>
+      <PageSeo
+        title="Careers | Subho's Computer Institute Barrackpore"
+        description="Explore teaching and academic support opportunities with Subho's Computer Institute in Barrackpore and join a student-first computer coaching environment."
+        path="/careers"
+        keywords={[
+          'Subho’s Computer Institute careers',
+          'computer faculty jobs Barrackpore',
+          'computer coaching in Barrackpore',
+          'programming instructor jobs',
+        ]}
+      />
 
       <main className="careers-page">
         <section className="careers-hero">

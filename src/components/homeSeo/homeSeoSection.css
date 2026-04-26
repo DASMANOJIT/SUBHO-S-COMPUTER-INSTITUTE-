@@ -1,0 +1,74 @@
+.home-seo-section {
+  margin: 0 auto 56px;
+}
+
+.home-seo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 24px;
+}
+
+.home-seo-card {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 30px;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+}
+
+.home-seo-card h2 {
+  font-size: 28px;
+  color: #0f172a;
+  margin-bottom: 14px;
+}
+
+.home-seo-card p {
+  color: #475569;
+  line-height: 1.8;
+}
+
+.home-seo-card p + p {
+  margin-top: 16px;
+}
+
+.home-seo-links {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+}
+
+.home-seo-links a {
+  color: #1d4ed8;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.home-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.home-faq-item h3 {
+  color: #1e3a8a;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 900px) {
+  .home-seo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-seo-card {
+    border-radius: 24px;
+    padding: 24px 20px;
+  }
+
+  .home-seo-card h2 {
+    font-size: 24px;
+  }
+}

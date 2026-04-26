@@ -1,21 +1,15 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import PageSeo from '../../components/seo/PageSeo.jsx';
 import './privacyPolicy.css';
 
 const PrivacyPolicy = () => {
   return (
     <>
-      <Helmet>
-        <title>Privacy Policy | Subho's Computer Institute Kolkata</title>
-        <meta
-          name="description"
-          content="Read the privacy policy for Subho's Computer Institute in Kolkata, including how enquiry information and communication details are handled."
-        />
-        <meta
-          name="keywords"
-          content="Subho's Computer Institute privacy policy, Kolkata institute privacy, student enquiry data policy"
-        />
-      </Helmet>
+      <PageSeo
+        title="Privacy Policy | Subho's Computer Institute"
+        description="Read the privacy policy for Subho's Computer Institute, including how enquiry information and communication details are handled."
+        path="/privacy-policy"
+      />
 
       <main className="privacy-page">
         <section className="privacy-hero">

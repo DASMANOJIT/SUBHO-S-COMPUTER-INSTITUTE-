@@ -9,7 +9,6 @@ import Galery_6 from '../assets/galery_6.jpg';
 import Galery_7 from '../assets/galery_7.jpg';
 import Galery_8 from '../assets/galery_8.jpg';
 import Arrow from '../assets/arrow_c.png';
-import { Helmet } from 'react-helmet-async';
 
 const Campus = () => {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -29,28 +28,6 @@ const Campus = () => {
   };
 
   return (
-    <>
-      {/* Gallery Page SEO */}
-      <Helmet>
-        <title>
-          Campus Gallery | Subho's Computer Institute Kolkata
-        </title>
-
-        <meta
-          name="description"
-          content="Explore the campus gallery of Subho's Computer Institute in Barrackpore, Kolkata. View our classrooms, computer labs, student activities, and learning environment."
-        />
-
-        <meta
-          name="keywords"
-          content="Subho's Computer Institute campus, computer institute gallery Kolkata, Barrackpore computer training center photos, computer lab Kolkata, programming classroom images"
-        />
-<meta name="geo.region" content="IN-WB" />
-  <meta name="geo.placename" content="Kolkata" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="Subho's Computer Institute, Kolkata" />
-      </Helmet>
-
       <div>
         <div className="campus">
           <div className="gallery">
@@ -131,7 +108,6 @@ const Campus = () => {
           </div>
         )}
       </div>
-    </>
   );
 };
 

@@ -5,7 +5,6 @@ import Email from '../assets/mail-icon.png';
 import Call from '../assets/phone-icon.png';
 import Locate from '../assets/location-icon.png';
 import Arrow from '../assets/arrow_c.png';
-import { Helmet } from 'react-helmet-async';
 
 const Contact = () => {
 
@@ -36,32 +35,8 @@ const Contact = () => {
 
   return (
     <>
-      {/* Contact Page SEO */}
-      <Helmet>
-        <title>
-          Contact Subho's Computer Institute Kolkata | Admission & Enquiry
-        </title>
-<meta name="geo.region" content="IN-WB" />
-  <meta name="geo.placename" content="Kolkata" />
-        <meta
-          name="description"
-          content="Contact Subho's Computer Institute in Kolkata for admissions, course details, ICSE/ISC/CBSE computer coaching, and programming classes. Call or visit our Barrackpore center today."
-        />
-
-        <meta
-          name="keywords"
-          content="Contact Subho's Computer Institute, computer coaching Kolkata contact, Barrackpore computer institute, programming classes enquiry Kolkata, ICSE ISC CBSE computer coaching"
-        />
-
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="Subho's Computer Institute, Kolkata" />
-      </Helmet>
-
       <div className="contact">
-
-        {/* LEFT SIDE */}
         <div className="contact-col">
-
           <h3>
             Send Us A Message{" "}
             <img
@@ -104,7 +79,6 @@ const Contact = () => {
           </ul>
         </div>
 
-        {/* RIGHT SIDE - FORM */}
         <div className="contact-col">
           <form onSubmit={onSubmit}>
 

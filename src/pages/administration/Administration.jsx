@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import PageSeo from '../../components/seo/PageSeo.jsx';
 import './administration.css';
 
 const founderQualifications = [
@@ -16,17 +16,17 @@ const founderMessage = [
 const Administration = () => {
   return (
     <>
-      <Helmet>
-        <title>Administration | Subho&apos;s Computer Institute Kolkata</title>
-        <meta
-          name="description"
-          content="Meet the founder of Subho's Computer Institute and learn about the administration's vision, academic values, and student-first approach."
-        />
-        <meta
-          name="keywords"
-          content="Subho's Computer Institute administration, founder Subhabrata Datta, computer institute Kolkata founder"
-        />
-      </Helmet>
+      <PageSeo
+        title="Administration | Founder of Subho's Computer Institute"
+        description="Meet Mr. Subhabrata Datta, founder of Subho's Computer Institute, with over 20 years of experience in computer education and academic mentoring."
+        path="/faculties/administration"
+        keywords={[
+          'founder of Subho’s Computer Institute',
+          'computer institute in Barrackpore',
+          'best computer teacher in Barrackpore',
+          'computer coaching in Barrackpore',
+        ]}
+      />
 
       <main className="administration-page">
         <section className="administration-hero">

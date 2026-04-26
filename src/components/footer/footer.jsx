@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import './footer.css';
 import Logo from '../assets/logo.jpg';
@@ -11,27 +10,32 @@ import Instagram from '../assets/instagram.png';
 
 const Footer = () => {
   return (
-    <>
-      <Helmet>
-        <meta name="author" content="Subho's Computer Institute, Kolkata" />
-        <meta name="robots" content="index, follow" />
-        <meta name="geo.region" content="IN-WB" />
-        <meta name="geo.placename" content="Kolkata" />
-      </Helmet>
-
-      <footer className="footer">
+    <footer className="footer">
         <div className="footer-top">
           <div className="footer-brand">
-            <img
-              src={Logo}
-              alt="Subho's Computer Institute Logo - Leading Computer Training Center in Kolkata"
-            />
+            <img src={Logo} alt="Subho's Computer Institute logo" />
 
             <p>
-              Subho&apos;s Computer Institute in Kolkata provides ICSE, ISC &amp; CBSE computer coaching,
-              programming courses, and practical IT training designed to help students succeed
-              in academics and future careers.
+              Subho&apos;s Computer Institute in Barrackpore provides ICSE, ISC and CBSE computer
+              coaching, programming classes, C, Python, and practical IT training for students
+              across Barrackpore, Shyamnagar, Kolkata, and nearby areas.
             </p>
+
+            <div className="footer-nap" aria-label="Institute contact details">
+              <p className="footer-nap-name">Subho&apos;s Computer Institute</p>
+              <p>
+                Madhusudan Complex, S.N. Banerjee Road, Barrackpore, Barrackpur Cantonment,
+                West Bengal 700120
+              </p>
+              <p>
+                <a href="tel:+919831934306">Phone: +91 9831934306</a>
+              </p>
+              <p>
+                <a href="mailto:subhoscomputerinstitute@gmail.com">
+                  Email: subhoscomputerinstitute@gmail.com
+                </a>
+              </p>
+            </div>
 
             <div className="app-links">
               <a
@@ -97,7 +101,7 @@ const Footer = () => {
                   <Link to="/about/about-the-institute">About Us</Link>
                 </li>
                 <li>
-                  <Link to="/#contact">Contact Us</Link>
+                  <Link to="/contact">Contact Us</Link>
                 </li>
                 <li>
                   <Link to="/careers">Careers</Link>
@@ -112,19 +116,16 @@ const Footer = () => {
               <h4>Popular Courses</h4>
               <ul>
                 <li>
-                  <Link to="/programs?category=computer-courses">Computer Basics Course</Link>
+                  <Link to="/programs/icse-computer">ICSE Computer Coaching</Link>
                 </li>
                 <li>
-                  <Link to="/programs?category=icse-isc">ICSE Classes 4-10 Computer Coaching</Link>
+                  <Link to="/programs/isc-computer-science">ISC Computer Science Coaching</Link>
                 </li>
                 <li>
-                  <Link to="/programs?category=icse-isc">ISC Class 11-12 Computer Science</Link>
+                  <Link to="/programs/cbse-computer">CBSE Computer Coaching</Link>
                 </li>
                 <li>
-                  <Link to="/programs?category=cbse">CBSE Class 11-12 Computer Science</Link>
-                </li>
-                <li>
-                  <Link to="/programs?category=computer-courses">Python Programming Course</Link>
+                  <Link to="/programs/programming">Programming Classes</Link>
                 </li>
               </ul>
             </div>
@@ -132,6 +133,18 @@ const Footer = () => {
             <div>
               <h4>Quick Links</h4>
               <ul>
+                <li>
+                  <Link to="/about/about-the-institute">About the Institute</Link>
+                </li>
+                <li>
+                  <Link to="/programs">Programs</Link>
+                </li>
+                <li>
+                  <Link to="/faculties/administration">Administration</Link>
+                </li>
+                <li>
+                  <Link to="/contact">Contact</Link>
+                </li>
                 <li>
                   <a href="mailto:dmstacklabs@gmail.com?subject=Support%20Request%20-%20Subho%27s%20Computer%20Institute">
                     Support
@@ -146,7 +159,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-bottom">
-          <p>© 2025 Subho&apos;s Computer Institute, Kolkata. All Rights Reserved.</p>
+          <p>© 2025 Subho&apos;s Computer Institute, Barrackpore. All Rights Reserved.</p>
           <p className="footer-credit">
             Developed and maintained by{' '}
             <a
@@ -159,7 +172,6 @@ const Footer = () => {
           </p>
         </div>
       </footer>
-    </>
   );
 };
 

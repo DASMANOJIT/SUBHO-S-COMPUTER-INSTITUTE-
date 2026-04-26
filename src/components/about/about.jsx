@@ -3,42 +3,17 @@ import './about.css';
 import Pic from '../assets/subho.jpg';
 import Play from '../assets/play.png';
 import VideoPlayer from '../videoplayer/videoplayer';
-import { Helmet } from 'react-helmet-async';
 
 const About = () => {
   const [showVideo, setShowVideo] = useState(false);
 
   return (
     <>
-      {/* About Page SEO */}
-      <Helmet>
-        <title>
-          About Subho's Computer Institute Kolkata | ICSE ISC CBSE Computer Coaching
-        </title>
-
-        <meta
-          name="description"
-          content="Founded in 2004 by Mr. Shubhabrata Dutta, Subho's Computer Institute in Barrackpore, Kolkata provides ICSE, ISC & CBSE computer coaching, programming classes, and practical IT training with over 6000+ successful students."
-        />
-
-        <meta
-          name="keywords"
-          content="About Subho's Computer Institute, computer coaching Kolkata, ICSE computer tuition Barrackpore, ISC CBSE computer science classes, programming institute Kolkata, Shubhabrata Dutta"
-        />
-<meta name="geo.region" content="IN-WB" />
-  <meta name="geo.placename" content="Kolkata" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="Subho's Computer Institute, Kolkata" />
-      </Helmet>
-
       <div className="about">
-        
-        {/* LEFT SIDE */}
         <div className="about_left" style={{ position: 'relative' }}>
-          
           <img
             src={Pic}
-            alt="Mr. Shubhabrata Dutta Founder of Subho's Computer Institute Kolkata"
+            alt="Mr. Subhabrata Datta founder of Subho's Computer Institute Barrackpore"
             className="about_img"
           />
 
@@ -52,7 +27,6 @@ const About = () => {
           />
         </div>
 
-        {/* RIGHT SIDE */}
         <div className="about_right">
           <h3>ABOUT THE INSTITUTE</h3>
           <h2>Nurturing Tomorrow's Leaders From Today</h2>
@@ -85,7 +59,6 @@ const About = () => {
           <p>📚 Your success is our commitment!</p>
         </div>
 
-        {/* Video Modal */}
         {showVideo && (
           <VideoPlayer closeVideo={() => setShowVideo(false)} />
         )}

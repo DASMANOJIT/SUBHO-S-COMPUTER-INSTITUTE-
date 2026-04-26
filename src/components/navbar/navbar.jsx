@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 import './navbar.css';
 import Logo from '../assets/logo.png';
@@ -21,9 +20,9 @@ const navItems = [
     path: '/about/about-the-institute',
     dropdown: [
       { label: 'About the Institute', path: '/about/about-the-institute' },
-      { label: 'Our Mission', path: '/about/about-the-institute' },
-      { label: 'Our Vision', path: '/about/about-the-institute' },
-      { label: 'Achievements', path: '/about/about-the-institute' },
+      { label: 'Our Mission', path: '/about/mission' },
+      { label: 'Our Vision', path: '/about/vision' },
+      { label: 'Achievements', path: '/about/achievements' },
     ],
   },
   {
@@ -54,7 +53,7 @@ const navItems = [
       { label: 'Apply Now', path: '/careers' },
     ],
   },
-  { id: 'contact', label: 'CONTACT US', section: 'contact' },
+  { id: 'contact', label: 'CONTACT US', path: '/contact' },
 ];
 
 const Navbar = () => {
@@ -224,31 +223,11 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      <Helmet>
-        <title>Subho's Computer Institute | Learn Programming in Kolkata</title>
-        <meta
-          name="title"
-          content="Subho's Computer Institute Kolkata – Best Computer Course Training & IT Classes"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          name="description"
-          content="Join Subho's Computer Institute in Kolkata. Learn programming, web development and more with expert guidance."
-        />
-        <meta
-          name="keywords"
-          content="computer institute kolkata, programming classes, web development course"
-        />
-        <meta name="geo.region" content="IN-WB" />
-        <meta name="geo.placename" content="Kolkata" />
-      </Helmet>
-
-      <nav
-        className={`navbar ${isSolidNavbar ? 'scrolled' : ''} ${!isSolidNavbar && isHomePage ? 'home-top' : ''}`}
-        role="navigation"
-        aria-label="Main"
-      >
+    <nav
+      className={`navbar ${isSolidNavbar ? 'scrolled' : ''} ${!isSolidNavbar && isHomePage ? 'home-top' : ''}`}
+      role="navigation"
+      aria-label="Main"
+    >
         <div className="nav-inner">
           <button
             type="button"
@@ -256,7 +235,7 @@ const Navbar = () => {
             onClick={handleLogoNavigation}
             aria-label="Go to homepage"
           >
-            <img src={Logo} alt="Subho's logo" className="logo" />
+            <img src={Logo} alt="Subho's Computer Institute logo" className="logo" />
           </button>
 
           <ul className="nav-links">
@@ -380,7 +359,6 @@ const Navbar = () => {
           })}
         </div>
       </nav>
-    </>
   );
 };
 

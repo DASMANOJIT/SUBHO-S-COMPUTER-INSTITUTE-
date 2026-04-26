@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
+import PageSeo from '../../components/seo/PageSeo.jsx';
 import './faculties.css';
 
 const getFacultyImagePath = (fileName) => `/${encodeURIComponent(fileName)}`;
@@ -275,17 +275,18 @@ const Faculties = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Faculties | Subho&apos;s Computer Institute Kolkata</title>
-        <meta
-          name="description"
-          content="Meet the teaching faculty of Subho's Computer Institute in Kolkata and explore the educators guiding junior and senior students with focused computer education."
-        />
-        <meta
-          name="keywords"
-          content="Subho's Computer Institute faculties, teaching faculty Kolkata, computer teachers Barrackpore, ICSE ISC CBSE faculty"
-        />
-      </Helmet>
+      <PageSeo
+        title="Teaching Faculty | Subho's Computer Institute Barrackpore"
+        description="Meet the teaching faculty of Subho's Computer Institute in Barrackpore and explore the educators guiding junior and senior students with focused computer education."
+        path="/faculties"
+        keywords={[
+          'computer institute in Barrackpore',
+          'computer teachers Barrackpore',
+          'ICSE computer tuition Barrackpore',
+          'ISC computer science tuition Barrackpore',
+          'CBSE computer coaching Barrackpore',
+        ]}
+      />
 
       <main className="faculties-page">
         <section className="faculties-hero">
