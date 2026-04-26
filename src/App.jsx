@@ -9,6 +9,7 @@ import Campus from './components/campus/campus.jsx';
 import Contact from './components/contact/contact.jsx';
 import Footer from './components/footer/footer.jsx';
 import AppDownloadFloat from './components/appDownloadFloat/AppDownloadFloat.jsx';
+import EnquiryModal from './components/enquiryModal/EnquiryModal.jsx';
 import WhatsAppFloat from './components/whatsappFloat/WhatsAppFloat.jsx';
 import HomeSeoSection, { homepageFaqs } from './components/homeSeo/HomeSeoSection.jsx';
 import PageSeo from './components/seo/PageSeo.jsx';
@@ -326,6 +327,7 @@ const App = () => {
       </main>
 
       <Footer />
+      <EnquiryModal />
       <WhatsAppFloat />
       <AppDownloadFloat />
     </>
