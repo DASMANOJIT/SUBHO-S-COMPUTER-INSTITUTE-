@@ -1,0 +1,113 @@
+.site-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(8, 24, 70, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.34s ease, visibility 0.34s ease;
+}
+
+.site-preloader.is-exiting {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.site-preloader-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+  width: min(100%, 420px);
+}
+
+.site-preloader-logo {
+  width: clamp(96px, 18vw, 132px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 22px rgba(255, 255, 255, 0.18));
+}
+
+.site-preloader-animation-shell {
+  width: min(68vw, 240px);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.site-preloader-animation {
+  width: 100%;
+  height: 100%;
+}
+
+.site-preloader-fallback {
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-preloader-fallback-ring {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.24);
+  border-top-color: #ffffff;
+  animation: sitePreloaderSpin 1s linear infinite;
+}
+
+.site-preloader-copy h2 {
+  color: #ffffff;
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.site-preloader-copy p {
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: clamp(14px, 2vw, 16px);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+@keyframes sitePreloaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .site-preloader {
+    padding: 18px;
+  }
+
+  .site-preloader-panel {
+    gap: 14px;
+  }
+
+  .site-preloader-animation-shell {
+    width: min(74vw, 200px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-preloader,
+  .site-preloader.is-exiting {
+    transition-duration: 0.001ms !important;
+  }
+
+  .site-preloader-fallback-ring {
+    animation: none !important;
+  }
+}

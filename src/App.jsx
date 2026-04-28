@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import SitePreloader from './components/SitePreloader.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
 import ContactTopBar from './components/navbar/ContactTopBar.jsx';
 import Navbar from './components/navbar/navbar.jsx';
@@ -100,6 +101,7 @@ const App = () => {
 
   return (
     <>
+      <SitePreloader />
       <ScrollToTop />
       <ContactTopBar />
       <Navbar />
