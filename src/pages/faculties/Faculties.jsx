@@ -256,6 +256,11 @@ const Faculties = () => {
   const [brokenImages, setBrokenImages] = useState({});
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [location.pathname]);
+
+  useEffect(() => {
     const params = new URLSearchParams(location.search);
     const section = params.get('section');
 
@@ -264,13 +269,26 @@ const Faculties = () => {
     const timeoutId = window.setTimeout(() => {
       const target = document.getElementById(section);
 
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
+      if (!target) return;
+
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const headerOffset = isMobile ? 180 : 152;
+
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          const targetTop = Math.max(
+            target.getBoundingClientRect().top + window.scrollY - headerOffset,
+            0
+          );
+
+          window.scrollTo({
+            top: targetTop,
+            left: 0,
+            behavior: isMobile ? 'auto' : 'smooth',
+          });
         });
-      }
-    }, 60);
+      });
+    }, 120);
 
     return () => window.clearTimeout(timeoutId);
   }, [location.search]);
