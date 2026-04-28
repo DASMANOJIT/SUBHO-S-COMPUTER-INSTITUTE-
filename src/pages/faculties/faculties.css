@@ -78,6 +78,8 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
+  width: 100%;
+  min-width: 0;
 }
 
 .faculty-profile-card {
@@ -88,6 +90,9 @@
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
   padding: 28px 22px 24px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .faculty-profile-card:hover {
@@ -210,6 +215,39 @@
   .faculty-photo-frame {
     width: 150px;
     height: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .teaching-faculty-section,
+  .teaching-faculty-section .reveal-on-scroll,
+  .teaching-faculty-section .faculty-card,
+  .teaching-faculty-section .faculty-grid {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  .teaching-faculty-section {
+    transition-duration: 0.3s;
+  }
+
+  .teaching-faculty-section .faculty-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .teaching-faculty-section .faculty-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .teaching-faculty-section .faculty-photo-shell {
+    width: 100%;
+    max-width: 100%;
   }
 }
 

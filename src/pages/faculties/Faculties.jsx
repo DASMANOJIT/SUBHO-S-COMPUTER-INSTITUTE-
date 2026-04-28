@@ -178,7 +178,7 @@ const FacultyCard = ({ teacher, hasImageError, onImageError }) => {
   );
 
   return (
-    <ScrollReveal as="article" className="faculty-profile-card smooth-card hover-lift">
+    <ScrollReveal as="article" className="faculty-profile-card faculty-card smooth-card hover-lift">
       <div className="faculty-photo-frame">
         {hasImageError ? (
           <div className="faculty-photo-fallback" aria-label={`${teacher.name} photo unavailable`}>
@@ -226,7 +226,12 @@ const FacultyCard = ({ teacher, hasImageError, onImageError }) => {
 };
 
 const FacultySection = ({ id, label, title, description, teachers, brokenImages, onImageError }) => (
-  <ScrollReveal as="section" id={id} className="faculty-section smooth-card" delay={80}>
+  <ScrollReveal
+    as="section"
+    id={id}
+    className={`faculty-section smooth-card ${id === 'teaching-faculty' ? 'teaching-faculty-section' : ''}`}
+    delay={80}
+  >
     <div className="faculty-section-header">
       <span className="faculty-section-pill">{label}</span>
       <h2>{title}</h2>
@@ -292,7 +297,7 @@ const Faculties = () => {
         ]}
       />
 
-      <main className="faculties-page">
+  <main className="faculties-page">
         <ScrollReveal as="section" className="faculties-hero">
           <p className="page-eyebrow">Our Team</p>
           <h1>Faculties</h1>
