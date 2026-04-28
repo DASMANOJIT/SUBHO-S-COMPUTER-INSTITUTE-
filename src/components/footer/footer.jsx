@@ -17,8 +17,8 @@ const Footer = () => {
 
             <p>
               Subho&apos;s Computer Institute in Barrackpore provides ICSE, ISC and CBSE computer
-              coaching, programming classes, C, Python, and practical IT training for students
-              across Barrackpore, Shyamnagar, Kolkata, and nearby areas.
+              coaching, programming classes, Java, Python, HTML, CSS and practical IT training for students
+              across Barrackpore, Shyamnagar, Sodepur, Sodepore, Kolkata, and nearby areas.
             </p>
 
             <div className="footer-nap" aria-label="Institute contact details">

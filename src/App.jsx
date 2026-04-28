@@ -5,7 +5,6 @@ import ContactTopBar from './components/navbar/ContactTopBar.jsx';
 import Navbar from './components/navbar/navbar.jsx';
 import Hero from './components/hero/hero.jsx';
 import Title from './components/title/title.jsx';
-import Campus from './components/campus/campus.jsx';
 import Contact from './components/contact/contact.jsx';
 import Footer from './components/footer/footer.jsx';
 import AppDownloadFloat from './components/appDownloadFloat/AppDownloadFloat.jsx';
@@ -19,7 +18,10 @@ import AboutInstitutePage from './pages/about/AboutInstitutePage.jsx';
 import Administration from './pages/administration/Administration.jsx';
 import Careers from './pages/careers/Careers.jsx';
 import ContactPage from './pages/contact/ContactPage.jsx';
+import EventsPage from './pages/events/EventsPage.jsx';
 import Faculties from './pages/faculties/Faculties.jsx';
+import FacilitiesPage from './pages/facilities/FacilitiesPage.jsx';
+import GalleryPage from './pages/gallery/GalleryPage.jsx';
 import PrivacyPolicy from './pages/privacy/PrivacyPolicy.jsx';
 import ProgramDetailPage from './pages/programs/ProgramDetailPage.jsx';
 import ProgramsPage from './pages/programs/ProgramsPage.jsx';
@@ -32,7 +34,7 @@ const HomePage = () => {
   return (
     <>
       <PageSeo
-        description="Subho's Computer Institute in Barrackpore offers ICSE, ISC and CBSE computer coaching, programming classes, C, Python and practical IT training for students from Barrackpore, Shyamnagar and Kolkata."
+        description="Subho's Computer Institute in Barrackpore offers ICSE, ISC and CBSE computer coaching, programming classes, Java, Python, HTML, CSS and practical IT training for students from Barrackpore, Shyamnagar, Sodepur, Sodepore and Kolkata."
         path="/"
         keywords={[
           'computer institute in Barrackpore',
@@ -43,11 +45,24 @@ const HomePage = () => {
           'ISC computer science tuition Barrackpore',
           'CBSE computer coaching Barrackpore',
           'programming classes in Barrackpore',
-          'C programming course Barrackpore',
-          'Python course Barrackpore',
+          'Java programming classes in Barrackpore',
+          'Python programming classes in Barrackpore',
+          'HTML CSS course in Barrackpore',
           'practical IT training Barrackpore',
           'computer institute near Shyamnagar',
           'computer tuition near Shyamnagar',
+          'computer institute near Sodepur',
+          'computer classes near Sodepur',
+          'computer coaching near Sodepur',
+          'ICSE computer tuition near Sodepur',
+          'ISC computer science coaching near Sodepur',
+          'CBSE computer coaching near Sodepur',
+          'programming classes near Sodepur',
+          'Java programming classes near Sodepur',
+          'Python programming classes near Sodepur',
+          'HTML CSS course near Sodepur',
+          'computer tuition near Sodepore',
+          'computer classes near Sodepore',
           'computer classes near Kolkata',
           'best computer teacher in Barrackpore',
         ]}
@@ -60,11 +75,6 @@ const HomePage = () => {
 
       <div className="container">
         <HomeSeoSection />
-
-        <section id="campus">
-          <Title subtitle="gallery" title="Campus Photos" />
-          <Campus />
-        </section>
 
         <section id="contact">
           <Title subtitle="Contact us" title="Campus Get In Touch" />
@@ -248,7 +258,7 @@ const App = () => {
                   ]}
                   relatedLinks={[
                     { to: '/programs/icse-computer', label: 'View ICSE computer coaching' },
-                    { to: '/programs/programming', label: 'Explore C and Python classes' },
+                    { to: '/programs/programming', label: 'Explore Java and Python classes' },
                   ]}
                 />
               </RoutePageShell>
@@ -259,15 +269,16 @@ const App = () => {
             element={
               <RoutePageShell>
                 <ProgramDetailPage
-                  seoTitle="Programming Classes in Barrackpore | C & Python"
-                  seoDescription="Explore programming classes in Barrackpore with C programming, Python learning, and practical IT training at Subho's Computer Institute."
+                  seoTitle="Programming Classes in Barrackpore | Java, Python, HTML & CSS"
+                  seoDescription="Explore programming classes in Barrackpore with Java, Python, HTML, CSS and practical IT training at Subho's Computer Institute."
                   path="/programs/programming"
-                  h1="Programming Classes in Barrackpore for C, Python & Practical IT Skills"
-                  intro="Our programming classes in Barrackpore help students build logic, coding confidence, and practical IT understanding through guided exercises in C programming, Python, and core computer skills."
+                  h1="Programming Classes in Barrackpore for Java, Python, HTML, CSS & Practical IT Skills"
+                  intro="Our programming classes in Barrackpore help students build logic, coding confidence, and practical IT understanding through guided exercises in Java, Python, HTML, CSS, and core computer skills."
                   audience="This course is ideal for students who want to begin programming, strengthen computer application skills, or build practical IT confidence alongside school academics."
                   topics={[
-                    'C programming fundamentals and logic building',
-                    'Python course basics, syntax, and problem solving',
+                    'Java programming fundamentals and logic building',
+                    'Python basics, syntax, and problem solving',
+                    'HTML and CSS for clean web page structure and styling',
                     'Practical IT training, exercises, and concept application',
                   ]}
                   benefits={[
@@ -280,6 +291,30 @@ const App = () => {
                     { to: '/programs/isc-computer-science', label: 'See ISC computer science coaching' },
                   ]}
                 />
+              </RoutePageShell>
+            }
+          />
+          <Route
+            path="/gallery"
+            element={
+              <RoutePageShell>
+                <GalleryPage />
+              </RoutePageShell>
+            }
+          />
+          <Route
+            path="/events"
+            element={
+              <RoutePageShell>
+                <EventsPage />
+              </RoutePageShell>
+            }
+          />
+          <Route
+            path="/facilities"
+            element={
+              <RoutePageShell>
+                <FacilitiesPage />
               </RoutePageShell>
             }
           />

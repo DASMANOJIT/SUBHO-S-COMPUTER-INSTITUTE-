@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import './campus.css';
 import Galery_1 from '../assets/galery_1.jpeg';
 import Galery_2 from '../assets/galery_2.jpeg';
-import Galery_3 from '../assets/galery_3.jpeg';
-import Galery_4 from '../assets/galery_4.jpeg';
-import Galery_5 from '../assets/galery_5.jpeg';
+import Galery_3 from '../assets/galery_3.jpg';
+import Galery_4 from '../assets/galery_4.jpg';
+import Galery_5 from '../assets/galery_5.jpg';
 import Galery_6 from '../assets/galery_6.jpg';
-import Galery_7 from '../assets/galery_7.jpg';
-import Galery_8 from '../assets/galery_8.jpg';
+import Galery_7 from '../assets/galery_7.jpeg';
 import Arrow from '../assets/arrow_c.png';
 
 const Campus = () => {
@@ -16,7 +15,7 @@ const Campus = () => {
 
   const photos = [
     Galery_1, Galery_2, Galery_3, Galery_4, Galery_5,
-    Galery_6, Galery_7, Galery_8
+    Galery_6, Galery_7
   ];
 
   const handleNext = () => {

@@ -28,11 +28,11 @@ const navItems = [
   {
     id: 'campus',
     label: 'CAMPUS',
-    section: 'campus',
+    path: '/gallery',
     dropdown: [
-      { label: 'Gallery', section: 'campus' },
-      { label: 'Events', section: 'campus' },
-      { label: 'Facilities', section: 'campus' },
+      { label: 'Gallery', path: '/gallery' },
+      { label: 'Events', path: '/events' },
+      { label: 'Facilities', path: '/facilities' },
     ],
   },
   {

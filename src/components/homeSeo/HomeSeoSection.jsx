@@ -21,7 +21,7 @@ const faqs = [
   {
     question: 'Do you teach programming?',
     answer:
-      'Yes, we teach programming fundamentals including C, Python and practical IT skills.',
+      'Yes, we teach programming fundamentals including Java, Python, HTML, CSS and practical IT skills.',
   },
   {
     question: 'Can students from Shyamnagar or nearby Kolkata areas join?',
@@ -45,7 +45,7 @@ const HomeSeoSection = () => {
           </p>
           <p>
             Students from Barrackpore, Shyamnagar, Kolkata, Titagarh, Khardah, Palta, Ichapur,
-            Naihati, and nearby North 24 Parganas areas join us for
+            Naihati, Sodepur, Sodepore, and nearby North 24 Parganas areas join us for
             {' '}
             <strong>ICSE computer coaching in Barrackpore</strong>,
             {' '}

@@ -21,6 +21,8 @@ export const BUSINESS_DETAILS = {
     'Palta',
     'Ichapur',
     'Naihati',
+    'Sodepur',
+    'Sodepore',
   ],
   sameAs: [
     'https://www.facebook.com/subhoscomputerinstitute',
@@ -35,8 +37,13 @@ export const createCanonicalUrl = (path = '/') => {
   return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`;
 };
 
-export const createPageTitle = (title) =>
-  title ? `${title} | ${SITE_NAME}` : 'Subho\'s Computer Institute Barrackpore | ICSE, ISC & CBSE Computer Coaching';
+export const createPageTitle = (title) => {
+  if (!title) {
+    return "Subho's Computer Institute Barrackpore | ICSE, ISC & CBSE Computer Coaching";
+  }
+
+  return title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+};
 
 export const createOrganizationSchema = () => ({
   '@context': 'https://schema.org',

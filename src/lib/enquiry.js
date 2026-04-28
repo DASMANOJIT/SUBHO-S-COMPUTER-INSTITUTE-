@@ -5,8 +5,10 @@ export const ENQUIRY_COURSE_OPTIONS = [
   'Class 4 to 10 Computer',
   'Class 11 to 12 Computer Science',
   'Programming Classes',
-  'C Programming',
+  'Java Programming',
   'Python Programming',
+  'HTML',
+  'CSS',
   'Practical IT Training',
   'Other',
 ];

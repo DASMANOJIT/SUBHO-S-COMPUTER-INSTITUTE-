@@ -25,6 +25,9 @@ const ProgramDetailPage = ({
           'computer coaching in Barrackpore',
           'computer classes in Barrackpore',
           'computer institute near Shyamnagar',
+          'computer institute near Sodepur',
+          'computer classes near Sodepur',
+          'computer tuition near Sodepore',
           'computer classes near Kolkata',
           'computer science tuition in Barrackpore',
           'programming classes in Barrackpore',
@@ -65,7 +68,7 @@ const ProgramDetailPage = ({
           <article className="program-detail-card program-detail-card-accent">
             <h2>Take The Next Step</h2>
             <p>
-              Students from Barrackpore, Shyamnagar, Kolkata, and nearby areas can contact the
+              Students from Barrackpore, Shyamnagar, Sodepur, Sodepore, Kolkata, and nearby areas can contact the
               institute for admission guidance, batch information, and course planning.
             </p>
             <div className="program-detail-links">

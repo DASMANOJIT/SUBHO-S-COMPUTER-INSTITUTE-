@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
   DEFAULT_OG_IMAGE,
@@ -21,6 +21,11 @@ const PageSeo = ({
   const hostname =
     typeof window !== 'undefined' && window.location?.hostname ? window.location.hostname : '';
   const isVercelHost = hostname.includes('vercel.app');
+
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    document.title = resolvedTitle;
+  }, [resolvedTitle]);
 
   return (
     <Helmet>

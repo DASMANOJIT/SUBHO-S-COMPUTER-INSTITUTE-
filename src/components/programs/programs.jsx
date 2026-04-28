@@ -51,8 +51,8 @@ const programCards = [
     image: Program_4,
     badge: Course_4,
     title: 'PYTHON',
-    imageAlt: "Python Programming Course in Kolkata with Certification - Subho's Computer Institute",
-    badgeAlt: "Python Coding Training Institute in Kolkata - Subho's Computer Institute",
+    imageAlt: "Python Programming Course in Barrackpore at Subho's Computer Institute",
+    badgeAlt: "Python Programming Training at Subho's Computer Institute Barrackpore",
   },
 ];
 

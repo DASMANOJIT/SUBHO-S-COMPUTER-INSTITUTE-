@@ -9,13 +9,16 @@ const ContactPage = () => {
     <>
       <PageSeo
         title="Contact Subho's Computer Institute Barrackpore | Admission & Computer Classes"
-        description="Contact Subho's Computer Institute for admission enquiries, ICSE, ISC, CBSE computer coaching, programming classes and practical IT training in Barrackpore."
+        description="Contact Subho's Computer Institute for admission enquiries, ICSE, ISC, CBSE computer coaching, programming classes and practical IT training in Barrackpore, near Shyamnagar, Sodepur, Sodepore and Kolkata."
         path="/contact"
         keywords={[
           'contact Subho’s Computer Institute',
           'computer classes in Barrackpore',
           'computer coaching in Barrackpore',
           'computer institute near Shyamnagar',
+          'computer institute near Sodepur',
+          'computer classes near Sodepur',
+          'computer tuition near Sodepore',
           'computer classes near Kolkata',
           'computer science tutor near me',
           'computer classes near me',
@@ -29,7 +32,7 @@ const ContactPage = () => {
           <p className="page-intro">
             Reach out for admissions, course guidance, ICSE computer tuition, ISC computer science
             coaching, CBSE computer coaching, programming classes, and practical IT training in
-            Barrackpore.
+            Barrackpore for students from Shyamnagar, Sodepur, Sodepore, Kolkata, and nearby areas.
           </p>
           <p className="contact-page-link-row">
             <a href="tel:+919831934306">Call +91 9831934306</a>

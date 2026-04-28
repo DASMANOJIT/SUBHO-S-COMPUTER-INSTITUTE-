@@ -37,6 +37,24 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://subhoscomputerinstitute.com/gallery</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://subhoscomputerinstitute.com/events</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://subhoscomputerinstitute.com/facilities</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://subhoscomputerinstitute.com/faculties/administration</loc>
     <lastmod>2026-04-26</lastmod>
     <changefreq>monthly</changefreq>

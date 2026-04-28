@@ -31,7 +31,7 @@ const Hero = () => {
             Subho&apos;s Computer Institute is a trusted computer coaching centre in Barrackpore,
             helping students build strong foundations in school computer subjects, programming,
             and practical IT skills. We provide ICSE, ISC and CBSE computer coaching for
-            students from Barrackpore, Shyamnagar, Kolkata and nearby areas.
+            students from Barrackpore, Shyamnagar, Sodepur, Sodepore, Kolkata and nearby areas.
           </p>
           <Link to="/programs" className="modern-btn">
             Explore our programs
