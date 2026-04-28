@@ -1,5 +1,3 @@
-export const ENQUIRY_SESSION_KEY = 'sci_enquiry_modal_seen';
-
 export const ENQUIRY_COURSE_OPTIONS = [
   'ICSE Computer Tuition',
   'ISC Computer Science',

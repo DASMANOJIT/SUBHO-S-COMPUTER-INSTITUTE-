@@ -1,11 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { useLocation } from 'react-router-dom';
-import FounderPhoto from '../assets/subho.jpg';
+import FounderPhoto from '/enquiry.jpg';
 import {
   createEmptyEnquiryForm,
   ENQUIRY_COURSE_OPTIONS,
-  ENQUIRY_SESSION_KEY,
   validateEnquiryPayload,
 } from '../../lib/enquiry.js';
 import './enquiryModal.css';
@@ -16,23 +15,66 @@ const successMessage =
 const EnquiryModal = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [hasSubmittedThisVisit, setHasSubmittedThisVisit] = useState(false);
   const [formData, setFormData] = useState(createEmptyEnquiryForm);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitState, setSubmitState] = useState({ type: '', message: '' });
+  const openTimerRef = useRef(null);
+  const reopenTimerRef = useRef(null);
+  const closeAfterSuccessTimerRef = useRef(null);
 
   const isHomePage = location.pathname === '/';
 
+  const clearTimer = (timerRef) => {
+    if (timerRef.current) {
+      window.clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  };
+
+  const clearAllTimers = () => {
+    clearTimer(openTimerRef);
+    clearTimer(reopenTimerRef);
+    clearTimer(closeAfterSuccessTimerRef);
+  };
+
+  const openModal = () => {
+    setIsOpen((current) => (current ? current : true));
+  };
+
+  const scheduleInitialOpen = () => {
+    if (typeof window === 'undefined' || hasSubmittedThisVisit || !isHomePage || isOpen) return;
+    clearTimer(openTimerRef);
+    openTimerRef.current = window.setTimeout(() => {
+      openTimerRef.current = null;
+      openModal();
+    }, 1000);
+  };
+
+  const scheduleReopen = () => {
+    if (typeof window === 'undefined' || hasSubmittedThisVisit || !isHomePage) return;
+    clearTimer(reopenTimerRef);
+    reopenTimerRef.current = window.setTimeout(() => {
+      reopenTimerRef.current = null;
+      openModal();
+    }, 5000);
+  };
+
   useEffect(() => {
-    if (!isHomePage || typeof window === 'undefined') return undefined;
-    if (window.sessionStorage.getItem(ENQUIRY_SESSION_KEY)) return undefined;
+    if (typeof window === 'undefined') return undefined;
 
-    const timerId = window.setTimeout(() => {
-      setIsOpen(true);
-    }, 1500);
+    if (!hasSubmittedThisVisit && isHomePage) {
+      scheduleInitialOpen();
+    } else {
+      setIsOpen(false);
+      clearAllTimers();
+    }
 
-    return () => window.clearTimeout(timerId);
-  }, [isHomePage]);
+    return () => {
+      clearAllTimers();
+    };
+  }, [hasSubmittedThisVisit, isHomePage]);
 
   useEffect(() => {
     if (!isOpen) return undefined;
@@ -46,13 +88,21 @@ const EnquiryModal = () => {
   }, [isOpen]);
 
   useEffect(() => {
-    if (!submitState.type || submitState.type !== 'success') return undefined;
+    if (typeof window === 'undefined') return undefined;
+    if (submitState.type !== 'success') return undefined;
 
-    const timeoutId = window.setTimeout(() => {
+    clearTimer(reopenTimerRef);
+    clearTimer(openTimerRef);
+    clearTimer(closeAfterSuccessTimerRef);
+
+    closeAfterSuccessTimerRef.current = window.setTimeout(() => {
+      closeAfterSuccessTimerRef.current = null;
       setIsOpen(false);
     }, 2000);
 
-    return () => window.clearTimeout(timeoutId);
+    return () => {
+      clearTimer(closeAfterSuccessTimerRef);
+    };
   }, [submitState.type]);
 
   const introPoints = useMemo(
@@ -65,10 +115,12 @@ const EnquiryModal = () => {
   );
 
   const closeModal = () => {
-    if (typeof window !== 'undefined') {
-      window.sessionStorage.setItem(ENQUIRY_SESSION_KEY, 'true');
-    }
+    clearTimer(openTimerRef);
+    clearTimer(reopenTimerRef);
     setIsOpen(false);
+    if (!hasSubmittedThisVisit && isHomePage) {
+      scheduleReopen();
+    }
   };
 
   const handleChange = (event) => {
@@ -126,10 +178,8 @@ const EnquiryModal = () => {
         return;
       }
 
-      if (typeof window !== 'undefined') {
-        window.sessionStorage.setItem(ENQUIRY_SESSION_KEY, 'true');
-      }
-
+      setHasSubmittedThisVisit(true);
+      clearAllTimers();
       setSubmitState({
         type: 'success',
         message: successMessage,

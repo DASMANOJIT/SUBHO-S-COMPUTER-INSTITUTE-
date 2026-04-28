@@ -292,6 +292,8 @@
   }
 
   .enquiry-modal {
+    max-height: 90vh;
+    overflow-y: auto;
     border-radius: 22px;
   }
 
@@ -319,7 +321,7 @@
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 520px) {
   .enquiry-modal-poster {
     display: none;
   }
