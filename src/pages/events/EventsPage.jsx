@@ -290,6 +290,8 @@ const getFacebookEmbedUrl = (item) => {
 const FacebookPreviewCard = ({ item, eventTitle }) => {
   const itemLabel = item.type === 'video' ? 'Facebook Video' : 'Facebook Post';
   const canShowEmbed = isEmbeddableFacebookUrl(item.embedUrl || item.url);
+  const [hasImageError, setHasImageError] = useState(false);
+  const shouldShowImage = item.previewImage && !hasImageError;
 
   return (
     <ScrollReveal as="article" className="events-card events-card-preview smooth-card hover-lift">
@@ -310,7 +312,7 @@ const FacebookPreviewCard = ({ item, eventTitle }) => {
             allowFullScreen={item.type === 'video'}
           />
         </div>
-      ) : item.previewImage ? (
+      ) : shouldShowImage ? (
         <div className="events-preview-image-wrap">
           <ImageWithSkeleton
             src={item.previewImage}
@@ -318,6 +320,7 @@ const FacebookPreviewCard = ({ item, eventTitle }) => {
             className="events-preview-image"
             wrapperClassName="events-preview-image-shell"
             skeletonClassName="events-preview-image-skeleton"
+            onError={() => setHasImageError(true)}
           />
         </div>
       ) : (
