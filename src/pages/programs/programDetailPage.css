@@ -27,6 +27,11 @@
   border-radius: 28px;
   background: #fff;
   box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.program-detail-card:hover {
+  box-shadow: 0 20px 38px rgba(15, 23, 42, 0.14);
 }
 
 .program-detail-card h2 {
@@ -58,10 +63,25 @@
 }
 
 .program-detail-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  width: fit-content;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
   color: #1d4ed8;
   font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none;
+  box-shadow: 0 10px 20px rgba(29, 78, 216, 0.12);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.program-detail-links a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 24px rgba(29, 78, 216, 0.18);
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
 }
 
 @media (max-width: 900px) {

@@ -44,6 +44,7 @@
   line-height: 1.1;
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
   white-space: nowrap;
+  animation: appCaptionFloat 3.4s ease-in-out infinite;
 }
 
 @keyframes appGlowIcon {
@@ -53,6 +54,16 @@
   }
   50% {
     box-shadow: 0 0 25px #60a5fa, 0 0 36px rgba(59, 130, 246, 0.65);
+  }
+}
+
+@keyframes appCaptionFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
   }
 }
 

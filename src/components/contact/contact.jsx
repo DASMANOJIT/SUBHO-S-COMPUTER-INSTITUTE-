@@ -5,6 +5,7 @@ import Email from '../assets/mail-icon.png';
 import Call from '../assets/phone-icon.png';
 import Locate from '../assets/location-icon.png';
 import Arrow from '../assets/arrow_c.png';
+import ScrollReveal from '../scrollReveal/ScrollReveal.jsx';
 
 const Contact = () => {
 
@@ -36,7 +37,7 @@ const Contact = () => {
   return (
     <>
       <div className="contact">
-        <div className="contact-col">
+        <ScrollReveal as="div" className="contact-col">
           <h3>
             Send Us A Message{" "}
             <img
@@ -77,9 +78,9 @@ const Contact = () => {
               Kolkata – 700120
             </li>
           </ul>
-        </div>
+        </ScrollReveal>
 
-        <div className="contact-col">
+        <ScrollReveal as="div" className="contact-col" delay={120}>
           <form onSubmit={onSubmit}>
 
             <label htmlFor="name">Your Name</label>
@@ -128,7 +129,7 @@ const Contact = () => {
           </form>
 
           <span>{result}</span>
-        </div>
+        </ScrollReveal>
 
       </div>
     </>

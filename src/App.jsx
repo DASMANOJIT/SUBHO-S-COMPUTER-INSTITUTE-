@@ -4,6 +4,7 @@ import ScrollToTop from './components/ScrollToTop.jsx';
 import ContactTopBar from './components/navbar/ContactTopBar.jsx';
 import Navbar from './components/navbar/navbar.jsx';
 import Hero from './components/hero/hero.jsx';
+import PastResults from './components/results/PastResults.jsx';
 import Title from './components/title/title.jsx';
 import Contact from './components/contact/contact.jsx';
 import Footer from './components/footer/footer.jsx';
@@ -74,6 +75,8 @@ const HomePage = () => {
       </section>
 
       <div className="container">
+        <PastResults />
+
         <HomeSeoSection />
 
         <section id="contact">

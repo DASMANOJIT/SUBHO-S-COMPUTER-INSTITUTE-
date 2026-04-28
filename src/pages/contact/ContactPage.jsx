@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Contact from '../../components/contact/contact.jsx';
 import PageSeo from '../../components/seo/PageSeo.jsx';
+import ScrollReveal from '../../components/scrollReveal/ScrollReveal.jsx';
 import './contactPage.css';
 
 const ContactPage = () => {
@@ -26,7 +27,7 @@ const ContactPage = () => {
       />
 
       <main className="contact-page">
-        <section className="contact-page-hero">
+        <ScrollReveal as="section" className="contact-page-hero">
           <p className="page-eyebrow">Admissions</p>
           <h1>Contact Subho&apos;s Computer Institute</h1>
           <p className="page-intro">
@@ -38,7 +39,7 @@ const ContactPage = () => {
             <a href="tel:+919831934306">Call +91 9831934306</a>
             <Link to="/programs">Explore computer courses in Barrackpore</Link>
           </p>
-        </section>
+        </ScrollReveal>
 
         <Contact />
       </main>

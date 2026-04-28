@@ -7,17 +7,28 @@
   margin-bottom: 40px;
 }
 
-.gallery img {
+.gallery-item {
   width: clamp(180px, 20%, 260px);
   border-radius: 20px;
   padding: 8px;
-  object-fit: cover;
-  aspect-ratio: 1 / 1;
-  transition: transform 0.3s ease;
+  background: transparent;
 }
 
-.gallery img:hover {
-  transform: scale(1.05);
+.gallery img {
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  display: block;
+}
+
+.gallery-image-shell {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.gallery-image-skeleton {
+  border-radius: 20px;
 }
 
 .modern-btn {
@@ -120,7 +131,7 @@
 }
 
 @media (max-width: 768px) {
-  .gallery img {
+  .gallery-item {
     width: calc(50% - 12px);
   }
 
@@ -141,7 +152,7 @@
 }
 
 @media (max-width: 480px) {
-  .gallery img {
+  .gallery-item {
     width: 100%;
     max-width: 320px;
     padding: 0;

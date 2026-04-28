@@ -45,6 +45,11 @@
   border-radius: 40px;
   overflow: hidden;
   box-shadow: 0 14px 30px rgba(15, 23, 42, 0.14);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.program:hover {
+  box-shadow: 0 20px 36px rgba(15, 23, 42, 0.18);
 }
 
 .program img {
@@ -53,6 +58,16 @@
   object-fit: cover;
   border-radius: 40px;
   display: block;
+}
+
+.program-image-shell {
+  position: absolute;
+  inset: 0;
+}
+
+.program-image-shell img,
+.program-image-skeleton {
+  border-radius: 40px;
 }
 
 .caption {

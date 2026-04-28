@@ -1,5 +1,6 @@
 import React from 'react';
 import PageSeo from '../../components/seo/PageSeo.jsx';
+import ScrollReveal from '../../components/scrollReveal/ScrollReveal.jsx';
 import './careers.css';
 
 const opportunities = [
@@ -24,26 +25,26 @@ const Careers = () => {
       />
 
       <main className="careers-page">
-        <section className="careers-hero">
+        <ScrollReveal as="section" className="careers-hero">
           <p className="page-eyebrow">Join Us</p>
           <h1>Careers</h1>
           <p className="page-intro">
             We welcome passionate educators and academic support professionals who want to help students
             grow through disciplined, practical, and student-focused computer education.
           </p>
-        </section>
+        </ScrollReveal>
 
         <section className="careers-content">
-          <article className="careers-card">
+          <ScrollReveal as="article" className="careers-card smooth-card hover-lift">
             <h2>What We Look For</h2>
             <ul>
               {opportunities.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
-          </article>
+          </ScrollReveal>
 
-          <article className="careers-card careers-card-accent">
+          <ScrollReveal as="article" className="careers-card careers-card-accent smooth-card hover-lift" delay={100}>
             <h2>How To Apply</h2>
             <p>
               If you are interested in teaching, mentoring, or supporting our academic programs, please reach
@@ -51,7 +52,7 @@ const Careers = () => {
               a genuine interest in helping students succeed.
             </p>
             <p className="careers-contact">Email: subhoscomputerinstitute@gmail.com</p>
-          </article>
+          </ScrollReveal>
         </section>
       </main>
     </>

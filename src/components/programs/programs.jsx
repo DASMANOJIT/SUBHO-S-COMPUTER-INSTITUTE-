@@ -8,6 +8,8 @@ import Program_4 from '../assets/program_4.jpeg';
 import Course_1 from '../assets/cisce.png';
 import Course_2 from '../assets/cbsc.png';
 import Course_4 from '../assets/python.png';
+import ScrollReveal from '../scrollReveal/ScrollReveal.jsx';
+import ImageWithSkeleton from '../skeletons/ImageWithSkeleton.jsx';
 
 const categoryOptions = [
   { label: 'ICSE/ISC', value: 'icse-isc' },
@@ -106,14 +108,25 @@ const Programs = ({ syncWithUrl = false }) => {
         </div>
 
         <div className="programs">
-          {visiblePrograms.map((program) => (
-            <div className="program" key={program.id}>
-              <img src={program.image} alt={program.imageAlt} className="card" />
+          {visiblePrograms.map((program, index) => (
+            <ScrollReveal
+              as="div"
+              className="program smooth-card hover-lift image-hover-zoom"
+              key={program.id}
+              delay={index * 90}
+            >
+              <ImageWithSkeleton
+                src={program.image}
+                alt={program.imageAlt}
+                className="card"
+                wrapperClassName="program-image-shell"
+                skeletonClassName="program-image-skeleton"
+              />
               <div className="caption">
                 <img src={program.badge} alt={program.badgeAlt} />
                 <p>{program.title}</p>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

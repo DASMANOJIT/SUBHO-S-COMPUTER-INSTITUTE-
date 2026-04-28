@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './homeSeoSection.css';
+import ScrollReveal from '../scrollReveal/ScrollReveal.jsx';
 
 const faqs = [
   {
@@ -36,7 +37,7 @@ const HomeSeoSection = () => {
   return (
     <section className="home-seo-section" aria-labelledby="home-seo-heading">
       <div className="home-seo-grid">
-        <article className="home-seo-card home-seo-card-main">
+        <ScrollReveal as="article" className="home-seo-card home-seo-card-main smooth-card hover-lift">
           <h2 id="home-seo-heading">Trusted Computer Coaching in Barrackpore Since 2004</h2>
           <p>
             Founded in 2004 by Mr. Subhabrata Datta, Subho&apos;s Computer Institute has guided
@@ -61,9 +62,9 @@ const HomeSeoSection = () => {
             <Link to="/faculties/administration">Meet our founder</Link>
             <Link to="/contact">Contact for admission</Link>
           </div>
-        </article>
+        </ScrollReveal>
 
-        <article className="home-seo-card">
+        <ScrollReveal as="article" className="home-seo-card smooth-card hover-lift" delay={120}>
           <h2>Frequently Asked Questions</h2>
           <div className="home-faq-list">
             {faqs.map((faq) => (
@@ -73,7 +74,7 @@ const HomeSeoSection = () => {
               </div>
             ))}
           </div>
-        </article>
+        </ScrollReveal>
       </div>
     </section>
   );

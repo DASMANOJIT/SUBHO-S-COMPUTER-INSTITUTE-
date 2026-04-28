@@ -3,6 +3,8 @@ import './about.css';
 import Pic from '../assets/subho.jpg';
 import Play from '../assets/play.png';
 import VideoPlayer from '../videoplayer/videoplayer';
+import ScrollReveal from '../scrollReveal/ScrollReveal.jsx';
+import ImageWithSkeleton from '../skeletons/ImageWithSkeleton.jsx';
 
 const About = () => {
   const [showVideo, setShowVideo] = useState(false);
@@ -10,11 +12,13 @@ const About = () => {
   return (
     <>
       <div className="about">
-        <div className="about_left" style={{ position: 'relative' }}>
-          <img
+        <ScrollReveal as="div" className="about_left" style={{ position: 'relative' }}>
+          <ImageWithSkeleton
             src={Pic}
             alt="Mr. Subhabrata Datta founder of Subho's Computer Institute Barrackpore"
             className="about_img"
+            wrapperClassName="about-image-shell"
+            skeletonClassName="about-image-skeleton"
           />
 
           <img
@@ -25,9 +29,9 @@ const About = () => {
             role="button"
             aria-label="Play institute introduction video"
           />
-        </div>
+        </ScrollReveal>
 
-        <div className="about_right">
+        <ScrollReveal as="div" className="about_right" delay={120}>
           <h3>ABOUT THE INSTITUTE</h3>
           <h2>Nurturing Tomorrow's Leaders From Today</h2>
 
@@ -57,7 +61,7 @@ const About = () => {
           </p>
 
           <p>📚 Your success is our commitment!</p>
-        </div>
+        </ScrollReveal>
 
         {showVideo && (
           <VideoPlayer closeVideo={() => setShowVideo(false)} />

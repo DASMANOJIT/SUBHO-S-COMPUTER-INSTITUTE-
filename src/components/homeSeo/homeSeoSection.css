@@ -13,6 +13,7 @@
   border-radius: 28px;
   padding: 30px;
   box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .home-seo-card h2 {
@@ -48,6 +49,20 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
+}
+
+.home-faq-item {
+  border-radius: 20px;
+  padding: 16px 18px;
+  background: rgba(239, 246, 255, 0.72);
+  border: 1px solid rgba(191, 219, 254, 0.6);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
+}
+
+.home-faq-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.08);
+  background: rgba(239, 246, 255, 0.95);
 }
 
 .home-faq-item h3 {

@@ -1,5 +1,6 @@
 import React from 'react';
 import PageSeo from '../../components/seo/PageSeo.jsx';
+import ScrollReveal from '../../components/scrollReveal/ScrollReveal.jsx';
 import './facilitiesPage.css';
 
 const facilityItems = [
@@ -32,25 +33,30 @@ const FacilitiesPage = () => {
       />
 
       <main className="facilities-page">
-        <section className="facilities-hero">
+        <ScrollReveal as="section" className="facilities-hero">
           <p className="page-eyebrow">Campus</p>
           <h1>Facilities</h1>
           <p className="page-intro">
             Discover the learning support, practice environment, and student-focused academic
             facilities available at Subho&apos;s Computer Institute in Barrackpore.
           </p>
-        </section>
+        </ScrollReveal>
 
         <section className="facilities-grid">
-          {facilityItems.map((item) => (
-            <article key={item} className="facilities-card">
+          {facilityItems.map((item, index) => (
+            <ScrollReveal
+              key={item}
+              as="article"
+              className="facilities-card smooth-card hover-lift"
+              delay={index * 60}
+            >
               <h2>{item}</h2>
               <p>
                 Students from Barrackpore, Shyamnagar, Sodepur, Sodepore, Kolkata, and nearby
                 areas benefit from consistent guidance, disciplined practice, and supportive
                 mentoring through this facility.
               </p>
-            </article>
+            </ScrollReveal>
           ))}
         </section>
       </main>

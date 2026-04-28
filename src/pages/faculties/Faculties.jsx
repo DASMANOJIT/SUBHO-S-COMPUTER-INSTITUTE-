@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import PageSeo from '../../components/seo/PageSeo.jsx';
+import ScrollReveal from '../../components/scrollReveal/ScrollReveal.jsx';
+import ImageWithSkeleton from '../../components/skeletons/ImageWithSkeleton.jsx';
 import './faculties.css';
 
 const getFacultyImagePath = (fileName) => `/${encodeURIComponent(fileName)}`;
@@ -176,19 +178,21 @@ const FacultyCard = ({ teacher, hasImageError, onImageError }) => {
   );
 
   return (
-    <article className="faculty-profile-card">
+    <ScrollReveal as="article" className="faculty-profile-card smooth-card hover-lift">
       <div className="faculty-photo-frame">
         {hasImageError ? (
           <div className="faculty-photo-fallback" aria-label={`${teacher.name} photo unavailable`}>
             <span>{initials}</span>
           </div>
         ) : (
-          <img
+          <ImageWithSkeleton
             src={teacher.image}
             alt={teacher.name}
             className="faculty-photo"
             loading="lazy"
             onError={onImageError}
+            wrapperClassName="faculty-photo-shell"
+            skeletonClassName="faculty-photo-skeleton"
             style={{
               objectFit: teacher.imageFit,
               objectPosition: teacher.imagePosition,
@@ -217,12 +221,12 @@ const FacultyCard = ({ teacher, hasImageError, onImageError }) => {
           )}
         </div>
       </div>
-    </article>
+    </ScrollReveal>
   );
 };
 
 const FacultySection = ({ id, label, title, description, teachers, brokenImages, onImageError }) => (
-  <section id={id} className="faculty-section">
+  <ScrollReveal as="section" id={id} className="faculty-section smooth-card" delay={80}>
     <div className="faculty-section-header">
       <span className="faculty-section-pill">{label}</span>
       <h2>{title}</h2>
@@ -239,7 +243,7 @@ const FacultySection = ({ id, label, title, description, teachers, brokenImages,
         />
       ))}
     </div>
-  </section>
+  </ScrollReveal>
 );
 
 const Faculties = () => {
@@ -289,7 +293,7 @@ const Faculties = () => {
       />
 
       <main className="faculties-page">
-        <section className="faculties-hero">
+        <ScrollReveal as="section" className="faculties-hero">
           <p className="page-eyebrow">Our Team</p>
           <h1>Faculties</h1>
           <p className="page-intro">
@@ -297,7 +301,7 @@ const Faculties = () => {
             student-focused mentoring to help every learner build strong confidence in computer
             studies.
           </p>
-        </section>
+        </ScrollReveal>
 
         <FacultySection
           id="teaching-faculty"

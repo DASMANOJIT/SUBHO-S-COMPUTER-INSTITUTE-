@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PageSeo from '../../components/seo/PageSeo.jsx';
+import ScrollReveal from '../../components/scrollReveal/ScrollReveal.jsx';
 import './programDetailPage.css';
 
 const ProgramDetailPage = ({
@@ -35,37 +36,41 @@ const ProgramDetailPage = ({
       />
 
       <main className="program-detail-page">
-        <section className="program-detail-hero">
+        <ScrollReveal as="section" className="program-detail-hero">
           <p className="page-eyebrow">Programs</p>
           <h1>{h1}</h1>
           <p className="page-intro">{intro}</p>
-        </section>
+        </ScrollReveal>
 
         <section className="program-detail-grid">
-          <article className="program-detail-card">
+          <ScrollReveal as="article" className="program-detail-card smooth-card hover-lift">
             <h2>Who This Course Is For</h2>
             <p>{audience}</p>
-          </article>
+          </ScrollReveal>
 
-          <article className="program-detail-card">
+          <ScrollReveal as="article" className="program-detail-card smooth-card hover-lift" delay={70}>
             <h2>Topics Covered</h2>
             <ul>
               {topics.map((topic) => (
                 <li key={topic}>{topic}</li>
               ))}
             </ul>
-          </article>
+          </ScrollReveal>
 
-          <article className="program-detail-card">
+          <ScrollReveal as="article" className="program-detail-card smooth-card hover-lift" delay={110}>
             <h2>Benefits</h2>
             <ul>
               {benefits.map((benefit) => (
                 <li key={benefit}>{benefit}</li>
               ))}
             </ul>
-          </article>
+          </ScrollReveal>
 
-          <article className="program-detail-card program-detail-card-accent">
+          <ScrollReveal
+            as="article"
+            className="program-detail-card program-detail-card-accent smooth-card hover-lift"
+            delay={150}
+          >
             <h2>Take The Next Step</h2>
             <p>
               Students from Barrackpore, Shyamnagar, Sodepur, Sodepore, Kolkata, and nearby areas can contact the
@@ -79,7 +84,7 @@ const ProgramDetailPage = ({
                 </Link>
               ))}
             </div>
-          </article>
+          </ScrollReveal>
         </section>
       </main>
     </>

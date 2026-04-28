@@ -1,6 +1,7 @@
 import React from 'react';
 import Programs from '../../components/programs/programs.jsx';
 import PageSeo from '../../components/seo/PageSeo.jsx';
+import ScrollReveal from '../../components/scrollReveal/ScrollReveal.jsx';
 import Title from '../../components/title/title.jsx';
 import './programsPage.css';
 
@@ -33,8 +34,10 @@ const ProgramsPage = () => {
 
       <main className="programs-page">
         <h1 className="seo-page-heading">Computer Courses and Coaching in Barrackpore</h1>
-        <Title subtitle="our program" title="what we offer" />
-        <Programs syncWithUrl={true} />
+        <ScrollReveal as="section" className="programs-page-section">
+          <Title subtitle="our program" title="what we offer" />
+          <Programs syncWithUrl={true} />
+        </ScrollReveal>
       </main>
     </>
   );

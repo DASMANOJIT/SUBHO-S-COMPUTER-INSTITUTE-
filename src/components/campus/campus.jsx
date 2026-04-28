@@ -8,6 +8,8 @@ import Galery_5 from '../assets/galery_5.jpg';
 import Galery_6 from '../assets/galery_6.jpg';
 import Galery_7 from '../assets/galery_7.jpeg';
 import Arrow from '../assets/arrow_c.png';
+import ScrollReveal from '../scrollReveal/ScrollReveal.jsx';
+import ImageWithSkeleton from '../skeletons/ImageWithSkeleton.jsx';
 
 const Campus = () => {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -16,6 +18,29 @@ const Campus = () => {
   const photos = [
     Galery_1, Galery_2, Galery_3, Galery_4, Galery_5,
     Galery_6, Galery_7
+  ];
+
+  const galleryPreviewItems = [
+    {
+      src: Galery_1,
+      alt: "Computer classroom at Subho's Computer Institute Barrackpore Kolkata",
+    },
+    {
+      src: Galery_2,
+      alt: "Students learning programming at Subho's Computer Institute Kolkata",
+    },
+    {
+      src: Galery_3,
+      alt: "Computer lab facilities at Subho's Computer Institute in Kolkata",
+    },
+    {
+      src: Galery_4,
+      alt: 'ICSE ISC CBSE computer coaching classroom in Barrackpore',
+    },
+    {
+      src: Galery_5,
+      alt: "Practical computer training session at Subho's Computer Institute",
+    },
   ];
 
   const handleNext = () => {
@@ -30,35 +55,24 @@ const Campus = () => {
       <div>
         <div className="campus">
           <div className="gallery">
-
-            <img 
-              src={Galery_1} 
-              alt="Computer classroom at Subho's Computer Institute Barrackpore Kolkata" 
-            />
-
-            <img 
-              src={Galery_2} 
-              alt="Students learning programming at Subho's Computer Institute Kolkata" 
-            />
-
-            <img 
-              src={Galery_3} 
-              alt="Computer lab facilities at Subho's Computer Institute in Kolkata" 
-            />
-
-            <img 
-              src={Galery_4} 
-              alt="ICSE ISC CBSE computer coaching classroom in Barrackpore" 
-            />
-
-            <img 
-              src={Galery_5} 
-              alt="Practical computer training session at Subho's Computer Institute" 
-            />
-
+            {galleryPreviewItems.map((item, index) => (
+              <ScrollReveal
+                key={item.alt}
+                as="div"
+                className="gallery-item smooth-card hover-lift image-hover-zoom"
+                delay={index * 70}
+              >
+                <ImageWithSkeleton
+                  src={item.src}
+                  alt={item.alt}
+                  wrapperClassName="gallery-image-shell"
+                  skeletonClassName="gallery-image-skeleton"
+                />
+              </ScrollReveal>
+            ))}
           </div>
 
-          <div>
+          <ScrollReveal as="div" delay={180}>
             <button 
               className="modern-btn" 
               onClick={() => setShowOverlay(true)}
@@ -69,7 +83,7 @@ const Campus = () => {
                 alt="View more campus photos of Subho's Computer Institute" 
               />
             </button>
-          </div>
+          </ScrollReveal>
         </div>
 
         {showOverlay && (

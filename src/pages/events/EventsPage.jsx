@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import PageSeo from '../../components/seo/PageSeo.jsx';
+import ScrollReveal from '../../components/scrollReveal/ScrollReveal.jsx';
+import ImageWithSkeleton from '../../components/skeletons/ImageWithSkeleton.jsx';
 import './eventsPage.css';
 
 const buildEventItems = ({ baseItems, previewImages, fallbackTitle, extraDescription }) => {
@@ -290,7 +292,7 @@ const FacebookPreviewCard = ({ item, eventTitle }) => {
   const canShowEmbed = isEmbeddableFacebookUrl(item.embedUrl || item.url);
 
   return (
-    <article className="events-card events-card-preview">
+    <ScrollReveal as="article" className="events-card events-card-preview smooth-card hover-lift">
       <div className="events-card-meta">
         <span className="events-card-badge">{itemLabel}</span>
       </div>
@@ -310,10 +312,12 @@ const FacebookPreviewCard = ({ item, eventTitle }) => {
         </div>
       ) : item.previewImage ? (
         <div className="events-preview-image-wrap">
-          <img
+          <ImageWithSkeleton
             src={item.previewImage}
             alt={`${item.title || eventTitle} - Subho's Computer Institute event preview`}
             className="events-preview-image"
+            wrapperClassName="events-preview-image-shell"
+            skeletonClassName="events-preview-image-skeleton"
           />
         </div>
       ) : (
@@ -333,7 +337,7 @@ const FacebookPreviewCard = ({ item, eventTitle }) => {
       <a href={item.url} target="_blank" rel="noopener noreferrer">
         View More on Facebook
       </a>
-    </article>
+    </ScrollReveal>
   );
 };
 
@@ -362,16 +366,16 @@ const EventsPage = () => {
       />
 
       <main className="events-page">
-        <section className="events-hero">
+        <ScrollReveal as="section" className="events-hero">
           <p className="page-eyebrow">Campus</p>
           <h1>Events</h1>
           <p className="page-intro">
             Explore important events, student felicitation programs, alumni meets, workshops, and
             special academic moments at Subho&apos;s Computer Institute.
           </p>
-        </section>
+        </ScrollReveal>
 
-        <section className="events-content">
+        <ScrollReveal as="section" className="events-content" delay={80}>
           <div className="events-tablist" role="tablist" aria-label="Event categories">
             {eventTabs.map((event) => (
               <button
@@ -409,7 +413,7 @@ const EventsPage = () => {
               </div>
             )}
           </article>
-        </section>
+        </ScrollReveal>
       </main>
     </>
   );

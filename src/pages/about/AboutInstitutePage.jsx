@@ -1,6 +1,7 @@
 import React from 'react';
 import About from '../../components/about/about.jsx';
 import PageSeo from '../../components/seo/PageSeo.jsx';
+import ScrollReveal from '../../components/scrollReveal/ScrollReveal.jsx';
 import './aboutInstitutePage.css';
 
 const AboutInstitutePage = () => {
@@ -20,7 +21,9 @@ const AboutInstitutePage = () => {
       />
 
       <main className="about-institute-page">
-        <h1 className="seo-page-heading">About Subho&apos;s Computer Institute</h1>
+        <ScrollReveal as="h1" className="seo-page-heading">
+          About Subho&apos;s Computer Institute
+        </ScrollReveal>
         <About />
       </main>
     </>

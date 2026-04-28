@@ -7,14 +7,18 @@ import {
   ENQUIRY_COURSE_OPTIONS,
   validateEnquiryPayload,
 } from '../../lib/enquiry.js';
+import ImageWithSkeleton from '../skeletons/ImageWithSkeleton.jsx';
 import './enquiryModal.css';
 
 const successMessage =
   'Thank you! Your enquiry has been received. Our team will contact you shortly.';
+const ENQUIRY_REOPEN_DELAY = 120000;
+const MODAL_CLOSE_DURATION = 240;
 
 const EnquiryModal = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const [hasSubmittedThisVisit, setHasSubmittedThisVisit] = useState(false);
   const [formData, setFormData] = useState(createEmptyEnquiryForm);
   const [errors, setErrors] = useState({});
@@ -23,6 +27,7 @@ const EnquiryModal = () => {
   const openTimerRef = useRef(null);
   const reopenTimerRef = useRef(null);
   const closeAfterSuccessTimerRef = useRef(null);
+  const closeTransitionTimerRef = useRef(null);
 
   const isHomePage = location.pathname === '/';
 
@@ -37,10 +42,32 @@ const EnquiryModal = () => {
     clearTimer(openTimerRef);
     clearTimer(reopenTimerRef);
     clearTimer(closeAfterSuccessTimerRef);
+    clearTimer(closeTransitionTimerRef);
   };
 
   const openModal = () => {
-    setIsOpen((current) => (current ? current : true));
+    clearTimer(closeTransitionTimerRef);
+    setIsClosing(false);
+    setIsOpen(true);
+  };
+
+  const closeModal = ({ allowReopen = true } = {}) => {
+    clearTimer(openTimerRef);
+    clearTimer(reopenTimerRef);
+
+    if (!isOpen && !isClosing) return;
+
+    setIsClosing(true);
+    clearTimer(closeTransitionTimerRef);
+    closeTransitionTimerRef.current = window.setTimeout(() => {
+      closeTransitionTimerRef.current = null;
+      setIsOpen(false);
+      setIsClosing(false);
+
+      if (allowReopen && !hasSubmittedThisVisit && isHomePage) {
+        scheduleReopen();
+      }
+    }, MODAL_CLOSE_DURATION);
   };
 
   const scheduleInitialOpen = () => {
@@ -58,7 +85,7 @@ const EnquiryModal = () => {
     reopenTimerRef.current = window.setTimeout(() => {
       reopenTimerRef.current = null;
       openModal();
-    }, 5000);
+    }, ENQUIRY_REOPEN_DELAY);
   };
 
   useEffect(() => {
@@ -68,6 +95,7 @@ const EnquiryModal = () => {
       scheduleInitialOpen();
     } else {
       setIsOpen(false);
+      setIsClosing(false);
       clearAllTimers();
     }
 
@@ -77,7 +105,7 @@ const EnquiryModal = () => {
   }, [hasSubmittedThisVisit, isHomePage]);
 
   useEffect(() => {
-    if (!isOpen) return undefined;
+    if (!isOpen && !isClosing) return undefined;
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
@@ -85,7 +113,7 @@ const EnquiryModal = () => {
     return () => {
       document.body.style.overflow = previousOverflow;
     };
-  }, [isOpen]);
+  }, [isClosing, isOpen]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return undefined;
@@ -97,7 +125,7 @@ const EnquiryModal = () => {
 
     closeAfterSuccessTimerRef.current = window.setTimeout(() => {
       closeAfterSuccessTimerRef.current = null;
-      setIsOpen(false);
+      closeModal({ allowReopen: false });
     }, 2000);
 
     return () => {
@@ -113,15 +141,6 @@ const EnquiryModal = () => {
     ],
     []
   );
-
-  const closeModal = () => {
-    clearTimer(openTimerRef);
-    clearTimer(reopenTimerRef);
-    setIsOpen(false);
-    if (!hasSubmittedThisVisit && isHomePage) {
-      scheduleReopen();
-    }
-  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -199,14 +218,17 @@ const EnquiryModal = () => {
     }
   };
 
-  if (!isOpen) {
+  if (!isOpen && !isClosing) {
     return null;
   }
 
   return (
-    <div className="enquiry-modal-overlay" onClick={closeModal}>
+    <div
+      className={`enquiry-modal-overlay ${isClosing ? 'is-closing' : ''}`}
+      onClick={() => closeModal()}
+    >
       <div
-        className="enquiry-modal"
+        className={`enquiry-modal ${isClosing ? 'is-closing' : ''}`}
         role="dialog"
         aria-modal="true"
         aria-labelledby="enquiry-modal-title"
@@ -215,7 +237,7 @@ const EnquiryModal = () => {
         <button
           type="button"
           className="enquiry-modal-close"
-          onClick={closeModal}
+          onClick={() => closeModal()}
           aria-label="Close enquiry form"
         >
           <IoClose aria-hidden="true" />
@@ -237,10 +259,12 @@ const EnquiryModal = () => {
               ))}
             </ul>
 
-            <img
+            <ImageWithSkeleton
               src={FounderPhoto}
               alt="Admission guidance at Subho's Computer Institute"
               className="enquiry-modal-image"
+              wrapperClassName="enquiry-modal-image-shell"
+              skeletonClassName="enquiry-modal-image-skeleton"
             />
           </div>
         </div>

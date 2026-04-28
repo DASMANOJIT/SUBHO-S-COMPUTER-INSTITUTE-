@@ -1,6 +1,7 @@
 .hero {
   width: 100%;
   min-height: 100vh;
+  background-color: #dbeafe;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -12,12 +13,31 @@
   justify-content: flex-end;
 }
 
+.hero.hero-image-loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0)
+  );
+  transform: translateX(-100%);
+  animation: heroSkeletonShimmer 1.5s infinite;
+  z-index: 0;
+}
+
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
+}
+
+.hero.hero-image-loading::before {
+  background: rgba(15, 23, 42, 0.36);
 }
 
 .hero-content {
@@ -127,5 +147,17 @@
 
   .hero-content p {
     font-size: 14px;
+  }
+}
+
+@keyframes heroSkeletonShimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero.hero-image-loading::after {
+    animation: none !important;
   }
 }

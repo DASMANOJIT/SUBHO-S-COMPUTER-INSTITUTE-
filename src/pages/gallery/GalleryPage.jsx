@@ -1,6 +1,7 @@
 import React from 'react';
 import Campus from '../../components/campus/campus.jsx';
 import PageSeo from '../../components/seo/PageSeo.jsx';
+import ScrollReveal from '../../components/scrollReveal/ScrollReveal.jsx';
 import Title from '../../components/title/title.jsx';
 import './galleryPage.css';
 
@@ -22,7 +23,7 @@ const GalleryPage = () => {
       />
 
       <main className="gallery-page">
-        <section className="gallery-page-hero">
+        <ScrollReveal as="section" className="gallery-page-hero">
           <p className="page-eyebrow">Campus</p>
           <h1>Gallery</h1>
           <p className="page-intro">
@@ -30,12 +31,12 @@ const GalleryPage = () => {
             Subho&apos;s Computer Institute in Barrackpore, serving students from Shyamnagar,
             Sodepur, Sodepore, Kolkata, and nearby areas.
           </p>
-        </section>
+        </ScrollReveal>
 
-        <section className="gallery-page-content">
+        <ScrollReveal as="section" className="gallery-page-content smooth-card" delay={90}>
           <Title subtitle="gallery" title="Campus Photos" />
           <Campus />
-        </section>
+        </ScrollReveal>
       </main>
     </>
   );

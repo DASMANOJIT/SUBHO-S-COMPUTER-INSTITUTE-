@@ -13,6 +13,8 @@
   display: inline-block;
   width: 100%;
   min-width: 0;
+  overflow: hidden;
+  border-radius: 12px;
 }
 
 .about_right {
@@ -24,6 +26,22 @@
   display: block;
   width: 100%;
   border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.about-image-shell {
+  display: block;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.about-image-skeleton {
+  border-radius: 12px;
+}
+
+.about_left:hover .about_img {
+  transform: scale(1.03);
 }
 
 .play_icon {

@@ -195,7 +195,9 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  transform-origin: top left;
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.22s ease;
   z-index: 1200;
 }
 
@@ -204,6 +206,7 @@
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+  pointer-events: auto;
 }
 
 .dropdown-link {
@@ -309,11 +312,16 @@
   display: none;
   margin-top: 6px;
   padding-left: 14px;
+  opacity: 0;
+  transform: translateY(-6px);
 }
 
 .mobile-submenu.show {
   display: flex;
   flex-direction: column;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .mobile-submenu-link {

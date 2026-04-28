@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PageSeo from '../../components/seo/PageSeo.jsx';
+import ScrollReveal from '../../components/scrollReveal/ScrollReveal.jsx';
 import './aboutFocusPage.css';
 
 const AboutFocusPage = ({ title, description, path, intro, points, ctaText }) => {
@@ -21,13 +22,13 @@ const AboutFocusPage = ({ title, description, path, intro, points, ctaText }) =>
       />
 
       <main className="about-focus-page">
-        <section className="about-focus-hero">
+        <ScrollReveal as="section" className="about-focus-hero">
           <p className="page-eyebrow">About Us</p>
           <h1>{title}</h1>
           <p className="page-intro">{intro}</p>
-        </section>
+        </ScrollReveal>
 
-        <section className="about-focus-card">
+        <ScrollReveal as="section" className="about-focus-card smooth-card hover-lift" delay={90}>
           <h2>{ctaText}</h2>
           <p>{description}</p>
           <ul>
@@ -39,7 +40,7 @@ const AboutFocusPage = ({ title, description, path, intro, points, ctaText }) =>
             <Link to="/programs">Explore computer coaching programs</Link>
             <Link to="/contact">Contact for admission</Link>
           </div>
-        </section>
+        </ScrollReveal>
       </main>
     </>
   );
