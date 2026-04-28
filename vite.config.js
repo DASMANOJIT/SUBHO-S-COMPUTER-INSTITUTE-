@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
-import { handleEnquiryPayload } from './api/enquiries.js'
+import { handleEnquiryPayload } from './api/enquiry.js'
 
 const enquiryApiPlugin = () => ({
   name: 'local-enquiry-api',
   configureServer(server) {
-    server.middlewares.use('/api/enquiries', async (req, res, next) => {
+    const handleLocalEnquiryRoute = async (req, res, next) => {
       if (req.method !== 'POST') {
         next();
         return;
@@ -32,16 +32,25 @@ const enquiryApiPlugin = () => ({
         res.end(
           JSON.stringify({
             success: false,
-            message: 'Something went wrong while submitting the enquiry.',
+            message:
+              'Something went wrong while submitting your enquiry. Please try again or contact us directly.',
           })
         );
       }
-    });
+    };
+
+    server.middlewares.use('/api/enquiry', handleLocalEnquiryRoute);
+    server.middlewares.use('/api/enquiries', handleLocalEnquiryRoute);
   },
 });
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react(), enquiryApiPlugin()],
-  base: '/', // 👈 important for GitHub Pages
+export default defineConfig(({ mode }) => {
+  const localEnv = loadEnv(mode, process.cwd(), '');
+  process.env = { ...process.env, ...localEnv };
+
+  return {
+    plugins: [react(), enquiryApiPlugin()],
+    base: '/', // 👈 important for GitHub Pages
+  };
 })

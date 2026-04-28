@@ -142,7 +142,7 @@ const EnquiryModal = () => {
 
     const payload = {
       ...formData,
-      source: 'website_enquiry_modal',
+      source: 'website_admission_enquiry_form',
     };
 
     const nextErrors = validateEnquiryPayload(payload);
@@ -156,7 +156,7 @@ const EnquiryModal = () => {
     setSubmitState({ type: '', message: '' });
 
     try {
-      const response = await fetch('/api/enquiries', {
+      const response = await fetch('/api/enquiry', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -169,7 +169,9 @@ const EnquiryModal = () => {
       if (!response.ok || !result.success) {
         setSubmitState({
           type: 'error',
-          message: result.message || 'Unable to submit your enquiry right now.',
+          message:
+            result.message ||
+            'Something went wrong while submitting your enquiry. Please try again or contact us directly.',
         });
 
         if (result.errors) {
@@ -189,7 +191,8 @@ const EnquiryModal = () => {
     } catch (error) {
       setSubmitState({
         type: 'error',
-        message: 'Something went wrong while sending your enquiry. Please try again.',
+        message:
+          'Something went wrong while submitting your enquiry. Please try again or contact us directly.',
       });
     } finally {
       setIsSubmitting(false);

@@ -49,15 +49,37 @@ export const validateEnquiryPayload = (payload) => {
 
 const fallbackText = (value) => value?.trim() || 'Not provided';
 
-export const formatEnquiryMessage = (payload) => `New Admission Enquiry - Subho's Computer Institute
+export const normalizeEnquiryPayload = (payload = {}) => ({
+  studentName: payload.studentName?.trim() || '',
+  guardianName: payload.guardianName?.trim() || '',
+  mobile: payload.mobile?.trim() || '',
+  email: payload.email?.trim() || '',
+  course: payload.course?.trim() || '',
+  address: payload.address?.trim() || '',
+  message: payload.message?.trim() || '',
+  source: payload.source?.trim() || 'website_admission_enquiry_form',
+});
+
+export const formatSubmittedAt = (date = new Date()) =>
+  new Intl.DateTimeFormat('en-IN', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+    timeZone: 'Asia/Kolkata',
+  }).format(date);
+
+export const formatEnquiryMessage = (
+  payload,
+  submittedAt = formatSubmittedAt()
+) => `New Admission Enquiry - Subho's Computer Institute
 
 Session: 2026-27
 Student Name: ${fallbackText(payload.studentName)}
 Guardian Name: ${fallbackText(payload.guardianName)}
-Mobile: ${fallbackText(payload.mobile)}
+Mobile Number: ${fallbackText(payload.mobile)}
 Email: ${fallbackText(payload.email)}
-Course Interested In: ${fallbackText(payload.course)}
+Class / Course Interested In: ${fallbackText(payload.course)}
 Address: ${fallbackText(payload.address)}
 Message: ${fallbackText(payload.message)}
 
-Source: ${fallbackText(payload.source || 'website_enquiry_modal')}`;
+Source: ${fallbackText(payload.source || 'website_admission_enquiry_form')}
+Submitted At: ${submittedAt}`;
