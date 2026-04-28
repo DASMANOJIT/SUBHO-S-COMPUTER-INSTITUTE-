@@ -222,6 +222,8 @@
 @media (max-width: 768px) {
   .faculties-page,
   .teaching-faculty-section,
+  .junior-faculty-section,
+  .senior-faculty-section,
   .faculty-section {
     height: auto !important;
     min-height: auto !important;
@@ -231,9 +233,17 @@
   }
 
   .teaching-faculty-section,
+  .junior-faculty-section,
+  .senior-faculty-section,
   .teaching-faculty-section .reveal-on-scroll,
   .teaching-faculty-section .faculty-card,
-  .teaching-faculty-section .faculty-grid {
+  .teaching-faculty-section .faculty-grid,
+  .junior-faculty-section .reveal-on-scroll,
+  .junior-faculty-section .faculty-card,
+  .junior-faculty-section .faculty-grid,
+  .senior-faculty-section .reveal-on-scroll,
+  .senior-faculty-section .faculty-card,
+  .senior-faculty-section .faculty-grid {
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
@@ -253,13 +263,17 @@
     width: 100%;
   }
 
-  .teaching-faculty-section .faculty-card {
+  .teaching-faculty-section .faculty-card,
+  .senior-faculty-section .faculty-card,
+  .junior-faculty-section .faculty-card {
     width: 100%;
     max-width: 100%;
     min-width: 0;
   }
 
-  .teaching-faculty-section .faculty-photo-shell {
+  .teaching-faculty-section .faculty-photo-shell,
+  .senior-faculty-section .faculty-photo-shell,
+  .junior-faculty-section .faculty-photo-shell {
     width: 100%;
     max-width: 100%;
   }

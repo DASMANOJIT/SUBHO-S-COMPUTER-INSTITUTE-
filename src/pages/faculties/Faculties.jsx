@@ -229,7 +229,9 @@ const FacultySection = ({ id, label, title, description, teachers, brokenImages,
   <ScrollReveal
     as="section"
     id={id}
-    className={`faculty-section smooth-card ${id === 'teaching-faculty' ? 'teaching-faculty-section' : ''}`}
+    className={`faculty-section faculty-group smooth-card ${
+      id === 'teaching-faculty' ? 'teaching-faculty-section junior-faculty-section' : 'senior-faculty-section'
+    }`}
     delay={80}
   >
     <div className="faculty-section-header">
