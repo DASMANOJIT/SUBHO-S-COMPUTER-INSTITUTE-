@@ -37,7 +37,12 @@ const HomeSeoSection = () => {
   return (
     <section className="home-seo-section" aria-labelledby="home-seo-heading">
       <div className="home-seo-grid">
-        <ScrollReveal as="article" className="home-seo-card home-seo-card-main smooth-card hover-lift">
+        <ScrollReveal
+          as="article"
+          className="home-seo-card home-seo-card-main smooth-card hover-lift"
+          animation="fade-left"
+          duration={850}
+        >
           <h2 id="home-seo-heading">Trusted Computer Coaching in Barrackpore Since 2004</h2>
           <p>
             Founded in 2004 by Mr. Subhabrata Datta, Subho&apos;s Computer Institute has guided
@@ -64,14 +69,26 @@ const HomeSeoSection = () => {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal as="article" className="home-seo-card smooth-card hover-lift" delay={120}>
+        <ScrollReveal
+          as="article"
+          className="home-seo-card smooth-card hover-lift"
+          duration={850}
+          animation="fade-right"
+        >
           <h2>Frequently Asked Questions</h2>
           <div className="home-faq-list">
-            {faqs.map((faq) => (
-              <div key={faq.question} className="home-faq-item">
+            {faqs.map((faq, index) => (
+              <ScrollReveal
+                as="div"
+                key={faq.question}
+                className="home-faq-item"
+                delay={index * 120}
+                duration={600}
+                animation="stagger-item"
+              >
                 <h3>{faq.question}</h3>
                 <p>{faq.answer}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </ScrollReveal>

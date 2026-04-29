@@ -37,7 +37,7 @@ const Contact = () => {
   return (
     <>
       <div className="contact">
-        <ScrollReveal as="div" className="contact-col">
+        <ScrollReveal as="div" className="contact-col" animation="fade-left" duration={850}>
           <h3>
             Send Us A Message{" "}
             <img
@@ -80,7 +80,7 @@ const Contact = () => {
           </ul>
         </ScrollReveal>
 
-        <ScrollReveal as="div" className="contact-col" delay={120}>
+        <ScrollReveal as="div" className="contact-col" delay={120} animation="fade-right" duration={850}>
           <form onSubmit={onSubmit}>
 
             <label htmlFor="name">Your Name</label>

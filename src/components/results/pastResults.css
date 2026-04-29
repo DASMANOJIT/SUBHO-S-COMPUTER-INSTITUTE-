@@ -154,6 +154,13 @@
   border-top: 1px solid rgba(15, 38, 95, 0.08);
 }
 
+.past-results-empty-row td {
+  text-align: center;
+  color: #4b5563;
+  font-weight: 600;
+  padding: 28px 18px;
+}
+
 .past-results-empty-state {
   min-height: 220px;
   display: flex;

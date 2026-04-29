@@ -40,7 +40,13 @@ const Hero = () => {
       className={`hero ${isImageReady ? 'hero-image-ready' : 'hero-image-loading'}`}
       style={{ backgroundImage: displayedImage ? `url(${displayedImage})` : 'none' }}
     >
-        <ScrollReveal as="div" className="hero-content" delay={120}>
+        <ScrollReveal
+          as="div"
+          className="hero-content"
+          delay={150}
+          duration={900}
+          animation="zoom-in"
+        >
           <h1>Computer Institute in Barrackpore for ICSE, ISC, CBSE &amp; Programming</h1>
           <p>
             Subho&apos;s Computer Institute is a trusted computer coaching centre in Barrackpore,

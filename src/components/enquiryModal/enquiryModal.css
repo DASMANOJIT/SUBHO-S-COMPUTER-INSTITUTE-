@@ -9,7 +9,7 @@
   justify-content: center;
   padding: 24px;
   opacity: 0;
-  animation: enquiryOverlayIn 0.24s ease forwards;
+  animation: enquiryOverlayIn 0.28s ease forwards;
 }
 
 .enquiry-modal {
@@ -24,15 +24,15 @@
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
   opacity: 0;
   transform: translateY(10px) scale(0.96);
-  animation: enquiryModalIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: enquiryModalIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .enquiry-modal-overlay.is-closing {
-  animation: enquiryOverlayOut 0.22s ease forwards;
+  animation: enquiryOverlayOut 0.24s ease forwards;
 }
 
 .enquiry-modal.is-closing {
-  animation: enquiryModalOut 0.22s ease forwards;
+  animation: enquiryModalOut 0.24s ease forwards;
 }
 
 .enquiry-modal-close {
@@ -335,6 +335,7 @@
   .enquiry-modal {
     grid-template-columns: 1fr;
     max-height: 92vh;
+    overflow-y: auto;
   }
 
   .enquiry-modal-poster {
@@ -365,6 +366,28 @@
     max-height: 90vh;
     overflow-y: auto;
     border-radius: 22px;
+  }
+
+  .enquiry-modal-close {
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    color: #0f172a;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
+    font-size: 28px;
+    line-height: 1;
+    z-index: 20;
+  }
+
+  .enquiry-modal-close svg {
+    width: 22px;
+    height: 22px;
   }
 
   .enquiry-modal-poster {
@@ -398,5 +421,10 @@
 
   .enquiry-modal-form-panel {
     padding-top: 44px;
+  }
+
+  .enquiry-modal-close {
+    top: 10px;
+    right: 10px;
   }
 }

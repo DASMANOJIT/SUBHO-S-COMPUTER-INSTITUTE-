@@ -9,12 +9,10 @@ const TableSkeleton = ({ rows = 5 }) => {
         <Skeleton height="16px" />
         <Skeleton height="16px" />
         <Skeleton height="16px" />
-        <Skeleton height="16px" />
       </div>
       <div className="table-skeleton-body">
         {Array.from({ length: rows }).map((_, index) => (
           <div className="table-skeleton-row" key={index}>
-            <Skeleton height="14px" />
             <Skeleton height="14px" />
             <Skeleton height="14px" />
             <Skeleton height="14px" />

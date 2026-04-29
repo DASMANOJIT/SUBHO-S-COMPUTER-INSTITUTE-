@@ -5,6 +5,8 @@ import ScrollToTop from './components/ScrollToTop.jsx';
 import ContactTopBar from './components/navbar/ContactTopBar.jsx';
 import Navbar from './components/navbar/navbar.jsx';
 import Hero from './components/hero/hero.jsx';
+import AcademicExcellence from './components/academicExcellence/AcademicExcellence.jsx';
+import Testimonials from './components/testimonials/Testimonials.jsx';
 import PastResults from './components/results/PastResults.jsx';
 import Title from './components/title/title.jsx';
 import Contact from './components/contact/contact.jsx';
@@ -71,19 +73,35 @@ const HomePage = () => {
         schema={homeSchema}
       />
 
-      <section id="hero">
-        <Hero />
-      </section>
+      <div className="home-page">
+        <div className="home-section home-section--hero">
+          <section id="hero">
+            <Hero />
+          </section>
+        </div>
 
-      <div className="container">
-        <PastResults />
+        <div className="home-section home-section--academic">
+          <AcademicExcellence />
+        </div>
 
-        <HomeSeoSection />
+        <div className="home-section home-section--testimonials">
+          <Testimonials />
+        </div>
 
-        <section id="contact">
-          <Title subtitle="Contact us" title="Campus Get In Touch" />
-          <Contact />
-        </section>
+        <div className="home-section home-section--results">
+          <PastResults />
+        </div>
+
+        <div className="home-section home-section--seo">
+          <HomeSeoSection />
+        </div>
+
+        <div className="home-section home-section--contact">
+          <section id="contact">
+            <Title subtitle="Contact us" title="Campus Get In Touch" />
+            <Contact />
+          </section>
+        </div>
       </div>
     </>
   );

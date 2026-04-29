@@ -45,19 +45,132 @@ a{
     scroll-margin-top: calc(var(--header-total-height) + 18px);
 }
 
+.scroll-reveal,
 .reveal-on-scroll {
     opacity: 0;
-    transform: translate3d(0, 24px, 0);
-    transition:
-        opacity 0.62s ease,
-        transform 0.62s cubic-bezier(0.22, 1, 0.36, 1);
+    visibility: hidden;
+    transform: translate3d(0, 72px, 0) scale(0.97);
+    transition-property: opacity, transform;
+    transition-duration: var(--reveal-duration, 800ms);
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: var(--reveal-delay, 0ms);
     will-change: opacity, transform;
 }
 
+.scroll-reveal.fade-up:not(.is-visible),
+.reveal-on-scroll.scroll-reveal--fade-up:not(.is-visible) {
+    transform: translate3d(0, 70px, 0) scale(0.96);
+}
+
+.scroll-reveal.fade-left:not(.is-visible),
+.reveal-on-scroll.scroll-reveal--fade-left:not(.is-visible) {
+    transform: translate3d(-80px, 0, 0);
+}
+
+.scroll-reveal.fade-right:not(.is-visible),
+.reveal-on-scroll.scroll-reveal--fade-right:not(.is-visible) {
+    transform: translate3d(80px, 0, 0);
+}
+
+.scroll-reveal.zoom-in:not(.is-visible),
+.reveal-on-scroll.scroll-reveal--zoom-in:not(.is-visible) {
+    transform: translate3d(0, 32px, 0) scale(0.92);
+}
+
+.scroll-reveal.stagger-parent:not(.is-visible),
+.scroll-reveal.stagger-item:not(.is-visible),
+.reveal-on-scroll.scroll-reveal--stagger-parent:not(.is-visible),
+.reveal-on-scroll.scroll-reveal--stagger-item:not(.is-visible) {
+    transform: translate3d(0, 24px, 0) scale(0.98);
+}
+
+.scroll-reveal.is-visible,
 .reveal-on-scroll.is-visible {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    visibility: visible;
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+.home-page {
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+    width: 100%;
+}
+
+.home-page > .home-section {
+    width: 100%;
+    margin-block: 0;
+}
+
+.home-page .scroll-reveal,
+.home-page .reveal-on-scroll {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate3d(0, 72px, 0) scale(0.97);
+    transition-property: opacity, transform;
+    transition-duration: var(--reveal-duration, 750ms);
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.home-page .scroll-reveal.fade-up:not(.is-visible),
+.home-page .reveal-on-scroll.scroll-reveal--fade-up:not(.is-visible) {
+    transform: translate3d(0, 72px, 0) scale(0.97);
+}
+
+.home-page .scroll-reveal.fade-left:not(.is-visible),
+.home-page .reveal-on-scroll.scroll-reveal--fade-left:not(.is-visible) {
+    transform: translate3d(-90px, 0, 0) scale(0.98);
+}
+
+.home-page .scroll-reveal.fade-right:not(.is-visible),
+.home-page .reveal-on-scroll.scroll-reveal--fade-right:not(.is-visible) {
+    transform: translate3d(90px, 0, 0) scale(0.98);
+}
+
+.home-page .scroll-reveal.zoom-in:not(.is-visible),
+.home-page .reveal-on-scroll.scroll-reveal--zoom-in:not(.is-visible) {
+    transform: translate3d(0, 32px, 0) scale(0.92);
+}
+
+.home-page .scroll-reveal.stagger-parent:not(.is-visible),
+.home-page .scroll-reveal.stagger-item:not(.is-visible),
+.home-page .reveal-on-scroll.scroll-reveal--stagger-parent:not(.is-visible),
+.home-page .reveal-on-scroll.scroll-reveal--stagger-item:not(.is-visible) {
+    transform: translate3d(0, 24px, 0) scale(0.98);
+}
+
+.home-page .scroll-reveal.is-visible,
+.home-page .reveal-on-scroll.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+.home-page .academic-excellence-card,
+.testimonials-section .testimonial-card,
+.testimonials-section .testimonial-empty-state,
+.past-results-panel,
+.home-seo-card,
+.home-faq-item,
+.academic-excellence-card,
+.past-results-board-card,
+.past-results-year-tab {
+    transition: transform 250ms ease, box-shadow 250ms ease, background-color 250ms ease,
+        border-color 250ms ease, color 250ms ease;
+}
+
+.home-page .academic-excellence-card:hover,
+.testimonials-section .testimonial-card:hover,
+.past-results-panel:hover,
+.home-seo-card:hover,
+.home-faq-item:hover,
+.past-results-board-card:hover,
+.past-results-year-tab:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.14);
 }
 
 .smooth-card,
@@ -98,7 +211,9 @@ a{
         transition-duration: 0.001ms !important;
     }
 
+    .scroll-reveal,
     .reveal-on-scroll,
+    .scroll-reveal.is-visible,
     .reveal-on-scroll.is-visible {
         opacity: 1 !important;
         transform: none !important;
@@ -113,5 +228,50 @@ a{
 
     .route-page-shell{
         padding-top: calc(var(--header-total-height) + 18px);
+    }
+
+    .home-page {
+        gap: 56px;
+    }
+
+    .home-page .scroll-reveal,
+    .home-page .reveal-on-scroll {
+        transition-duration: 450ms;
+    }
+
+    .home-page .scroll-reveal.fade-up:not(.is-visible),
+    .home-page .reveal-on-scroll.scroll-reveal--fade-up:not(.is-visible),
+    .home-page .scroll-reveal:not(.is-visible),
+    .home-page .reveal-on-scroll:not(.is-visible) {
+        transform: translate3d(0, 36px, 0) scale(0.98);
+    }
+
+    .home-page .scroll-reveal.fade-left:not(.is-visible),
+    .home-page .reveal-on-scroll.scroll-reveal--fade-left:not(.is-visible) {
+        transform: translate3d(-32px, 0, 0) scale(0.99);
+    }
+
+    .home-page .scroll-reveal.fade-right:not(.is-visible),
+    .home-page .reveal-on-scroll.scroll-reveal--fade-right:not(.is-visible) {
+        transform: translate3d(32px, 0, 0) scale(0.99);
+    }
+
+    .home-page .scroll-reveal.zoom-in:not(.is-visible),
+    .home-page .reveal-on-scroll.scroll-reveal--zoom-in:not(.is-visible) {
+        transform: translate3d(0, 20px, 0) scale(0.96);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-reveal,
+    .scroll-reveal *,
+    .card-hover,
+    .smooth-button,
+    .image-hover-zoom {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
     }
 }
