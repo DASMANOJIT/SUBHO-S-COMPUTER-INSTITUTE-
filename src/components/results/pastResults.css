@@ -1,5 +1,6 @@
 .past-results {
   padding: 0 0 16px;
+  margin-bottom: clamp(48px, 7vw, 96px);
 }
 
 .past-results-intro {
@@ -71,6 +72,10 @@
   padding: 24px;
   box-shadow: 0 24px 60px rgba(15, 38, 95, 0.09);
   border: 1px solid rgba(17, 24, 39, 0.05);
+  display: flex;
+  flex-direction: column;
+  min-height: clamp(620px, 74vh, 820px);
+  max-height: clamp(620px, 74vh, 820px);
 }
 
 .past-results-year-row {
@@ -103,11 +108,16 @@
   border: 1px solid rgba(29, 78, 216, 0.12);
   overflow: hidden;
   background: #f8fbff;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
 }
 
 .past-results-table-scroll {
-  max-height: 460px;
+  flex: 1 1 auto;
+  min-height: 0;
   overflow: auto;
+  max-height: none;
 }
 
 .past-results-table-scroll::-webkit-scrollbar {
@@ -178,6 +188,8 @@
   .past-results-panel {
     padding: 20px;
     border-radius: 20px;
+    min-height: clamp(600px, 76vh, 760px);
+    max-height: clamp(600px, 76vh, 760px);
   }
 
   .past-results-board-card {
@@ -229,10 +241,27 @@
   }
 
   .past-results-table-scroll {
-    max-height: 420px;
+    max-height: none;
   }
 
   .past-results-table {
     min-width: 680px;
+  }
+}
+
+@media (max-width: 768px) {
+  .past-results-panel {
+    min-height: 560px;
+    max-height: 700px;
+  }
+
+  .past-results-table-wrap {
+    max-height: none;
+  }
+
+  .past-results-table-scroll {
+    max-height: 480px;
+    overflow-y: auto;
+    overflow-x: auto;
   }
 }

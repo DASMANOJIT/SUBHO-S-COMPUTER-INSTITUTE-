@@ -27,6 +27,16 @@ const testimonials = [
       "Experience as a Student - It was very easy and I never really had to overthink. I got brilliant grades just from what was taught, with a clear understanding of logic and how to write that logic to work in code. That process helped me grasp problems and bring out solutions with ease in office as well.\n\nTeacher experience - Right after my Class 12, I was given a chance to gain professional experience as a teacher. I taught ICSE and ISC batches, which helped me become more fluent with programs, code, and logic. Teaching daily helped me build logic and write code quicker, faster, and easier. It also helped me gain confidence in life and earn money.",
   },
   {
+    name: 'Mr. Syed Wasif Islam',
+    designation: 'Teacher',
+    workplace: 'Assembly of Angels Secondary School',
+    image: '/testimonials/Syed Wasif Islam.jpeg',
+    initials: 'SWI',
+    title: 'From Student to Educator: A Journey Beyond the Syllabus',
+    quote:
+      'I have been a student of this institute since 2018 when I was in my 10th grade. Undoubtedly, this place has proven to be the turning point of my life at every step. As a student, this place and all the assistant teachers back then guided me to the extent where I could become an assistant teacher myself.\n\nI have been teaching in this institution for the past 6 years. All these years have been a culmination of me being a teacher and a student simultaneously. I taught students their lessons and myself learned various things that are beyond the syllabus.\n\nIn today\'s date, this teaching life has taken me a step ahead, and currently, I am a computer teacher at Assembly of Angels Secondary School.',
+  },
+  {
     name: 'Mr. Manojit Das',
     designation: 'Founder',
     workplace: 'DM Stack Labs',
@@ -35,14 +45,28 @@ const testimonials = [
     quote:
       "My journey with Subho’s Computer Institute started when I was in Class 8. What began as regular tuition classes under the guidance of Subho Sir slowly became one of the most important parts of my growing years. I continued learning here till Class 12, and after completing my ISC, Sir gave me the opportunity to join the institute as an Assistant Teacher.\n\nFrom being a student sitting in the classroom to becoming a teacher guiding others in the same institute, this place has been a very special part of my life. It has given me knowledge, confidence, responsibility, and countless memories that I will always carry with me.\n\nSubho Sir has not only been my teacher, but also a mentor who has guided me at every important stage. Whether it was academics, career decisions, teaching, or even my own startup journey with DM Stack Labs, his support and advice have always helped me move forward with clarity and confidence.\n\nFor me, Subho’s Computer Institute is not just an educational institute. It is a place where students are shaped with care, discipline, and personal attention. It is a place that truly feels like a family, and I feel proud to be a part of its journey both as a former student and now as a teacher.",
   },
+  
   {
-    name: 'Student Name',
-    image: '/testimonials/student-3.jpg',
-    designation: 'Web Developer',
-    workplace: 'Freelance',
+    name: 'Mr. Avash Banerjee',
+    designation: 'Intern Consultant',
+    workplace: 'Cybersierra',
+    image: '/testimonials/AVASH_BANERJEE.jpeg',
+    initials: 'AB',
+    title: 'From Student to Faculty: A Decade of Learning and Growth',
     quote:
-      'The practical learning environment helped me move from basic computer knowledge to real programming confidence.',
+      'Having been associated with Subho sir and the institution for nearly a decade—first as a student for five years and now as a faculty member since early 2023—I can personally vouch for the excellence, effort and the quality being provided here, that reflected onto my results as well. The transition from student to teacher has been an incredible journey. I have witnessed the amount of planning and effort all that goes into the job so that each one of the kids can clarify their doubts, concepts and can proudly announce computer as their favourite subject. Really proud, and honoured to be a part of such wonderful set of colleagues and the team.',
   },
+  {
+    name: 'Mrs. Rajanya Ghosh',
+    designation: 'Assistant Teacher',
+    workplace: "Subho's Computer Institute",
+    image: '/testimonials/RAJANYA_GHOSH.jpeg',
+    initials: 'RG',
+    title: 'From Student to Teacher: Confidence, Growth, and Gratitude',
+    quote:
+      "My journey at Subho’s Computer Institute began in 2019 when I joined as a Class 9 student under the guidance of Subhabrata Dutta Sir. He has always been extremely supportive—more like a friend than just a teacher. Over time, his encouragement helped me overcome my lack of confidence, especially my fear of speaking in front of others. Today, I can confidently handle and teach a batch of nearly 50 students. Since 2023, I have been working here as a teacher for the junior section, up to Class 7, which has been a truly rewarding experience. I feel deeply grateful for everything Sir has done for me, and the institute now feels like a family.\n\nTo Subho Sir — From being your student to now working under you, I’m truly grateful for every lesson and opportunity. Thank you for shaping me into who I am today and trusting me with the responsibility to teach others.",
+  },
+  
 ];
 
 const getInitials = (name = '') =>
@@ -53,6 +77,8 @@ const getInitials = (name = '') =>
     .map((part) => part[0])
     .join('')
     .toUpperCase();
+
+const getAvatarInitials = (testimonial = '') => testimonial.initials || getInitials(testimonial.name);
 
 const usePrefersReducedMotion = () => {
   const [reduced, setReduced] = useState(false);
@@ -224,40 +250,45 @@ const Testimonials = () => {
                     />
                   ) : (
                     <div className="testimonial-avatar-fallback" aria-hidden="true">
-                      {getInitials(activeTestimonial.name)}
+                      {getAvatarInitials(activeTestimonial)}
                     </div>
                   )}
                 </div>
 
                 <div className="testimonial-content">
-                  <FaQuoteLeft className="testimonial-quote-mark" aria-hidden="true" />
-                  {activeTestimonial.title && (
-                    <p className="testimonial-title">{activeTestimonial.title}</p>
-                  )}
-                  <p
-                    className={`testimonial-quote ${
-                      activeTestimonial.quote.length > 520 ? 'testimonial-quote--long' : ''
-                    } ${expandedQuotes.has(activeTestimonial.name) ? 'is-expanded' : ''}`}
-                  >
-                    {activeTestimonial.quote}
-                  </p>
-                  {activeTestimonial.quote.length > 520 && (
-                    <button
-                      type="button"
-                      className="testimonial-read-more"
-                      onClick={() => toggleQuote(activeTestimonial.name)}
-                      aria-label={
-                        expandedQuotes.has(activeTestimonial.name)
-                          ? 'Collapse testimonial'
-                          : 'Expand testimonial'
-                      }
+                  <div className="testimonial-copy-block">
+                    <FaQuoteLeft className="testimonial-quote-mark" aria-hidden="true" />
+                    {activeTestimonial.title && (
+                      <p className="testimonial-title">{activeTestimonial.title}</p>
+                    )}
+                    <p
+                      className={`testimonial-quote ${
+                        activeTestimonial.quote.length > 520 ? 'testimonial-quote--long' : ''
+                      } ${expandedQuotes.has(activeTestimonial.name) ? 'is-expanded' : ''}`}
                     >
-                      {expandedQuotes.has(activeTestimonial.name) ? 'Show less' : 'Read more'}
-                    </button>
-                  )}
-                  <h3>{activeTestimonial.name}</h3>
-                  <p className="testimonial-designation">{activeTestimonial.designation}</p>
-                  <p className="testimonial-workplace">{activeTestimonial.workplace}</p>
+                      {activeTestimonial.quote}
+                    </p>
+                    {activeTestimonial.quote.length > 520 && (
+                      <button
+                        type="button"
+                        className="testimonial-read-more"
+                        onClick={() => toggleQuote(activeTestimonial.name)}
+                        aria-label={
+                          expandedQuotes.has(activeTestimonial.name)
+                            ? 'Collapse testimonial'
+                            : 'Expand testimonial'
+                        }
+                      >
+                        {expandedQuotes.has(activeTestimonial.name) ? 'Show less' : 'Read more'}
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="testimonial-meta-block">
+                    <h3>{activeTestimonial.name}</h3>
+                    <p className="testimonial-designation">{activeTestimonial.designation}</p>
+                    <p className="testimonial-workplace">{activeTestimonial.workplace}</p>
+                  </div>
                 </div>
               </article>
             )}

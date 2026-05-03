@@ -8,6 +8,7 @@ import Hero from './components/hero/hero.jsx';
 import AcademicExcellence from './components/academicExcellence/AcademicExcellence.jsx';
 import Testimonials from './components/testimonials/Testimonials.jsx';
 import PastResults from './components/results/PastResults.jsx';
+import ResultsExperience from './components/results/ResultsExperience.jsx';
 import Title from './components/title/title.jsx';
 import Contact from './components/contact/contact.jsx';
 import Footer from './components/footer/footer.jsx';
@@ -90,6 +91,10 @@ const HomePage = () => {
 
         <div className="home-section home-section--results">
           <PastResults />
+        </div>
+
+        <div className="home-section home-section--results-experience">
+          <ResultsExperience />
         </div>
 
         <div className="home-section home-section--seo">

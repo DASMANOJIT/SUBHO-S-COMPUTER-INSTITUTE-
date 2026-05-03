@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Lottie from 'lottie-react';
-import ScrollReveal from '../scrollReveal/ScrollReveal.jsx';
+import useScrollReveal from '../../hooks/useScrollReveal.js';
 import './academicExcellence.css';
 
 const TROPHY_ANIMATION_PATH = '/animations/trophy.json';
@@ -59,8 +59,11 @@ const excellenceStudents = [
 ];
 
 const AcademicExcellence = () => {
+  const sectionRef = useRef(null);
   const [trophyAnimation, setTrophyAnimation] = useState(null);
   const [loadFailed, setLoadFailed] = useState(false);
+
+  useScrollReveal(sectionRef);
 
   useEffect(() => {
     if (typeof window === 'undefined') return undefined;
@@ -90,22 +93,27 @@ const AcademicExcellence = () => {
   }, []);
 
   return (
-    <ScrollReveal
-      as="section"
-      className="academic-excellence-section"
-      animation="zoom-in"
-      duration={900}
-    >
+    <section className="academic-excellence-section academic-excellence-section--reveal" ref={sectionRef}>
       <div className="academic-excellence-inner">
         <div className="academic-excellence-heading">
-          <div className="academic-excellence-heading-row">
+          <div
+            className="academic-excellence-heading-row academic-heading-wrap"
+            data-aos="fade-up"
+            data-aos-delay="0"
+            data-aos-exit-delay="250"
+            data-aos-duration="800"
+            data-aos-easing="ease-out"
+          >
             <div className="academic-excellence-heading-copy">
               <p>Our Shining Stars of Tomorrow</p>
               <h2>Academic Excellence</h2>
             </div>
 
             {!loadFailed && trophyAnimation && (
-              <div className="academic-excellence-heading-animation" aria-hidden="true">
+              <div
+                className="academic-excellence-heading-animation academic-trophy-animation"
+                aria-hidden="true"
+              >
                 <Lottie
                   animationData={trophyAnimation}
                   loop
@@ -116,8 +124,22 @@ const AcademicExcellence = () => {
               </div>
             )}
           </div>
-          <div className="academic-excellence-divider" />
-          <p className="academic-excellence-intro">
+          <div
+            className="academic-excellence-divider"
+            data-aos="fade-up"
+            data-aos-delay="180"
+            data-aos-exit-delay="180"
+            data-aos-duration="800"
+            data-aos-easing="ease-out"
+          />
+          <p
+            className="academic-excellence-intro"
+            data-aos="fade-up"
+            data-aos-delay="220"
+            data-aos-exit-delay="120"
+            data-aos-duration="800"
+            data-aos-easing="ease-out"
+          >
             At Subho&apos;s Computer Institute, academic excellence is a result of dedication,
             discipline, and consistent guidance. Our students continue to achieve outstanding
             results across ICSE, ISC, and CBSE computer subjects, making us proud every year.
@@ -126,13 +148,14 @@ const AcademicExcellence = () => {
 
         <div className="academic-excellence-grid">
           {excellenceStudents.map((student, index) => (
-            <ScrollReveal
-              as="article"
+            <article
               key={`${student.name}-${student.board}-${student.year}`}
               className="academic-excellence-card smooth-card hover-lift image-hover-zoom"
-              animation="fade-up"
-              delay={index * 100}
-              duration={700}
+              data-aos="fade-up"
+              data-aos-delay={300 + index * 100}
+              data-aos-exit-delay={100 + (4 - index) * 40}
+              data-aos-duration="850"
+              data-aos-easing="ease-out"
             >
               <div className="academic-excellence-photo-wrap">
                 <img
@@ -162,11 +185,11 @@ const AcademicExcellence = () => {
 
                 <p className="academic-excellence-school">{student.school}</p>
               </div>
-            </ScrollReveal>
+            </article>
           ))}
         </div>
       </div>
-    </ScrollReveal>
+    </section>
   );
 };
 

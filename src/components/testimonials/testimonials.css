@@ -27,8 +27,8 @@
 }
 
 .testimonials-heading-animation {
-  width: 84px;
-  height: 84px;
+  width: 128px;
+  height: 128px;
   flex: 0 0 auto;
   margin-top: -4px;
   pointer-events: none;
@@ -71,16 +71,19 @@
   position: relative;
   overflow: hidden;
   border-radius: 30px;
+  height: 540px;
+  --testimonial-card-height: 540px;
 }
 
 .testimonial-card {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+  grid-template-columns: minmax(300px, 36%) minmax(0, 1fr);
   gap: 28px;
   align-items: stretch;
   width: 100%;
-  min-height: 420px;
+  height: var(--testimonial-card-height);
+  min-height: var(--testimonial-card-height);
   padding: 24px;
   border-radius: 30px;
   background:
@@ -108,7 +111,8 @@
 
 .testimonial-image-wrap {
   position: relative;
-  min-height: 100%;
+  min-height: 0;
+  height: 100%;
   border-radius: 24px;
   overflow: hidden;
   background: linear-gradient(135deg, rgba(29, 78, 216, 0.08), rgba(251, 191, 36, 0.12));
@@ -120,12 +124,14 @@
   display: block;
   object-fit: cover;
   object-position: center;
+  transform: scale(1.06);
+  transition: transform 500ms ease;
 }
 
 .testimonial-avatar-fallback {
   width: 100%;
   height: 100%;
-  min-height: 360px;
+  min-height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,8 +146,26 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  min-height: 0;
+  height: 100%;
   padding: 10px 8px 10px 0;
+  overflow: hidden;
+}
+
+.testimonial-copy-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.testimonial-meta-block {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(29, 78, 216, 0.1);
 }
 
 .testimonial-quote-mark {
@@ -162,15 +186,17 @@
   color: #334155;
   font-size: clamp(17px, 2vw, 20px);
   line-height: 1.9;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   white-space: pre-line;
   transition: max-height 0.35s ease, opacity 0.35s ease;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding-right: 10px;
 }
 
 .testimonial-quote--long {
-  max-height: 240px;
-  overflow: auto;
-  padding-right: 8px;
+  max-height: none;
 }
 
 .testimonial-quote--long::-webkit-scrollbar {
@@ -187,7 +213,7 @@
 }
 
 .testimonial-quote--long.is-expanded {
-  max-height: 360px;
+  max-height: none;
   mask-image: none;
 }
 
@@ -329,12 +355,14 @@
 @media (max-width: 900px) {
   .testimonials-stage,
   .testimonial-card {
-    min-height: 460px;
+    --testimonial-card-height: 520px;
+    height: 520px;
+    min-height: 520px;
   }
 
   .testimonial-card {
-    grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
-    gap: 22px;
+    grid-template-columns: minmax(220px, 34%) minmax(0, 1fr);
+    gap: 20px;
     padding: 20px;
   }
 
@@ -361,8 +389,8 @@
   }
 
   .testimonials-heading-animation {
-    width: 56px;
-    height: 56px;
+    width: 84px;
+    height: 84px;
     margin-top: 0;
   }
 
@@ -372,28 +400,33 @@
 
   .testimonials-stage,
   .testimonial-card {
-    min-height: auto;
+    --testimonial-card-height: 700px;
+    height: 700px;
+    min-height: 700px;
   }
 
   .testimonial-card {
     grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-rows: 300px minmax(0, 1fr);
+    gap: 14px;
     padding: 16px;
     border-radius: 24px;
   }
 
   .testimonial-image-wrap {
-    min-height: 220px;
+    min-height: 300px;
+    height: 300px;
     border-radius: 20px;
   }
 
   .testimonial-avatar-fallback {
-    min-height: 220px;
+    min-height: 300px;
     font-size: 44px;
   }
 
   .testimonial-content {
     padding: 0;
+    height: auto;
   }
 
   .testimonial-quote-mark {
@@ -404,7 +437,7 @@
   .testimonial-quote {
     font-size: 16px;
     line-height: 1.75;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   .testimonial-title {
@@ -412,12 +445,12 @@
     margin-bottom: 12px;
   }
 
-  .testimonial-quote--long {
-    max-height: 260px;
+  .testimonial-copy-block {
+    height: 100%;
   }
 
-  .testimonial-quote--long.is-expanded {
-    max-height: 280px;
+  .testimonial-quote--long {
+    max-height: none;
   }
 
   .testimonial-read-more {
@@ -456,6 +489,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .testimonial-card,
+  .testimonial-image,
   .testimonials-arrow,
   .testimonials-dot {
     animation: none !important;
