@@ -9,8 +9,8 @@ const ProgramsPage = () => {
   return (
     <>
       <PageSeo
-        title="Computer Courses & Coaching in Barrackpore & Shyamnagar | ICSE, ISC, CBSE, Java & Python"
-        description="Explore computer coaching and programming courses at Subho's Computer Institute, including ICSE, ISC, CBSE, Java, Python, HTML, CSS and practical IT training in Barrackpore and Shyamnagar."
+        title="Computer Coaching Programs | ICSE, ISC, CBSE, Java & Python Classes"
+        description="Explore ICSE Computer Applications, ISC Computer Science, CBSE computer coaching, Java, Python, HTML, CSS and programming classes at Subho's Computer Institute."
         path="/programs"
         keywords={[
           'best computer institute in Barrackpore',

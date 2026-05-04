@@ -9,8 +9,8 @@ const ContactPage = () => {
   return (
     <>
       <PageSeo
-        title="Contact Subho's Computer Institute Barrackpore & Shyamnagar | Admission & Computer Classes"
-        description="Contact Subho's Computer Institute for admission enquiries, ICSE, ISC, CBSE computer coaching, programming classes and practical IT training in Barrackpore and Shyamnagar, near Sodepur, Sodepore and Kolkata."
+        title="Contact Subho’s Computer Institute | Barrackpore & Shyamnagar Branches"
+        description="Contact Subho's Computer Institute for computer coaching, ICSE, ISC, CBSE and programming classes at Barrackpore and Shyamnagar campuses."
         path="/contact"
         keywords={[
           'contact Subho’s Computer Institute',

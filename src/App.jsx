@@ -39,16 +39,17 @@ const HomePage = () => {
   return (
     <>
       <PageSeo
-        description="Subho's Computer Institute in Barrackpore and Shyamnagar offers ICSE, ISC and CBSE computer coaching, programming classes, Java, Python, HTML, CSS and practical IT training for students from Barrackpore, Shyamnagar, Sodepur, Sodepore and Kolkata."
+        title="Subho’s Computer Institute | Best Computer Coaching in Barrackpore & Shyamnagar"
+        description="Subho's Computer Institute is a trusted choice for students searching for the best computer institute in Barrackpore and computer coaching in Barrackpore and Shyamnagar. We offer ICSE, ISC and CBSE computer coaching, programming classes, Java, Python, HTML, CSS and practical IT training."
         path="/"
         keywords={[
           'best computer institute in Barrackpore',
+          'computer coaching in Barrackpore',
           'computer institute in Barrackpore',
           'computer institute in Shyamnagar',
           'computer training institute in Barrackpore',
           'computer classes in Barrackpore',
           'computer classes in Shyamnagar',
-          'computer coaching in Barrackpore',
           'computer coaching in Shyamnagar',
           'computer science tuition in Barrackpore',
           'ICSE computer tuition Barrackpore',

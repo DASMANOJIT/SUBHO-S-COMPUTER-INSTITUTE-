@@ -8,7 +8,7 @@ const AboutInstitutePage = () => {
   return (
     <>
       <PageSeo
-        title="About Subho's Computer Institute | Computer Coaching in Barrackpore & Shyamnagar"
+        title="About Subho’s Computer Institute | Trusted Computer Education Since 2004"
         description="Learn about Subho's Computer Institute, founded in 2004 by Mr. Subhabrata Datta, offering trusted ICSE, ISC and CBSE computer coaching, programming classes, and practical IT training in Barrackpore and Shyamnagar."
         path="/about/about-the-institute"
         keywords={[

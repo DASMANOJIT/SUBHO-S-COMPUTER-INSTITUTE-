@@ -39,7 +39,7 @@ export const createCanonicalUrl = (path = '/') => {
 
 export const createPageTitle = (title) => {
   if (!title) {
-    return "Subho’s Computer Institute | ICSE, ISC & CBSE Computer Coaching in Barrackpore & Shyamnagar";
+    return "Subho’s Computer Institute | Best Computer Coaching in Barrackpore & Shyamnagar";
   }
 
   return title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
