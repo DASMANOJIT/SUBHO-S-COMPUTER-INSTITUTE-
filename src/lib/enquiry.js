@@ -36,10 +36,6 @@ export const validateEnquiryPayload = (payload) => {
     errors.mobile = 'Enter a valid 10-digit Indian mobile number.';
   }
 
-  if (!payload.course?.trim()) {
-    errors.course = 'Please select a class or course.';
-  }
-
   if (payload.email?.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email.trim())) {
     errors.email = 'Enter a valid email address.';
   }

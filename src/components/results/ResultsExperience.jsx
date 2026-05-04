@@ -1,5 +1,4 @@
-import React, { useRef } from 'react';
-import useScrollReveal from '../../hooks/useScrollReveal.js';
+import React, { useEffect, useRef } from 'react';
 import './resultsExperience.css';
 
 const leftFeatures = [
@@ -45,7 +44,52 @@ const centerImages = [
 
 const ResultsExperience = () => {
   const sectionRef = useRef(null);
-  useScrollReveal(sectionRef);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || typeof window === 'undefined') return undefined;
+
+    const animatedElements = Array.from(section.querySelectorAll('[data-aos]'));
+
+    animatedElements.forEach((el) => {
+      const duration = el.getAttribute('data-aos-duration') || '800';
+      const easing = el.getAttribute('data-aos-easing') || 'ease-out';
+
+      el.style.transitionDuration = `${duration}ms`;
+      el.style.transitionTimingFunction = easing;
+    });
+
+    if (!('IntersectionObserver' in window)) {
+      animatedElements.forEach((el) => el.classList.add('aos-animate'));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const target = entry.target;
+
+          if (entry.isIntersecting) {
+            const delay = target.getAttribute('data-aos-delay') || '0';
+            target.style.transitionDelay = `${delay}ms`;
+            target.classList.add('aos-animate');
+          } else {
+            const exitDelay = target.getAttribute('data-aos-exit-delay') || '0';
+            target.style.transitionDelay = `${exitDelay}ms`;
+            target.classList.remove('aos-animate');
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -80px 0px',
+      }
+    );
+
+    animatedElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   const renderFeature = (label, index, side) => (
     <li
@@ -76,7 +120,7 @@ const ResultsExperience = () => {
   );
 
   return (
-    <section className="results-experience results-experience-section" ref={sectionRef}>
+    <section ref={sectionRef} className="results-experience results-experience-section">
       <div className="results-experience-inner">
         <div className="results-experience-heading">
           <p

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Lottie from 'lottie-react';
-import useScrollReveal from '../../hooks/useScrollReveal.js';
 import './academicExcellence.css';
 
 const TROPHY_ANIMATION_PATH = '/animations/trophy.json';
@@ -63,8 +62,6 @@ const AcademicExcellence = () => {
   const [trophyAnimation, setTrophyAnimation] = useState(null);
   const [loadFailed, setLoadFailed] = useState(false);
 
-  useScrollReveal(sectionRef);
-
   useEffect(() => {
     if (typeof window === 'undefined') return undefined;
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
@@ -92,8 +89,54 @@ const AcademicExcellence = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || typeof window === 'undefined') return undefined;
+
+    const animatedElements = Array.from(section.querySelectorAll('[data-aos]'));
+
+    animatedElements.forEach((el) => {
+      const duration = el.getAttribute('data-aos-duration') || '800';
+      const easing = el.getAttribute('data-aos-easing') || 'ease-out';
+
+      el.style.transitionDuration = `${duration}ms`;
+      el.style.transitionTimingFunction = easing;
+    });
+
+    if (!('IntersectionObserver' in window)) {
+      animatedElements.forEach((el) => el.classList.add('aos-animate'));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const target = entry.target;
+
+          if (entry.isIntersecting) {
+            const delay = target.getAttribute('data-aos-delay') || '0';
+            target.style.transitionDelay = `${delay}ms`;
+            target.classList.add('aos-animate');
+          } else {
+            const exitDelay = target.getAttribute('data-aos-exit-delay') || '0';
+            target.style.transitionDelay = `${exitDelay}ms`;
+            target.classList.remove('aos-animate');
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -80px 0px',
+      }
+    );
+
+    animatedElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="academic-excellence-section academic-excellence-section--reveal" ref={sectionRef}>
+    <section ref={sectionRef} className="academic-excellence-section academic-excellence-section--reveal">
       <div className="academic-excellence-inner">
         <div className="academic-excellence-heading">
           <div

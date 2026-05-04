@@ -35,6 +35,16 @@
   margin-bottom: 22px;
 }
 
+.footer-campus + .footer-campus {
+  margin-top: 14px;
+}
+
+.footer-campus-label {
+  font-weight: 700;
+  color: #0a2265;
+  margin-bottom: 6px;
+}
+
 .footer-nap-name {
   font-weight: 700;
   color: #0a2265;
@@ -204,6 +214,10 @@
 
   .footer-credit {
     font-size: 11px;
+  }
+
+  .footer-campus + .footer-campus {
+    margin-top: 12px;
   }
 
   .app-links {

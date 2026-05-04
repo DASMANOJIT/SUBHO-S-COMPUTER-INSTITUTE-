@@ -22,11 +22,21 @@ const Footer = () => {
             </p>
 
             <div className="footer-nap" aria-label="Institute contact details">
-             
-              <p>
-                Madhusudan Complex, S.N. Banerjee Road, Barrackpore, Barrackpur Cantonment,
-                West Bengal 700120
-              </p>
+              <div className="footer-campus">
+                <p className="footer-campus-label">Barrackpore Campus</p>
+                <p>
+                  Madhusudan Complex, S.N. Banerjee Road, Barrackpore, Barrackpur Cantonment,
+                  West Bengal 700120
+                </p>
+              </div>
+
+              <div className="footer-campus">
+                <p className="footer-campus-label">Shyamnagar Campus</p>
+                <p>
+                  308, Ghosh Para Rd, opposite St. Augustine&apos;s Day School, Pinkal,
+                  Shyamnagar, Kolkata, West Bengal 743133
+                </p>
+              </div>
               
             </div>
 

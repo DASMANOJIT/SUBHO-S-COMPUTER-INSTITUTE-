@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 import FounderPhoto from '/enquiry.jpg';
 import {
   createEmptyEnquiryForm,
-  ENQUIRY_COURSE_OPTIONS,
   validateEnquiryPayload,
 } from '../../lib/enquiry.js';
 import ImageWithSkeleton from '../skeletons/ImageWithSkeleton.jsx';
@@ -338,24 +337,6 @@ const EnquiryModal = () => {
                       aria-invalid={Boolean(errors.email)}
                     />
                     {errors.email ? <small>{errors.email}</small> : null}
-                  </label>
-
-                  <label className="enquiry-field enquiry-field-full">
-                    <span>Class / Course Interested In</span>
-                    <select
-                      name="course"
-                      value={formData.course}
-                      onChange={handleChange}
-                      aria-invalid={Boolean(errors.course)}
-                    >
-                      <option value="">Select a course</option>
-                      {ENQUIRY_COURSE_OPTIONS.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.course ? <small>{errors.course}</small> : null}
                   </label>
 
                   <label className="enquiry-field enquiry-field-full">

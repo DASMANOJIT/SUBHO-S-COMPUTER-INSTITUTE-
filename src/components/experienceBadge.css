@@ -1,0 +1,149 @@
+.experience-badge {
+  position: relative;
+  width: clamp(128px, 12vw, 196px);
+  aspect-ratio: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+  overflow: visible;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.28));
+}
+
+.experience-badge__image {
+  width: 110%;
+  height: 110%;
+  object-fit: contain;
+  position: relative;
+  z-index: 3;
+  transform: scale(1.05);
+  transform-origin: center;
+}
+
+.experience-badge::before {
+  content: "";
+  position: absolute;
+  inset: 10%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 213, 79, 0.18), transparent 68%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.experience-badge__glow-ring {
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.experience-badge__glow-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(255, 213, 79, 0) 0deg,
+    rgba(255, 213, 79, 0.08) 35deg,
+    rgba(255, 226, 122, 0.95) 75deg,
+    rgba(255, 213, 79, 0.25) 105deg,
+    rgba(255, 213, 79, 0.04) 145deg,
+    rgba(255, 213, 79, 0) 360deg
+  );
+  animation: badgeOrbitGlow 8s linear infinite;
+  filter: blur(1.5px);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 5px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 5px));
+}
+
+.experience-badge__glow-ring::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow:
+    0 0 0 1px rgba(255, 213, 79, 0.2),
+    0 0 10px rgba(255, 213, 79, 0.15),
+    0 0 18px rgba(255, 213, 79, 0.1);
+}
+
+.experience-badge__shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.experience-badge__shine::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -80%;
+  width: 45%;
+  height: 140%;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 35%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.08) 65%,
+    transparent 100%
+  );
+  transform: rotate(18deg);
+  animation: badgeShine 6s ease-in-out infinite;
+}
+
+@keyframes badgeShine {
+  0% {
+    left: -80%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  45% {
+    left: 120%;
+    opacity: 0;
+  }
+
+  100% {
+    left: 120%;
+    opacity: 0;
+  }
+}
+
+@keyframes badgeOrbitGlow {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-badge__glow-ring::before,
+  .experience-badge__shine::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .experience-badge {
+    width: 124px;
+  }
+
+  .experience-badge__image {
+    width: 114%;
+    height: 114%;
+    transform: scale(1.06);
+  }
+}

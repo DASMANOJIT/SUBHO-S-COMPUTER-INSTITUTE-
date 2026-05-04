@@ -9,8 +9,8 @@
   transition: background-image 1s ease-in-out;
   padding: calc(var(--header-total-height) + 32px) clamp(20px, 5vw, 48px) 40px;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero.hero-image-loading::after {
@@ -43,12 +43,14 @@
 .hero-content {
   position: relative;
   z-index: 2;
-  text-align: right;
-  width: min(100%, 720px);
+  text-align: center;
+  width: min(100%, 760px);
+  margin-inline: auto;
   font-size: clamp(16px, 2vw, 20px);
   padding: clamp(18px, 3vw, 28px);
   border-radius: 12px;
   color: white;
+  align-items: center;
 }
 
 .hero-content h1 {
@@ -62,8 +64,31 @@
   margin-top: 12px;
 }
 
-.hero-content .modern-btn {
-  margin-top: 28px;
+.hero-eyebrow {
+  margin: 0 0 10px;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.hero-highlight {
+  margin-top: 14px;
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.55;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.98);
+}
+
+.hero-badge-area {
+  margin-top: clamp(18px, 2.5vw, 30px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-inline: auto;
+  position: relative;
+  z-index: 2;
 }
 
 .red {
@@ -116,7 +141,7 @@
   }
 
   .hero-content {
-    width: min(100%, 620px);
+    width: min(100%, 680px);
   }
 }
 
@@ -124,19 +149,30 @@
   .hero {
     min-height: 92vh;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: calc(var(--header-total-height) + 24px) 16px 32px;
   }
 
   .hero-content {
-    text-align: center;
+    text-align: left;
+    align-items: flex-start;
     width: 100%;
     padding: 18px 16px;
   }
 
-  .hero-content .modern-btn {
-    width: 100%;
-    max-width: 240px;
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+  }
+
+  .hero-highlight {
+    font-size: 16px;
+  }
+
+  .hero-badge-area {
+    margin-top: 18px;
+    justify-content: flex-start;
+    margin-inline: 0;
   }
 }
 

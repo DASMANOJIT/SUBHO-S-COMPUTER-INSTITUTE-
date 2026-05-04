@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './hero.css';
-import Arrow from '../assets/arrow.png';
-import { Link } from 'react-router-dom';
 import ScrollReveal from '../scrollReveal/ScrollReveal.jsx';
+import ExperienceBadge from '../ExperienceBadge.jsx';
 const images = [
   new URL('../assets/hero1.jpg', import.meta.url).href,
   new URL('../assets/hero2.jpg', import.meta.url).href,
@@ -47,17 +46,22 @@ const Hero = () => {
           duration={900}
           animation="zoom-in"
         >
-          <h1>Computer Institute in Barrackpore for ICSE, ISC, CBSE &amp; Programming</h1>
-          <p>
-            Subho&apos;s Computer Institute is a trusted computer coaching centre in Barrackpore,
-            helping students build strong foundations in school computer subjects, programming,
-            and practical IT skills. We provide ICSE, ISC and CBSE computer coaching for
-            students from Barrackpore, Shyamnagar, Sodepur, Sodepore, Kolkata and nearby areas.
+          <p className="hero-eyebrow">Trusted Computer Education Since 2004</p>
+          <h1>Subho&apos;s Computer Institute</h1>
+          <p className="hero-highlight">
+            Building strong foundations in computer education through concept clarity,
+            practical learning, and dedicated mentorship.
           </p>
-          <Link to="/programs" className="modern-btn">
-            Explore our programs
-            <img src={Arrow} alt="Explore computer courses and coaching at Subho's Computer Institute Barrackpore" />
-          </Link>
+          <p>
+            ICSE • ISC • CBSE • Programming Guidance
+            <br />
+            Guiding students to grow with confidence, logic, and real understanding across
+            school computer subjects and practical IT skills.
+          </p>
+
+          <div className="hero-badge-area">
+            <ExperienceBadge />
+          </div>
         </ScrollReveal>
       </div>
   );

@@ -69,13 +69,29 @@ const Contact = () => {
               9831934306 | 8617759263 | 7003751561 
             </li>
 
-            <li>
+            <li className="campus-location">
               <img
                 src={Locate}
                 alt="Location of Subho's Computer Institute in Barrackpore Kolkata"
               />
-              Madhusudan Complex, S N Banerjee Road, Chiriamore, Barrackpore,
-              Kolkata – 700120
+              <div className="campus-location-copy">
+                <strong>Barrackpore Campus</strong>
+                <span>Madhusudan Complex, S N Banerjee Road, Chiriamore, Barrackpore, Kolkata – 700120</span>
+              </div>
+            </li>
+
+            <li className="campus-location">
+              <img
+                src={Locate}
+                alt="Location of Subho's Computer Institute in Shyamnagar Kolkata"
+              />
+              <div className="campus-location-copy">
+                <strong>Shyamnagar Campus</strong>
+                <span>
+                  308, Ghosh Para Rd, opposite St. Augustine&apos;s Day School, Pinkal, Shyamnagar,
+                  Kolkata, West Bengal 743133
+                </span>
+              </div>
             </li>
           </ul>
         </ScrollReveal>
