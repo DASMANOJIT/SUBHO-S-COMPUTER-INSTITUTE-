@@ -37,16 +37,16 @@ const About = () => {
 
           <p>
             Founded in 2004 by Mr. Shubhabrata Dutta, Subho's Computer Institute
-            has been a trusted name in computer education in Barrackpore, Kolkata
-            for over two decades. Through dedication to teaching and mentoring,
-            thousands of students have gained the skills and confidence to excel
-            academically and professionally.
+            has been a trusted name in computer education in Barrackpore, Kolkata,
+            and Shyamnagar for over two decades. Through dedication to teaching and
+            mentoring, thousands of students have gained the skills and confidence
+            to excel academically and professionally.
           </p>
 
           <p>
-            We specialize in Computer Science tuition for students from
-            Class 4–10 (ICSE) and Class 11–12 (ISC/CBSE), along with
-            programming and practical IT training.
+            We specialize in Computer Science tuition for students from Class 4–10
+            (ICSE) and Class 11–12 (ISC/CBSE), along with programming classes,
+            practical IT training, and board exam preparation.
           </p>
 
           <p>✔️ Structured Main Classes for strong academic foundation</p>

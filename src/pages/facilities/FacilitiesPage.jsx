@@ -19,16 +19,18 @@ const FacilitiesPage = () => {
   return (
     <>
       <PageSeo
-        title="Facilities | Subho's Computer Institute Barrackpore"
-        description="Discover facilities at Subho's Computer Institute including structured computer classes, practical IT training, doubt-clearing sessions, weekly tests and programming practice in Barrackpore."
+        title="Facilities | Subho's Computer Institute Barrackpore & Shyamnagar"
+        description="Discover facilities at Subho's Computer Institute including structured computer classes, practical IT training, doubt-clearing sessions, weekly tests and programming practice in Barrackpore and Shyamnagar."
         path="/facilities"
         keywords={[
           'Subho’s Computer Institute facilities',
           'computer institute in Barrackpore',
+          'computer institute in Shyamnagar',
           'practical IT training Barrackpore',
           'computer coaching near Sodepur',
           'computer classes near Sodepur',
           'computer classes near Sodepore',
+          'computer coaching near me',
         ]}
       />
 
@@ -38,7 +40,7 @@ const FacilitiesPage = () => {
           <h1>Facilities</h1>
           <p className="page-intro">
             Discover the learning support, practice environment, and student-focused academic
-            facilities available at Subho&apos;s Computer Institute in Barrackpore.
+            facilities available at Subho&apos;s Computer Institute in Barrackpore and Shyamnagar.
           </p>
         </ScrollReveal>
 

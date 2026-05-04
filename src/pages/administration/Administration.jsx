@@ -19,14 +19,15 @@ const Administration = () => {
   return (
     <>
       <PageSeo
-        title="Administration | Founder of Subho's Computer Institute"
-        description="Meet Mr. Subhabrata Datta, founder of Subho's Computer Institute, with over 22 years of experience in computer education and academic mentoring."
+        title="Administration | Founder of Subho's Computer Institute Barrackpore & Shyamnagar"
+        description="Meet Mr. Subhabrata Datta, founder of Subho's Computer Institute, with over 22 years of experience in computer education and academic mentoring for Barrackpore and Shyamnagar students."
         path="/faculties/administration"
         keywords={[
           'founder of Subho’s Computer Institute',
           'computer institute in Barrackpore',
           'best computer teacher in Barrackpore',
           'computer coaching in Barrackpore',
+          'computer coaching in Shyamnagar',
         ]}
       />
 
@@ -36,7 +37,8 @@ const Administration = () => {
           <h1>Administration</h1>
           <p className="page-intro">
             Our institution is led with a long-term commitment to quality teaching, ethical values,
-            and student growth through disciplined academic guidance.
+            and student growth through disciplined academic guidance across Barrackpore and
+            Shyamnagar.
           </p>
         </ScrollReveal>
 
@@ -49,7 +51,7 @@ const Administration = () => {
           <div className="founder-badge" aria-hidden="true">
             <ImageWithSkeleton
               src="/subho.jpg"
-              alt="Mr. Subhabrata Datta"
+              alt="Mr. Subhabrata Datta founder of Subho's Computer Institute"
               className="founder-photo"
               wrapperClassName="founder-photo-shell"
               skeletonClassName="founder-photo-skeleton"

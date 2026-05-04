@@ -6,6 +6,7 @@ import {
   SITE_URL,
   createCanonicalUrl,
   createPageTitle,
+  createOrganizationSchema,
 } from '../../lib/seo.js';
 
 const PageSeo = ({
@@ -27,15 +28,18 @@ const PageSeo = ({
     document.title = resolvedTitle;
   }, [resolvedTitle]);
 
+  const pageSchema = schema ?? createOrganizationSchema();
+
   return (
     <Helmet>
       <title>{resolvedTitle}</title>
       <meta name="description" content={description} />
       {keywords.length ? <meta name="keywords" content={keywords.join(', ')} /> : null}
       <meta name="robots" content={isVercelHost ? 'noindex, nofollow' : 'index, follow'} />
+      <meta name="theme-color" content="#0a2265" />
       <meta name="author" content={SITE_NAME} />
       <meta name="geo.region" content="IN-WB" />
-      <meta name="geo.placename" content="Barrackpore" />
+      <meta name="geo.placename" content="Barrackpore, Shyamnagar" />
       <link rel="canonical" href={canonicalUrl} />
 
       <meta property="og:site_name" content={SITE_NAME} />
@@ -57,9 +61,7 @@ const PageSeo = ({
       {!isVercelHost && <meta property="og:image:alt" content={`${SITE_NAME} Barrackpore`} />}
       <meta property="article:publisher" content={SITE_URL} />
 
-      {schema ? (
-        <script type="application/ld+json">{JSON.stringify(schema)}</script>
-      ) : null}
+      <script type="application/ld+json">{JSON.stringify(pageSchema)}</script>
     </Helmet>
   );
 };

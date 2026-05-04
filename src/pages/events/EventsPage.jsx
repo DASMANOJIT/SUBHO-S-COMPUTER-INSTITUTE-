@@ -355,16 +355,18 @@ const EventsPage = () => {
   return (
     <>
       <PageSeo
-        title="Events | Subho's Computer Institute Barrackpore"
-        description="Explore events, student felicitation programs, alumni meets, workshops and academic activities at Subho's Computer Institute in Barrackpore, near Shyamnagar, Sodepur and Kolkata."
+        title="Events | Subho's Computer Institute Barrackpore & Shyamnagar"
+        description="Explore events, student felicitation programs, alumni meets, workshops and academic activities at Subho's Computer Institute in Barrackpore and Shyamnagar, near Sodepur and Kolkata."
         path="/events"
         keywords={[
           'Subho’s Computer Institute events',
           'computer coaching in Barrackpore',
+          'computer coaching in Shyamnagar',
           'computer classes near Sodepur',
           'computer coaching near Sodepur',
           'programming classes near Sodepur',
           'computer classes near Sodepore',
+          'computer classes near Kolkata',
         ]}
       />
 
@@ -374,7 +376,8 @@ const EventsPage = () => {
           <h1>Events</h1>
           <p className="page-intro">
             Explore important events, student felicitation programs, alumni meets, workshops, and
-            special academic moments at Subho&apos;s Computer Institute.
+            special academic moments at Subho&apos;s Computer Institute in Barrackpore and
+            Shyamnagar.
           </p>
         </ScrollReveal>
 

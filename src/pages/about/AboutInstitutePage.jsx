@@ -8,13 +8,19 @@ const AboutInstitutePage = () => {
   return (
     <>
       <PageSeo
-        title="About Subho's Computer Institute | Computer Coaching in Barrackpore"
-        description="Learn about Subho's Computer Institute, founded in 2004 by Mr. Subhabrata Datta, offering trusted computer education in Barrackpore, Shyamnagar and Kolkata."
+        title="About Subho's Computer Institute | Computer Coaching in Barrackpore & Shyamnagar"
+        description="Learn about Subho's Computer Institute, founded in 2004 by Mr. Subhabrata Datta, offering trusted ICSE, ISC and CBSE computer coaching, programming classes, and practical IT training in Barrackpore and Shyamnagar."
         path="/about/about-the-institute"
         keywords={[
+          'best computer institute in Barrackpore',
           'computer institute in Barrackpore',
+          'computer institute in Shyamnagar',
           'computer coaching in Barrackpore',
+          'computer coaching in Shyamnagar',
           'computer institute near Shyamnagar',
+          'ICSE computer coaching in Barrackpore',
+          'ISC computer science coaching in Barrackpore',
+          'CBSE computer coaching in Barrackpore',
           'computer classes near Kolkata',
           'best computer teacher in Barrackpore',
         ]}

@@ -13,11 +13,17 @@ const AboutFocusPage = ({ title, description, path, intro, points, ctaText }) =>
         path={path}
         keywords={[
           'computer institute in Barrackpore',
+          'computer institute in Shyamnagar',
           'computer classes in Barrackpore',
+          'computer classes in Shyamnagar',
           'computer coaching in Barrackpore',
+          'computer coaching in Shyamnagar',
           'computer institute near Shyamnagar',
           'computer classes near Kolkata',
           'best computer teacher in Barrackpore',
+          'ICSE computer coaching in Barrackpore',
+          'ISC computer science coaching in Barrackpore',
+          'CBSE computer coaching in Barrackpore',
         ]}
       />
 

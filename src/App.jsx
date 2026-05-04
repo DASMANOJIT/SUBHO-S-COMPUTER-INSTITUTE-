@@ -39,21 +39,30 @@ const HomePage = () => {
   return (
     <>
       <PageSeo
-        description="Subho's Computer Institute in Barrackpore offers ICSE, ISC and CBSE computer coaching, programming classes, Java, Python, HTML, CSS and practical IT training for students from Barrackpore, Shyamnagar, Sodepur, Sodepore and Kolkata."
+        description="Subho's Computer Institute in Barrackpore and Shyamnagar offers ICSE, ISC and CBSE computer coaching, programming classes, Java, Python, HTML, CSS and practical IT training for students from Barrackpore, Shyamnagar, Sodepur, Sodepore and Kolkata."
         path="/"
         keywords={[
+          'best computer institute in Barrackpore',
           'computer institute in Barrackpore',
+          'computer institute in Shyamnagar',
+          'computer training institute in Barrackpore',
           'computer classes in Barrackpore',
+          'computer classes in Shyamnagar',
           'computer coaching in Barrackpore',
+          'computer coaching in Shyamnagar',
           'computer science tuition in Barrackpore',
           'ICSE computer tuition Barrackpore',
+          'ICSE computer coaching in Shyamnagar',
           'ISC computer science tuition Barrackpore',
           'CBSE computer coaching Barrackpore',
           'programming classes in Barrackpore',
+          'programming classes in Shyamnagar',
           'Java programming classes in Barrackpore',
           'Python programming classes in Barrackpore',
           'HTML CSS course in Barrackpore',
           'practical IT training Barrackpore',
+          'computer coaching near me',
+          'computer classes near me',
           'computer institute near Shyamnagar',
           'computer tuition near Shyamnagar',
           'computer institute near Sodepur',
@@ -146,9 +155,9 @@ const App = () => {
               <RoutePageShell>
                 <AboutFocusPage
                   title="Our Mission"
-                  description="Understand the mission of Subho's Computer Institute in Barrackpore to deliver disciplined computer coaching, practical skill development, and student-first guidance."
+                  description="Understand the mission of Subho's Computer Institute in Barrackpore and Shyamnagar to deliver disciplined computer coaching, practical skill development, and student-first guidance."
                   path="/about/mission"
-                  intro="Our mission is to provide structured computer education in Barrackpore that helps students develop academic clarity, practical confidence, and long-term learning discipline."
+                  intro="Our mission is to provide structured computer education in Barrackpore and Shyamnagar that helps students develop academic clarity, practical confidence, and long-term learning discipline."
                   ctaText="Mission Highlights"
                   points={[
                     'Build strong foundations in school computer subjects for ICSE, ISC, and CBSE students.',
@@ -165,9 +174,9 @@ const App = () => {
               <RoutePageShell>
                 <AboutFocusPage
                   title="Our Vision"
-                  description="Explore the vision of Subho's Computer Institute to remain a trusted computer institute in Barrackpore for school students, programming learners, and future technology achievers."
+                  description="Explore the vision of Subho's Computer Institute to remain a trusted computer institute in Barrackpore and Shyamnagar for school students, programming learners, and future technology achievers."
                   path="/about/vision"
-                  intro="Our vision is to remain a trusted computer institute in Barrackpore where students from Barrackpore, Shyamnagar, Kolkata, and nearby areas can prepare confidently for academics and future technology opportunities."
+                  intro="Our vision is to remain a trusted computer institute in Barrackpore and Shyamnagar where students from Barrackpore, Shyamnagar, Kolkata, and nearby areas can prepare confidently for academics and future technology opportunities."
                   ctaText="Vision Priorities"
                   points={[
                     'Strengthen student confidence in computer application, computer science, and programming.',
@@ -184,9 +193,9 @@ const App = () => {
               <RoutePageShell>
                 <AboutFocusPage
                   title="Our Achievements"
-                  description="See how Subho's Computer Institute has supported thousands of students through trusted computer coaching, practical training, and academic mentoring in Barrackpore."
+                  description="See how Subho's Computer Institute has supported thousands of students through trusted computer coaching, practical training, and academic mentoring in Barrackpore and Shyamnagar."
                   path="/about/achievements"
-                  intro="Since 2004, Subho's Computer Institute has built a strong reputation for disciplined teaching, practical training, and long-term student support in Barrackpore."
+                  intro="Since 2004, Subho's Computer Institute has built a strong reputation for disciplined teaching, practical training, and long-term student support in Barrackpore and Shyamnagar."
                   ctaText="Academic Milestones"
                   points={[
                     'Guided thousands of students through school-level computer coaching and practical preparation.',

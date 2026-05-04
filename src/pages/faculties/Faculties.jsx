@@ -305,15 +305,17 @@ const Faculties = () => {
   return (
     <>
       <PageSeo
-        title="Teaching Faculty | Subho's Computer Institute Barrackpore"
-        description="Meet the teaching faculty of Subho's Computer Institute in Barrackpore and explore the educators guiding junior and senior students with focused computer education."
+        title="Teaching Faculty | Subho's Computer Institute Barrackpore & Shyamnagar"
+        description="Meet the teaching faculty of Subho's Computer Institute in Barrackpore and Shyamnagar and explore the educators guiding junior and senior students with focused computer education."
         path="/faculties"
         keywords={[
           'computer institute in Barrackpore',
+          'computer institute in Shyamnagar',
           'computer teachers Barrackpore',
           'ICSE computer tuition Barrackpore',
           'ISC computer science tuition Barrackpore',
           'CBSE computer coaching Barrackpore',
+          'computer coaching in Shyamnagar',
         ]}
       />
 
@@ -324,7 +326,7 @@ const Faculties = () => {
           <p className="page-intro">
             Learn with experienced teachers who combine subject expertise, personal guidance, and
             student-focused mentoring to help every learner build strong confidence in computer
-            studies.
+            studies at our Barrackpore and Shyamnagar campuses.
           </p>
         </ScrollReveal>
 

@@ -13,13 +13,15 @@ const Careers = () => {
   return (
     <>
       <PageSeo
-        title="Careers | Subho's Computer Institute Barrackpore"
-        description="Explore teaching and academic support opportunities with Subho's Computer Institute in Barrackpore and join a student-first computer coaching environment."
+        title="Careers | Subho's Computer Institute Barrackpore & Shyamnagar"
+        description="Explore teaching and academic support opportunities with Subho's Computer Institute in Barrackpore and Shyamnagar and join a student-first computer coaching environment."
         path="/careers"
         keywords={[
           'Subho’s Computer Institute careers',
           'computer faculty jobs Barrackpore',
+          'computer faculty jobs Shyamnagar',
           'computer coaching in Barrackpore',
+          'computer coaching in Shyamnagar',
           'programming instructor jobs',
         ]}
       />

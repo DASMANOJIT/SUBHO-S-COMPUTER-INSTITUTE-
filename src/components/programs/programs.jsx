@@ -26,8 +26,8 @@ const programCards = [
     image: Program_1,
     badge: Course_1,
     title: 'CLASSES 4-10(ICSE)',
-    imageAlt: "ICSE Classes 4 to 10 Computer Coaching in Kolkata at Subho's Computer Institute",
-    badgeAlt: "ICSE Board Computer Training Course Logo - Subho's Computer Institute Kolkata",
+    imageAlt: "ICSE Classes 4 to 10 computer coaching in Barrackpore and Shyamnagar at Subho's Computer Institute",
+    badgeAlt: "ICSE board computer coaching badge - Subho's Computer Institute",
   },
   {
     id: 2,
@@ -35,8 +35,8 @@ const programCards = [
     image: Program_2,
     badge: Course_1,
     title: 'CLASS 11-12(ISC)',
-    imageAlt: "ISC Class 11-12 Computer Science Coaching in Kolkata - Subho's Computer Institute",
-    badgeAlt: 'ISC Board Computer Science Course Training in Kolkata',
+    imageAlt: "ISC Class 11-12 computer science coaching in Barrackpore and Shyamnagar - Subho's Computer Institute",
+    badgeAlt: 'ISC board computer science badge - Subho\'s Computer Institute',
   },
   {
     id: 3,
@@ -44,8 +44,8 @@ const programCards = [
     image: Program_3,
     badge: Course_2,
     title: 'CLASS 11-12(CBSE)',
-    imageAlt: "CBSE Class 11-12 Computer Science Classes in Kolkata at Subho's Computer Institute",
-    badgeAlt: "CBSE Computer Science Training Course Kolkata - Subho's Computer Institute",
+    imageAlt: "CBSE Class 11-12 computer coaching in Barrackpore and Shyamnagar at Subho's Computer Institute",
+    badgeAlt: "CBSE board computer coaching badge - Subho's Computer Institute",
   },
   {
     id: 4,
@@ -53,8 +53,8 @@ const programCards = [
     image: Program_4,
     badge: Course_4,
     title: 'PYTHON',
-    imageAlt: "Python Programming Course in Barrackpore at Subho's Computer Institute",
-    badgeAlt: "Python Programming Training at Subho's Computer Institute Barrackpore",
+    imageAlt: "Python programming course in Barrackpore and Shyamnagar at Subho's Computer Institute",
+    badgeAlt: "Python programming badge - Subho's Computer Institute",
   },
 ];
 

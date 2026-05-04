@@ -49,7 +49,8 @@ const Contact = () => {
           <p>
             Feel free to reach out for admissions, course details, ICSE/ISC/CBSE
             computer coaching, Java and Python programming classes, or any other enquiry.
-            We are here to help students and parents across Kolkata.
+            We are here to help students and parents across Barrackpore, Shyamnagar,
+            and nearby Kolkata areas.
           </p>
 
           <ul>

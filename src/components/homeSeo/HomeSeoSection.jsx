@@ -7,7 +7,7 @@ const faqs = [
   {
     question: "Where is Subho's Computer Institute located?",
     answer:
-      'Subho’s Computer Institute is located at Madhusudan Complex, S.N. Banerjee Road, Barrackpore, Barrackpur Cantonment, West Bengal 700120.',
+      'Subho’s Computer Institute has campuses in Barrackpore and Shyamnagar. The Barrackpore campus is at Madhusudan Complex, S.N. Banerjee Road, Barrackpore, Barrackpur Cantonment, West Bengal 700120.',
   },
   {
     question: 'Do you provide ICSE computer tuition?',
@@ -43,11 +43,12 @@ const HomeSeoSection = () => {
           animation="fade-left"
           duration={850}
         >
-          <h2 id="home-seo-heading">Trusted Computer Coaching in Barrackpore Since 2004</h2>
+          <h2 id="home-seo-heading">Trusted Computer Coaching in Barrackpore and Shyamnagar Since 2004</h2>
           <p>
             Founded in 2004 by Mr. Subhabrata Datta, Subho&apos;s Computer Institute has guided
             thousands of students with structured classes, doubt-clearing sessions, practical
-            learning, and weekly tests.
+            learning, weekly tests, and concept-based computer education in Barrackpore and
+            Shyamnagar.
           </p>
           <p>
             Students from Barrackpore, Shyamnagar, Kolkata, Titagarh, Khardah, Palta, Ichapur,
@@ -59,7 +60,7 @@ const HomeSeoSection = () => {
             {' '}
             <strong>CBSE computer coaching in Barrackpore</strong>, and
             {' '}
-            <strong>programming classes in Barrackpore</strong>.
+            <strong>programming classes in Barrackpore and Shyamnagar</strong>.
           </p>
           <div className="home-seo-links">
             <Link to="/programs">Explore computer courses and coaching programs</Link>
