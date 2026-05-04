@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './campus.css';
 import Galery_1 from '../assets/galery_1.jpeg';
 import Galery_2 from '../assets/galery_2.jpeg';
@@ -7,120 +7,147 @@ import Galery_4 from '../assets/galery_4.jpg';
 import Galery_5 from '../assets/galery_5.jpg';
 import Galery_6 from '../assets/galery_6.jpg';
 import Galery_7 from '../assets/galery_7.jpeg';
-import Arrow from '../assets/arrow_c.png';
 import ScrollReveal from '../scrollReveal/ScrollReveal.jsx';
 import ImageWithSkeleton from '../skeletons/ImageWithSkeleton.jsx';
 
 const Campus = () => {
-  const [showOverlay, setShowOverlay] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [photosPerPage, setPhotosPerPage] = useState(8);
 
-  const photos = [
-    Galery_1, Galery_2, Galery_3, Galery_4, Galery_5,
-    Galery_6, Galery_7
-  ];
+  const photos = useMemo(
+    () => [
+      {
+        src: Galery_1,
+        alt: "Computer classroom at Subho's Computer Institute Barrackpore Kolkata",
+      },
+      {
+        src: Galery_2,
+        alt: "Students learning programming at Subho's Computer Institute Kolkata",
+      },
+      {
+        src: Galery_3,
+        alt: "Computer lab facilities at Subho's Computer Institute in Kolkata",
+      },
+      {
+        src: Galery_4,
+        alt: 'ICSE ISC CBSE computer coaching classroom in Barrackpore',
+      },
+      {
+        src: Galery_5,
+        alt: "Practical computer training session at Subho's Computer Institute",
+      },
+      {
+        src: Galery_6,
+        alt: "Students and teachers at Subho's Computer Institute Barrackpore",
+      },
+      {
+        src: Galery_7,
+        alt: "Campus activity and learning moments at Subho's Computer Institute",
+      },
+    ],
+    []
+  );
 
-  const galleryPreviewItems = [
-    {
-      src: Galery_1,
-      alt: "Computer classroom at Subho's Computer Institute Barrackpore Kolkata",
-    },
-    {
-      src: Galery_2,
-      alt: "Students learning programming at Subho's Computer Institute Kolkata",
-    },
-    {
-      src: Galery_3,
-      alt: "Computer lab facilities at Subho's Computer Institute in Kolkata",
-    },
-    {
-      src: Galery_4,
-      alt: 'ICSE ISC CBSE computer coaching classroom in Barrackpore',
-    },
-    {
-      src: Galery_5,
-      alt: "Practical computer training session at Subho's Computer Institute",
-    },
-  ];
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
 
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % photos.length);
+    const updatePhotosPerPage = () => {
+      if (window.innerWidth <= 560) {
+        setPhotosPerPage(4);
+      } else if (window.innerWidth <= 900) {
+        setPhotosPerPage(6);
+      } else {
+        setPhotosPerPage(8);
+      }
+    };
+
+    updatePhotosPerPage();
+    window.addEventListener('resize', updatePhotosPerPage);
+
+    return () => window.removeEventListener('resize', updatePhotosPerPage);
+  }, []);
+
+  const totalPages = Math.max(Math.ceil(photos.length / photosPerPage), 1);
+
+  useEffect(() => {
+    setCurrentPage((page) => Math.min(page, totalPages - 1));
+  }, [totalPages]);
+
+  const visiblePhotos = photos.slice(
+    currentPage * photosPerPage,
+    currentPage * photosPerPage + photosPerPage
+  );
+
+  const goNext = () => {
+    if (!totalPages) return;
+    setCurrentPage((page) => (page + 1) % totalPages);
   };
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
+  const goPrev = () => {
+    if (!totalPages) return;
+    setCurrentPage((page) => (page - 1 + totalPages) % totalPages);
   };
 
   return (
-      <div>
-        <div className="campus">
-          <div className="gallery">
-            {galleryPreviewItems.map((item, index) => (
+    <div className="campus-photos-section">
+      <div className="campus">
+        <div className="campus-photo-carousel">
+          <div key={currentPage} className="campus-photo-grid">
+            {visiblePhotos.map((item) => (
               <ScrollReveal
                 key={item.alt}
                 as="div"
-                className="gallery-item smooth-card hover-lift image-hover-zoom"
-                delay={index * 70}
+                className="campus-photo-card smooth-card hover-lift image-hover-zoom"
+                delay={0}
               >
                 <ImageWithSkeleton
                   src={item.src}
                   alt={item.alt}
-                  wrapperClassName="gallery-image-shell"
-                  skeletonClassName="gallery-image-skeleton"
+                  className="campus-photo-image"
+                  wrapperClassName="campus-photo-image-shell"
+                  skeletonClassName="campus-photo-image-skeleton"
                 />
               </ScrollReveal>
             ))}
           </div>
 
-          <ScrollReveal as="div" delay={180}>
-            <button 
-              className="modern-btn" 
-              onClick={() => setShowOverlay(true)}
-            >
-              See more{" "}
-              <img 
-                src={Arrow} 
-                alt="View more campus photos of Subho's Computer Institute" 
-              />
-            </button>
-          </ScrollReveal>
-        </div>
-
-        {showOverlay && (
-          <div className="photo-overlay">
-            <span 
-              className="close-overlay" 
-              onClick={() => setShowOverlay(false)}
-            >
-              &times;
-            </span>
-
-            <div className="photo-slider">
-              <button 
-                className="slider-btn prev" 
-                onClick={handlePrev}
-                aria-label="Previous image"
+          {totalPages > 1 && (
+            <div className="campus-gallery-controls" aria-label="Campus photo pages">
+              <button
+                type="button"
+                className="campus-gallery-arrow"
+                onClick={goPrev}
+                aria-label="Previous campus photos"
               >
-                ❮
+                ‹
               </button>
 
-              <img 
-                src={photos[currentIndex]} 
-                alt="Campus and computer lab environment at Subho's Computer Institute Kolkata"
-                className="slider-image" 
-              />
+              <div className="campus-gallery-dots" aria-label="Campus photo pages">
+                {Array.from({ length: totalPages }).map((_, index) => (
+                  <button
+                    type="button"
+                    key={index}
+                    className={`campus-gallery-dot ${index === currentPage ? 'is-active' : ''}`}
+                    onClick={() => setCurrentPage(index)}
+                    aria-label={`Go to campus photo page ${index + 1}`}
+                    aria-current={index === currentPage ? 'true' : undefined}
+                  />
+                ))}
+              </div>
 
-              <button 
-                className="slider-btn next" 
-                onClick={handleNext}
-                aria-label="Next image"
+              <button
+                type="button"
+                className="campus-gallery-arrow"
+                onClick={goNext}
+                aria-label="Next campus photos"
               >
-                ❯
+                ›
               </button>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
+    </div>
   );
 };
 

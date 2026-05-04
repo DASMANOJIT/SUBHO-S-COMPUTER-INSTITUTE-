@@ -245,6 +245,7 @@ const Testimonials = () => {
                       src={activeTestimonial.image}
                       alt={`${activeTestimonial.name} testimonial Subho's Computer Institute`}
                       className="testimonial-image"
+                      style={{ objectPosition: activeTestimonial.imagePosition || 'center center' }}
                       loading="lazy"
                       onError={() => handleImageError(activeTestimonial.name)}
                     />

@@ -333,39 +333,47 @@
 
 @media (max-width: 900px) {
   .enquiry-modal {
-    grid-template-columns: 1fr;
-    max-height: 92vh;
-    overflow-y: auto;
+    width: min(94vw, 420px);
+    max-height: calc(100dvh - 24px);
+    display: block;
+    overflow: hidden;
   }
 
   .enquiry-modal-poster {
-    padding-bottom: 24px;
-  }
-
-  .enquiry-modal-image {
-    width: min(100%, 240px);
-    margin-top: 18px;
-  }
-
-  .enquiry-modal-image-shell {
-    width: min(100%, 240px);
-    margin-top: 18px;
+    display: none !important;
   }
 
   .enquiry-modal-form-panel {
-    padding-top: 26px;
+    width: 100%;
+    padding: clamp(18px, 5vw, 28px);
+    overflow-y: auto;
+    min-width: 0;
+  }
+
+  .enquiry-form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .enquiry-form {
+    margin-top: 18px;
+  }
+
+  .enquiry-modal-image,
+  .enquiry-modal-image-shell {
+    display: none;
   }
 }
 
 @media (max-width: 640px) {
   .enquiry-modal-overlay {
-    padding: 12px;
+    padding: 10px;
   }
 
   .enquiry-modal {
-    max-height: 90vh;
-    overflow-y: auto;
-    border-radius: 22px;
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 20px);
+    border-radius: 18px;
   }
 
   .enquiry-modal-close {
@@ -395,7 +403,7 @@
   }
 
   .enquiry-modal-form-panel {
-    padding: 22px 18px 20px;
+    padding: 15px;
   }
 
   .enquiry-modal-form-copy h3 {

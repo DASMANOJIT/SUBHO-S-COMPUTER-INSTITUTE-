@@ -40,28 +40,32 @@ const Footer = () => {
               
             </div>
 
-            <div className="app-links">
-              <a
-                href="https://play.google.com/store/apps/details?id=co.lily.kcqhj"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Download Subho's Computer Institute App from Google Play Store"
-              >
-                <img
-                  src={Icon_2}
-                  alt="Download Subho's Computer Institute App on Google Play Store"
-                  className="play-btn"
-                />
-              </a>
-              <p>Our App is live on Google Play Store</p>
+            <div className="footer-app-links">
+              <div className="footer-app-row">
+                <a
+                  href="https://play.google.com/store/apps/details?id=co.lily.kcqhj"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Download Subho's Computer Institute App from Google Play Store"
+                >
+                  <img
+                    src={Icon_2}
+                    alt="Download Subho's Computer Institute App on Google Play Store"
+                    className="play-btn"
+                  />
+                </a>
+                <p>Our App is live on Google Play Store</p>
+              </div>
 
-              <a href="#" title="Subho's Computer Institute App coming soon on Apple App Store">
-                <img
-                  src={Icon_1}
-                  alt="Subho's Computer Institute App coming soon to Apple App Store"
-                />
-              </a>
-              <p>Coming soon on App Store...</p>
+              <div className="footer-app-row">
+                <a href="#" title="Subho's Computer Institute App coming soon on Apple App Store">
+                  <img
+                    src={Icon_1}
+                    alt="Subho's Computer Institute App coming soon to Apple App Store"
+                  />
+                </a>
+                <p>Coming soon on App Store...</p>
+              </div>
             </div>
 
             <div className="social-links">

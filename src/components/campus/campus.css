@@ -1,175 +1,166 @@
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 40px;
-}
-
-.gallery-item {
-  width: clamp(180px, 20%, 260px);
-  border-radius: 20px;
-  padding: 8px;
-  background: transparent;
-}
-
-.gallery img {
+.campus-photos-section {
   width: 100%;
-  border-radius: 20px;
-  object-fit: cover;
-  aspect-ratio: 1 / 1;
-  display: block;
 }
 
-.gallery-image-shell {
-  border-radius: 20px;
+.campus {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.campus-photo-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.campus-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+  animation: campusGridReveal 380ms ease-out both;
+}
+
+.campus-photo-card {
+  position: relative;
   overflow: hidden;
-}
-
-.gallery-image-skeleton {
   border-radius: 20px;
+  aspect-ratio: 4 / 3;
+  background: #eef3ff;
+  box-shadow: 0 16px 38px rgba(15, 35, 85, 0.12);
 }
 
-.modern-btn {
-  background: linear-gradient(135deg, #4f46e5, #3b82f6);
-  color: #fff;
-  padding: 12px 28px;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.campus-photo-image-shell,
+.campus-photo-image-shell .skeleton {
+  width: 100%;
+  height: 100%;
 }
 
-.modern-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(135deg, #4338ca, #2563eb);
+.campus-photo-image,
+.campus-photo-image-shell img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
 }
 
-.modern-btn:active {
-  transform: scale(0.97);
-}
-
-.modern-btn img {
-  width: 18px;
-  height: 18px;
-  margin-left: 8px;
-  vertical-align: middle;
-}
-
-.modern-btn img,
-.modern-btn svg {
-  transition: transform 0.3s ease;
-}
-
-.modern-btn:hover img,
-.modern-btn:hover svg {
-  transform: translateX(5px);
-}
-
-.campus > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.photo-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.92);
+.campus-gallery-controls {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  gap: 16px;
+  margin-top: clamp(24px, 4vw, 36px);
 }
 
-.close-overlay {
-  position: absolute;
-  top: 25px;
-  right: 40px;
-  font-size: 2.5rem;
-  color: white;
+.campus-gallery-arrow {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: 1px solid rgba(29, 78, 216, 0.18);
+  background: #ffffff;
+  color: #123280;
+  font-size: 28px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: color 0.3s ease;
+  box-shadow: 0 12px 30px rgba(15, 35, 85, 0.12);
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
-.close-overlay:hover {
-  color: #f87171;
+.campus-gallery-arrow:hover {
+  transform: translateY(-2px);
+  background: #f5f8ff;
+  box-shadow: 0 16px 36px rgba(15, 35, 85, 0.16);
 }
 
-.photo-slider {
+.campus-gallery-dots {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 25px;
-  width: min(100%, 1100px);
-  padding: 0 24px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.slider-image {
-  max-width: min(80%, 900px);
-  max-height: 80vh;
-  border-radius: 12px;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-}
-
-.slider-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 2.5rem;
+.campus-gallery-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(29, 78, 216, 0.25);
   cursor: pointer;
-  transition: 0.3s;
+  transition: width 180ms ease, background 180ms ease;
 }
 
-.slider-btn:hover {
-  color: #3b82f6;
+.campus-gallery-dot.is-active {
+  width: 34px;
+  background: linear-gradient(90deg, #123280, #2f6df6);
 }
 
-@media (max-width: 768px) {
-  .gallery-item {
-    width: calc(50% - 12px);
+@keyframes campusGridReveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
   }
 
-  .photo-slider {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .campus-photo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .campus {
+    width: calc(100% - 24px);
+  }
+
+  .campus-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .campus-photo-card {
+    border-radius: 14px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .campus-gallery-controls {
     gap: 12px;
-    padding: 0 16px;
-  }
-
-  .slider-btn {
-    font-size: 2rem;
-  }
-
-  .close-overlay {
-    top: 16px;
-    right: 20px;
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .gallery-item {
+    margin-top: 22px;
     width: 100%;
-    max-width: 320px;
-    padding: 0;
+    position: static;
+    transform: none;
+  }
+
+  .campus-gallery-arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
   }
 }
 
-@media (max-width: 540px) {
-  .photo-slider {
-    gap: 10px;
+@media (max-width: 360px) {
+  .campus-photo-grid {
+    grid-template-columns: 1fr;
   }
 
-  .slider-image {
-    max-width: 100%;
-    max-height: 72vh;
+  .campus-photo-card {
+    aspect-ratio: 16 / 10;
   }
+}
 
-  .slider-btn {
-    font-size: 1.6rem;
+@media (prefers-reduced-motion: reduce) {
+  .campus-photo-grid {
+    animation: none;
   }
 }
