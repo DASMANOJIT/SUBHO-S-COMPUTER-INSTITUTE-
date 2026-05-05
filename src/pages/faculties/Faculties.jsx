@@ -30,8 +30,8 @@ const buildTeacher = ({
 const juniorTeachers = [
   buildTeacher({
     fileName: 'Debopriya_Biswas.jpeg',
-    name: 'DEBORIYA BISWAS',
-    qualification: 'B.A. IN JOURNALISM AND MASS COMUNICATION (Pursuing)',
+    name: 'DEBOORIYA BISWAS',
+    qualification: 'B.A. IN JOURNALISM AND MASS COMMUNICATION (Pursuing)',
     experience: "4 years of teaching experience at Subho's Computer Institute.",
     imageScale: 1.01,
     imagePosition: 'center 42%',
@@ -63,7 +63,7 @@ const juniorTeachers = [
  
   buildTeacher({
     fileName: 'SHINJENE BISWAS.jpeg',
-    name: 'SHINJENE BISWAS',
+    name: 'SHINJINEE BISWAS',
     qualification: 'BCA (Pursuing)',
     experience:
       "4 years of private tuition experience and 1 year of teaching experience at Subho's Computer Institute.",
