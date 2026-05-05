@@ -57,7 +57,7 @@ const testimonials = [
       'Having been associated with Subho sir and the institution for nearly a decade—first as a student for five years and now as a faculty member since early 2023—I can personally vouch for the excellence, effort and the quality being provided here, that reflected onto my results as well. The transition from student to teacher has been an incredible journey. I have witnessed the amount of planning and effort all that goes into the job so that each one of the kids can clarify their doubts, concepts and can proudly announce computer as their favourite subject. Really proud, and honoured to be a part of such wonderful set of colleagues and the team.',
   },
   {
-    name: 'Mrs. Rajanya Ghosh',
+    name: 'Ms. Rajanya Ghosh',
     designation: 'Assistant Teacher',
     workplace: "Subho's Computer Institute",
     image: '/testimonials/RAJANYA_GHOSH.jpeg',

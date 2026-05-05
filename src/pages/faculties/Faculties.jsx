@@ -30,7 +30,7 @@ const buildTeacher = ({
 const juniorTeachers = [
   buildTeacher({
     fileName: 'Debopriya_Biswas.jpeg',
-    name: 'DEBOORIYA BISWAS',
+    name: 'DEBOPRIYA BISWAS',
     qualification: 'B.A. IN JOURNALISM AND MASS COMMUNICATION (Pursuing)',
     experience: "4 years of teaching experience at Subho's Computer Institute.",
     imageScale: 1.01,
