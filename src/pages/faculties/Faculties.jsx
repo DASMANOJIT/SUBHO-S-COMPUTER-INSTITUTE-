@@ -54,7 +54,7 @@ const juniorTeachers = [
     name: 'ANTARA CHAKRABORTY LAHIRI',
     qualification: 'Post Graduation Diploma in Computer Application',
     experience: [
-      '16+ years of teaching experience.',
+      '16+ years of teaching experience and 2 years of teaching at Subho’s Computer Institute.',
     ],
     imageScale: 1.02,
     imagePosition: 'center 38%',
@@ -135,7 +135,7 @@ const seniorTeachers = [
   buildTeacher({
     fileName: 'Rupam_Sadhukhan.jpeg',
     name: 'RUPAM SADHUKHAN',
-    qualification: 'B.Tech CSE (Pursuing)',
+    qualification: 'B.Tech IT (Pursuing)',
     experience: "3 years of teaching experience at Subho's Computer Institute.",
     imageScale: 1.16,
     imageTranslateY: '8px',

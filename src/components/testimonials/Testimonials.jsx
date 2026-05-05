@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Lottie from 'lottie-react';
 import { FaQuoteLeft, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import ScrollReveal from '../scrollReveal/ScrollReveal.jsx';
@@ -105,12 +105,16 @@ const usePrefersReducedMotion = () => {
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState('next');
-  const [isHovered, setIsHovered] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const [brokenImages, setBrokenImages] = useState(() => new Set());
   const [expandedQuotes, setExpandedQuotes] = useState(() => new Set());
   const [testimonialAnimation, setTestimonialAnimation] = useState(null);
   const [loadFailed, setLoadFailed] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
+  const pauseResumeTimerRef = useRef(null);
+  const hoverActiveRef = useRef(false);
+  const focusActiveRef = useRef(false);
+  const transientPauseRef = useRef(false);
 
   const activeTestimonial = useMemo(
     () =>
@@ -134,6 +138,29 @@ const Testimonials = () => {
 
   const handlePrev = () => goToIndex(activeIndex - 1);
   const handleNext = () => goToIndex(activeIndex + 1);
+
+  const syncPauseState = () => {
+    setIsPaused(hoverActiveRef.current || focusActiveRef.current || transientPauseRef.current);
+  };
+
+  const clearTransientResumeTimer = () => {
+    if (pauseResumeTimerRef.current) {
+      window.clearTimeout(pauseResumeTimerRef.current);
+      pauseResumeTimerRef.current = null;
+    }
+  };
+
+  const activateTransientPause = () => {
+    transientPauseRef.current = true;
+    syncPauseState();
+    clearTransientResumeTimer();
+
+    pauseResumeTimerRef.current = window.setTimeout(() => {
+      transientPauseRef.current = false;
+      pauseResumeTimerRef.current = null;
+      syncPauseState();
+    }, 4000);
+  };
 
   useEffect(() => {
     if (typeof window === 'undefined') return undefined;
@@ -163,7 +190,7 @@ const Testimonials = () => {
   }, []);
 
   useEffect(() => {
-    if (reducedMotion || isHovered || testimonials.length <= 1) return undefined;
+    if (reducedMotion || isPaused || testimonials.length <= 1) return undefined;
 
     const intervalId = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % testimonials.length);
@@ -171,7 +198,13 @@ const Testimonials = () => {
     }, 5000);
 
     return () => window.clearInterval(intervalId);
-  }, [isHovered, reducedMotion]);
+  }, [isPaused, reducedMotion]);
+
+  useEffect(() => {
+    return () => {
+      clearTransientResumeTimer();
+    };
+  }, []);
 
   const handleImageError = (name) => {
     setBrokenImages((current) => {
@@ -199,6 +232,26 @@ const Testimonials = () => {
       className="testimonials-section"
       animation="zoom-in"
       duration={850}
+      onMouseEnter={() => {
+        hoverActiveRef.current = true;
+        syncPauseState();
+      }}
+      onMouseLeave={() => {
+        hoverActiveRef.current = false;
+        syncPauseState();
+      }}
+      onFocusCapture={() => {
+        focusActiveRef.current = true;
+        syncPauseState();
+      }}
+      onBlurCapture={(event) => {
+        if (event.currentTarget.contains(event.relatedTarget)) return;
+        focusActiveRef.current = false;
+        syncPauseState();
+      }}
+      onTouchStart={activateTransientPause}
+      onWheelCapture={activateTransientPause}
+      onScrollCapture={activateTransientPause}
     >
       <div className="testimonials-inner">
         <div className="testimonials-heading">
@@ -226,11 +279,7 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div
-          className="testimonials-carousel"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+        <div className="testimonials-carousel">
           <div className="testimonials-stage" aria-live="polite">
             {!testimonials.length || !activeTestimonial ? (
               <div className="testimonial-empty-state">Testimonials will be updated soon.</div>
