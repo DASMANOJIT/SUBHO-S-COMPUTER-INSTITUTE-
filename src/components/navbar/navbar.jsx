@@ -335,6 +335,7 @@ const Navbar = () => {
           {navItems.map((item) => {
             const hasDropdown = Boolean(item.dropdown?.length);
             const isOpen = mobileDropdown === item.id;
+            const isActiveRoute = location.pathname === item.path;
 
             return (
               <div key={item.id} className={`mobile-nav-group ${isOpen ? 'open' : ''}`}>
@@ -347,13 +348,24 @@ const Navbar = () => {
                     >
                       {item.label}
                     </button>
-                  ) : (
-                    <RouterLink
-                      to={item.path}
-                      className={`nav-link-item ${location.pathname === item.path ? 'active' : ''}`}
+                  ) : item.external ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="nav-link-item"
+                      onClick={handleExternalNavigation}
                     >
                       {item.label}
-                    </RouterLink>
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      className={`nav-link-item ${isActiveRoute ? 'active' : ''}`}
+                      onClick={() => handleRouteNavigation(item.path)}
+                    >
+                      {item.label}
+                    </button>
                   )}
 
                   {hasDropdown && (
