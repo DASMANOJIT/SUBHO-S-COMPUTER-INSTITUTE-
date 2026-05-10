@@ -69,6 +69,61 @@ const buildEnquiryHtml = (payload, submittedAt) => {
   `;
 };
 
+async function saveLeadToGoogleSheets({
+  studentName,
+  guardianName,
+  mobileNumber,
+  email,
+  address,
+  message,
+}) {
+  if (!process.env.GOOGLE_SHEETS_WEBHOOK_URL || !process.env.GOOGLE_SHEETS_SECRET) {
+    console.warn('Google Sheets env variables missing');
+    return;
+  }
+
+  try {
+    console.log(
+      'Google Sheets URL configured:',
+      Boolean(process.env.GOOGLE_SHEETS_WEBHOOK_URL)
+    );
+    console.log('Google Sheets secret configured:', Boolean(process.env.GOOGLE_SHEETS_SECRET));
+
+    const sheetsResponse = await fetch(process.env.GOOGLE_SHEETS_WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        secret: process.env.GOOGLE_SHEETS_SECRET,
+        studentName,
+        guardianName,
+        mobileNumber,
+        email,
+        address,
+        message,
+        source: "Subho's Computer Institute Website - Enroll Now Form",
+        submittedAt: new Date().toISOString(),
+      }),
+    });
+
+    const sheetsText = await sheetsResponse.text();
+
+    console.log('Google Sheets response status:', sheetsResponse.status);
+    console.log('Google Sheets response text:', sheetsText);
+
+    if (!sheetsResponse.ok) {
+      console.warn(
+        'Google Sheets webhook returned non-OK response:',
+        sheetsResponse.status,
+        sheetsText
+      );
+    }
+  } catch (sheetsError) {
+    console.warn('Google Sheets save failed:', sheetsError);
+  }
+}
+
 export const handleEnquiryPayload = async (payload, envSource = process.env, logger = console) => {
   const errors = validateEnquiryPayload(payload);
 
@@ -137,6 +192,15 @@ export const handleEnquiryPayload = async (payload, envSource = process.env, log
         },
       };
     }
+
+    await saveLeadToGoogleSheets({
+      studentName: normalizedPayload.studentName,
+      guardianName: normalizedPayload.guardianName,
+      mobileNumber: normalizedPayload.mobile,
+      email: normalizedPayload.email,
+      address: normalizedPayload.address,
+      message: normalizedPayload.message,
+    });
 
     return {
       status: 200,

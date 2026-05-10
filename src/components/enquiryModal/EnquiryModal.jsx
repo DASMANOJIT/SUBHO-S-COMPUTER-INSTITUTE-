@@ -10,7 +10,7 @@ import ImageWithSkeleton from '../skeletons/ImageWithSkeleton.jsx';
 import './enquiryModal.css';
 
 const successMessage =
-  'Thank you! Your enquiry has been received. Our team will contact you shortly.';
+  'Thank you! Your enrollment has been received. Our team will contact you shortly.';
 const ENQUIRY_REOPEN_DELAY = 120000;
 const MODAL_CLOSE_DURATION = 240;
 
@@ -134,7 +134,7 @@ const EnquiryModal = () => {
 
   const introPoints = useMemo(
     () => [
-      'Session 2026-27 admissions support',
+      'Session 2026-27 enrollment support',
       'ICSE, ISC, CBSE and programming guidance',
       'Quick follow-up from our academic team',
     ],
@@ -244,12 +244,12 @@ const EnquiryModal = () => {
 
         <div className="enquiry-modal-poster">
           <div className="enquiry-modal-poster-inner">
-            <p className="enquiry-modal-eyebrow">Admission Support</p>
-            <h2 id="enquiry-modal-title">Admission Enquiry Form</h2>
+            <p className="enquiry-modal-eyebrow">Enrollment Support</p>
+            <h2 id="enquiry-modal-title">ENROLL NOW Form</h2>
             <p className="enquiry-modal-session">Session 2026-27</p>
             <p className="enquiry-modal-copy">
-              Fill up this short enquiry form and our team will contact you shortly for
-              admission guidance.
+              Fill up this short enrollment form and our team will contact you shortly for
+              course guidance.
             </p>
 
             <ul className="enquiry-modal-points">
@@ -271,17 +271,17 @@ const EnquiryModal = () => {
         <div className="enquiry-modal-form-panel">
           {submitState.type === 'success' ? (
             <div className="enquiry-modal-success" role="status" aria-live="polite">
-              <p className="enquiry-modal-success-badge">Enquiry Received</p>
+              <p className="enquiry-modal-success-badge">Enrollment Received</p>
               <h3>Thank you!</h3>
               <p>{submitState.message}</p>
             </div>
           ) : (
             <>
               <div className="enquiry-modal-form-copy">
-                <h3>Admission Enquiry Form</h3>
+                <h3>ENROLL NOW Form</h3>
                 <p>
-                  Fill up this short enquiry form and our team will contact you shortly for
-                  admission guidance.
+                  Fill up this short enrollment form and our team will contact you shortly for
+                  course guidance.
                 </p>
               </div>
 
@@ -357,7 +357,7 @@ const EnquiryModal = () => {
                       value={formData.message}
                       onChange={handleChange}
                       rows="4"
-                      placeholder="Add any class preference or question"
+                      placeholder="Add any course, class preference, or question"
                     />
                   </label>
                 </div>
@@ -369,7 +369,7 @@ const EnquiryModal = () => {
                 ) : null}
 
                 <button type="submit" className="enquiry-submit-button" disabled={isSubmitting}>
-                  {isSubmitting ? 'Submitting...' : 'Submit Enquiry'}
+                  {isSubmitting ? 'Submitting...' : 'Submit Enrollment'}
                 </button>
               </form>
             </>
