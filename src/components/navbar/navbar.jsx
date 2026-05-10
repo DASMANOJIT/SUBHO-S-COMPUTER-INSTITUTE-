@@ -53,6 +53,12 @@ const navItems = [
       { label: 'Apply Now', path: '/careers' },
     ],
   },
+  {
+    id: 'student-signup',
+    label: 'STUDENT SIGNUP',
+    href: 'https://www.flowlytiks.in/login',
+    external: true,
+  },
   { id: 'contact', label: 'CONTACT US', path: '/contact' },
 ];
 
@@ -188,9 +194,20 @@ const Navbar = () => {
     navigate('/');
   };
 
+  const handleExternalNavigation = () => {
+    setMenuOpen(false);
+    setDesktopDropdown(null);
+    setMobileDropdown(null);
+  };
+
   const handleItemNavigation = (item) => {
     if (item.section) {
       handleSectionNavigation(item.section);
+      return;
+    }
+
+    if (item.external) {
+      handleExternalNavigation();
       return;
     }
 
@@ -209,6 +226,20 @@ const Navbar = () => {
         >
           {item.label}
         </button>
+      );
+    }
+
+    if (item.external) {
+      return (
+        <a
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={className}
+          onClick={handleExternalNavigation}
+        >
+          {item.label}
+        </a>
       );
     }
 
@@ -351,7 +382,7 @@ const Navbar = () => {
                       >
                         {dropdownItem.label}
                       </button>
-                    ))}
+                        ))}
                   </div>
                 )}
               </div>
