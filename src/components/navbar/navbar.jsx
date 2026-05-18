@@ -12,6 +12,7 @@ const navItems = [
       { label: 'ICSE / ISC', path: '/programs?category=icse-isc' },
       { label: 'CBSE', path: '/programs?category=cbse' },
       { label: 'Computer Courses', path: '/programs?category=computer-courses' },
+      { label: 'Free Study Materials', path: '/free-study-materials' },
     ],
   },
   {

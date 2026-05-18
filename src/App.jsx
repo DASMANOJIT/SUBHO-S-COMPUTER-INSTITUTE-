@@ -28,6 +28,7 @@ import Faculties from './pages/faculties/Faculties.jsx';
 import FacilitiesPage from './pages/facilities/FacilitiesPage.jsx';
 import GalleryPage from './pages/gallery/GalleryPage.jsx';
 import PrivacyPolicy from './pages/privacy/PrivacyPolicy.jsx';
+import FreeStudyMaterialsPage from './pages/freeStudyMaterials/FreeStudyMaterialsPage.jsx';
 import ProgramDetailPage from './pages/programs/ProgramDetailPage.jsx';
 import ProgramsPage from './pages/programs/ProgramsPage.jsx';
 
@@ -212,6 +213,14 @@ const App = () => {
             element={
               <RoutePageShell>
                 <ProgramsPage />
+              </RoutePageShell>
+            }
+          />
+          <Route
+            path="/free-study-materials"
+            element={
+              <RoutePageShell>
+                <FreeStudyMaterialsPage />
               </RoutePageShell>
             }
           />

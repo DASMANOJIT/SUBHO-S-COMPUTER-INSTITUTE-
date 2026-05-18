@@ -1,0 +1,301 @@
+.free-study-materials-section {
+  position: relative;
+  overflow: hidden;
+  padding: 8px 0 0;
+}
+
+.free-study-materials-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(37, 99, 235, 0.05), transparent 28%),
+    radial-gradient(circle at 88% 10%, rgba(59, 130, 246, 0.05), transparent 26%),
+    radial-gradient(circle at 50% 100%, rgba(191, 219, 254, 0.12), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 46%, #ffffff 100%);
+  pointer-events: none;
+}
+
+.free-study-materials-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(29, 78, 216, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29, 78, 216, 0.035) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.08));
+  pointer-events: none;
+}
+
+.free-study-materials-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.free-study-materials-header {
+  position: relative;
+  border-radius: 30px;
+  padding: 28px 30px 26px;
+  margin-bottom: 22px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #ffffff, #f8fbff),
+    linear-gradient(135deg, rgba(29, 78, 216, 0.06), rgba(59, 130, 246, 0.04), rgba(255, 255, 255, 0.92));
+  border: 1px solid rgba(191, 219, 254, 0.55);
+  box-shadow: 0 18px 40px rgba(29, 78, 216, 0.06);
+}
+
+.free-study-materials-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top right, rgba(96, 165, 250, 0.12), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(191, 219, 254, 0.18), transparent 24%);
+  pointer-events: none;
+}
+
+.free-study-materials-header > * {
+  position: relative;
+  z-index: 1;
+}
+
+.free-study-materials-kicker-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.free-study-materials-kicker {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: rgba(29, 78, 216, 0.08);
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.free-study-materials-terminal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(191, 219, 254, 0.6);
+  background: rgba(255, 255, 255, 0.9);
+  color: #475569;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.free-study-materials-terminal-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #1d4ed8, #60a5fa);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.22);
+}
+
+.free-study-materials-terminal-label {
+  white-space: nowrap;
+}
+
+.free-study-materials-header h2 {
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.08;
+  color: #0f2f73;
+  margin-bottom: 12px;
+}
+
+.free-study-materials-subtitle {
+  max-width: 900px;
+  color: #475569;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.free-study-materials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.free-study-materials-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  border-radius: 28px;
+  padding: 22px 22px 20px;
+  background:
+    linear-gradient(180deg, #ffffff, #f8fbff);
+  border: 1px solid rgba(191, 219, 254, 0.68);
+  box-shadow: 0 16px 34px rgba(29, 78, 216, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.free-study-materials-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 5px;
+  background: var(--study-gradient);
+  pointer-events: none;
+}
+
+.free-study-materials-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -16% -34% auto;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08), transparent 60%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.free-study-materials-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.free-study-materials-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.free-study-materials-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: #ffffff;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 12px 24px rgba(15, 23, 42, 0.18);
+}
+
+.free-study-materials-card-index {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.free-study-materials-card h3 {
+  color: #0f172a;
+  font-size: 22px;
+  line-height: 1.18;
+}
+
+.free-study-materials-card p {
+  color: #475569;
+  line-height: 1.75;
+  font-size: 15px;
+}
+
+.free-study-materials-button {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  align-self: flex-start;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: #ffffff;
+  font-weight: 800;
+  box-shadow: 0 12px 24px rgba(29, 78, 216, 0.18);
+  transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+}
+
+.free-study-materials-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(29, 78, 216, 0.22);
+}
+
+.free-study-materials-button-arrow {
+  font-size: 16px;
+  transform: translateY(-1px);
+}
+
+.free-study-materials-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 24px 54px rgba(29, 78, 216, 0.14);
+}
+
+.free-study-materials-card:hover .free-study-materials-icon {
+  background: linear-gradient(135deg, #1746c2, #1d4ed8);
+}
+
+@media (max-width: 900px) {
+  .free-study-materials-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .free-study-materials-shell {
+    width: min(1180px, calc(100% - 24px));
+  }
+
+  .free-study-materials-header {
+    padding: 22px 18px 20px;
+    border-radius: 24px;
+  }
+
+  .free-study-materials-kicker-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .free-study-materials-terminal-label {
+    white-space: normal;
+  }
+
+  .free-study-materials-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .free-study-materials-card {
+    border-radius: 22px;
+    padding: 20px 18px 18px;
+  }
+
+  .free-study-materials-card h3 {
+    font-size: 20px;
+  }
+
+  .free-study-materials-card p {
+    font-size: 14px;
+  }
+
+  .free-study-materials-button {
+    min-height: 42px;
+    padding: 0 16px;
+  }
+}

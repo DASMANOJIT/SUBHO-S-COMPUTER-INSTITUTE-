@@ -1,0 +1,112 @@
+.free-study-materials-page {
+  padding: calc(var(--header-total-height) + 24px) 0 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  background: #f5f5f5;
+}
+
+.free-study-materials-page-hero {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  padding: 32px 32px 30px;
+  background:
+    linear-gradient(135deg, #1e3a8a, #2563eb);
+  border: 1px solid rgba(37, 99, 235, 0.16);
+  box-shadow: 0 18px 42px rgba(37, 99, 235, 0.2);
+}
+
+.free-study-materials-page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.16), transparent 24%),
+    radial-gradient(circle at bottom left, rgba(191, 219, 254, 0.14), transparent 26%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: auto, auto, 56px 56px;
+  pointer-events: none;
+}
+
+.free-study-materials-page-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.free-study-materials-page-hero .page-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 8px 14px;
+  margin-bottom: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.free-study-materials-page-hero h1 {
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.05;
+  color: #ffffff;
+  max-width: 12ch;
+}
+
+.free-study-materials-page-hero .page-intro {
+  max-width: 860px;
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.85;
+  font-size: 16px;
+}
+
+.free-study-materials-page-links {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.free-study-materials-page-links a {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 600;
+}
+
+.free-study-materials-page-links a:hover {
+  transform: translateY(-2px);
+  text-decoration-thickness: 2px;
+}
+
+@media (max-width: 640px) {
+  .free-study-materials-page {
+    padding: calc(var(--header-total-height) + 18px) 0 56px;
+    gap: 24px;
+  }
+
+  .free-study-materials-page-hero {
+    width: min(1180px, calc(100% - 24px));
+    border-radius: 24px;
+    padding: 24px 18px 22px;
+  }
+
+  .free-study-materials-page-hero h1 {
+    max-width: none;
+    font-size: clamp(30px, 8vw, 40px);
+  }
+
+  .free-study-materials-page-hero .page-intro {
+    font-size: 15px;
+  }
+
+  .free-study-materials-page-links {
+    margin-top: 18px;
+  }
+}
