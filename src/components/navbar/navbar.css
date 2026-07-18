@@ -121,6 +121,10 @@
   align-items: center;
 }
 
+.nav-item--book-order {
+  margin-left: 0;
+}
+
 .nav-item-row {
   height: 100%;
   display: flex;
@@ -145,6 +149,54 @@
   transition: color 0.2s ease, transform 0.2s ease;
   font-family: inherit;
   white-space: nowrap;
+}
+
+.book-order-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: max-content;
+  min-width: 0;
+  gap: 2px;
+  height: 100%;
+  padding: 0 6px 0 4px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.35px;
+  white-space: nowrap;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.book-order-cta:hover,
+.book-order-cta.active {
+  color: #dbeafe;
+  transform: translateY(-1px);
+}
+
+.book-order-cta:focus-visible {
+  outline: 3px solid rgba(219, 234, 254, 0.55);
+  outline-offset: 3px;
+}
+
+.book-order-cta-animation {
+  width: 44px;
+  height: 38px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -3px;
+  overflow: hidden;
+}
+
+.book-order-cta-text {
+  line-height: 1;
 }
 
 .nav-link-item:hover,
@@ -309,6 +361,26 @@
   font-size: 16px;
 }
 
+.mobile-menu .book-order-cta {
+  width: 100%;
+  justify-content: flex-start;
+  height: auto;
+  min-height: 0;
+  gap: 2px;
+  padding: 10px 0;
+  font-size: 16px;
+}
+
+.mobile-menu .book-order-cta-animation {
+  width: 34px;
+  height: 32px;
+  margin-right: -2px;
+}
+
+.mobile-menu .book-order-cta-text {
+  font-size: 15px;
+}
+
 .mobile-submenu {
   display: none;
   margin-top: 6px;
@@ -339,6 +411,17 @@
   .nav-link-item {
     padding: 0 8px;
     font-size: 12px;
+  }
+
+  .book-order-cta {
+    gap: 2px;
+    padding: 0 5px 0 3px;
+    font-size: 12px;
+  }
+
+  .book-order-cta-animation {
+    width: 42px;
+    height: 36px;
   }
 }
 
@@ -382,5 +465,17 @@
 
   .mobile-menu {
     padding: 18px 16px 24px;
+  }
+
+  .mobile-menu .book-order-cta {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-order-cta,
+  .book-order-cta-animation {
+    transition: none !important;
+    animation: none !important;
   }
 }

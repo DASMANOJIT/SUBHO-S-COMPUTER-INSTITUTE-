@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
+import BookOrderButton from '../bookOrder/BookOrderButton.jsx';
 import './navbar.css';
 import Logo from '../assets/logo.png';
 
@@ -61,6 +62,7 @@ const navItems = [
     external: true,
   },
   { id: 'contact', label: 'CONTACT US', path: '/contact' },
+  { id: 'book-order', label: 'ORDER BOOK', path: '/book-order', bookOrder: true },
 ];
 
 const Navbar = () => {
@@ -218,6 +220,16 @@ const Navbar = () => {
   };
 
   const renderPrimaryAction = (item, className = 'nav-link-item') => {
+    if (item.bookOrder) {
+      return (
+        <BookOrderButton
+          to={item.path}
+          className={location.pathname === item.path ? 'active' : ''}
+          ariaLabel="Open the book order form"
+        />
+      );
+    }
+
     if (item.section) {
       return (
         <button
@@ -278,7 +290,9 @@ const Navbar = () => {
               return (
                 <li
                   key={item.id}
-                  className={`nav-item ${hasDropdown ? 'has-dropdown' : ''}`}
+                  className={`nav-item ${hasDropdown ? 'has-dropdown' : ''} ${
+                    item.bookOrder ? 'nav-item--book-order' : ''
+                  }`}
                   onMouseEnter={() => hasDropdown && setDesktopDropdown(item.id)}
                   onMouseLeave={() => hasDropdown && setDesktopDropdown(null)}
                 >
@@ -334,14 +348,26 @@ const Navbar = () => {
 
         <div className={`mobile-menu ${menuOpen ? 'show' : ''}`} role="menu" aria-hidden={!menuOpen}>
           {navItems.map((item) => {
-            const hasDropdown = Boolean(item.dropdown?.length);
+              const hasDropdown = Boolean(item.dropdown?.length);
             const isOpen = mobileDropdown === item.id;
             const isActiveRoute = location.pathname === item.path;
 
             return (
               <div key={item.id} className={`mobile-nav-group ${isOpen ? 'open' : ''}`}>
                 <div className="mobile-nav-row">
-                  {item.section ? (
+                  {item.bookOrder ? (
+                    <BookOrderButton
+                      to={item.path}
+                      onClick={() => {
+                        setMenuOpen(false);
+                        setDesktopDropdown(null);
+                        setMobileDropdown(null);
+                      }}
+                      className={isActiveRoute ? 'active' : ''}
+                      mobile
+                      ariaLabel="Open the book order form"
+                    />
+                  ) : item.section ? (
                     <button
                       type="button"
                       className="nav-link-item"
