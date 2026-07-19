@@ -298,12 +298,35 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.book-order-field select {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: #fff;
+  color: #0f172a;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+}
+
 .book-order-field input:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
 }
 
+.book-order-field select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
 .book-order-field input[aria-invalid='true'] {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.08);
+}
+
+.book-order-field select[aria-invalid='true'] {
   border-color: #dc2626;
   box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.08);
 }
@@ -319,6 +342,216 @@
 
 .book-order-field--full {
   grid-column: 1 / -1;
+}
+
+.book-order-price-card {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #eff6ff, #ffffff);
+  border: 1px solid rgba(191, 219, 254, 0.72);
+}
+
+.book-order-price-label,
+.book-order-payment-section-label {
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.book-order-price-value {
+  color: #0f172a;
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.book-order-price-message {
+  color: #0f172a;
+  line-height: 1.65;
+  font-weight: 600;
+}
+
+.book-order-price-note {
+  color: #475569;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.book-order-price-note a {
+  color: #1d4ed8;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.book-order-radio-fieldset {
+  grid-column: 1 / -1;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.book-order-radio-fieldset legend {
+  margin-bottom: 10px;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.book-order-radio-group,
+.book-order-payment-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.book-order-radio-card {
+  display: grid;
+  gap: 8px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #f8fbff, #ffffff);
+  border: 1px solid rgba(191, 219, 254, 0.72);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.book-order-radio-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.08);
+}
+
+.book-order-radio-card input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #1d4ed8;
+}
+
+.book-order-radio-card--selected {
+  border-color: rgba(37, 99, 235, 0.42);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.08);
+}
+
+.book-order-radio-card--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.book-order-radio-title {
+  color: #0f172a;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.book-order-radio-copy {
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.book-order-radio-error,
+.book-order-payment-error {
+  display: block;
+  margin-top: 8px;
+  color: #dc2626 !important;
+}
+
+.book-order-payment-section {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #f8fbff, #ffffff);
+  border: 1px solid rgba(191, 219, 254, 0.72);
+}
+
+.book-order-payment-options {
+  align-items: stretch;
+}
+
+.book-order-payment-card {
+  min-height: 100%;
+}
+
+.book-order-payment-helper {
+  color: #475569;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.book-order-upi-block {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #eff6ff, #ffffff);
+  border: 1px solid rgba(191, 219, 254, 0.72);
+}
+
+.book-order-upi-list {
+  display: grid;
+  gap: 12px;
+}
+
+.book-order-upi-item {
+  display: grid;
+  gap: 8px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(191, 219, 254, 0.72);
+}
+
+.book-order-upi-item-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.book-order-upi-label {
+  color: #0f2f73;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.book-order-upi-value {
+  color: #0f172a;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.book-order-copy-button {
+  min-height: 38px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  background: #ffffff;
+  color: #1d4ed8;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.book-order-copy-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(37, 99, 235, 0.08);
+}
+
+.book-order-copy-status {
+  color: #15803d;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .book-order-qr-block {
@@ -486,7 +719,7 @@
 
 .book-order-submit-button:disabled {
   cursor: not-allowed;
-  opacity: 0.8;
+  opacity: 0.88;
 }
 
 .book-order-cancel-button {
@@ -835,6 +1068,21 @@
     gap: 14px;
   }
 
+  .book-order-price-card,
+  .book-order-payment-section {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .book-order-price-value {
+    font-size: 24px;
+  }
+
+  .book-order-radio-group,
+  .book-order-payment-options {
+    grid-template-columns: 1fr;
+  }
+
   .book-order-qr-card {
     min-height: 200px;
   }
@@ -899,6 +1147,26 @@
     min-height: 46px;
     padding: 12px 14px;
     font-size: 14px;
+  }
+
+  .book-order-radio-card,
+  .book-order-upi-item,
+  .book-order-price-card,
+  .book-order-payment-section,
+  .book-order-qr-block,
+  .book-order-upi-block {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .book-order-upi-item-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .book-order-copy-button {
+    min-height: 36px;
+    width: fit-content;
   }
 }
 

@@ -1,18 +1,55 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import BookAnimation from './BookAnimation.jsx';
 import BookOrderSuccess from './BookOrderSuccess.jsx';
+import { BOOK_ORDER_CONFIG } from '../../config/bookOrderConfig.js';
 import './bookOrder.css';
 
 const createEmptyBookOrderForm = () => ({
   studentName: '',
+  studentClass: '',
+  isSubhosStudent: '',
   email: '',
   whatsappNumber: '',
+  paymentMethod: '',
   utrNumber: '',
   consentConfirmed: false,
 });
 
 const BOOK_ORDER_CONTACT_NUMBER_DISPLAY = '824 039 6568';
 const BOOK_ORDER_CONTACT_NUMBER_TEL = '8240396568';
+const BOOK_ORDER_PRICE = BOOK_ORDER_CONFIG.bookPrice;
+const BOOK_ORDER_UPI_ID = BOOK_ORDER_CONFIG.upiId;
+const BOOK_ORDER_UPI_PHONE = BOOK_ORDER_CONFIG.upiPhone;
+const BOOK_ORDER_PAYMENT_METHOD_QR = 'UPI QR Code';
+const BOOK_ORDER_PAYMENT_METHOD_UPI = 'UPI ID / Phone Number';
+
+const STUDENT_CLASS_OPTIONS = [
+  'Class 3',
+  'Class 4',
+  'Class 5',
+  'Class 6',
+  'Class 7',
+  'Class 8',
+  'Class 9',
+  'Class 10',
+  'Class 11',
+  'Class 12',
+  'Other / Computer Course',
+];
+
+const PAYMENT_METHOD_OPTIONS = [BOOK_ORDER_PAYMENT_METHOD_QR, BOOK_ORDER_PAYMENT_METHOD_UPI];
+
+const normalizeText = (value = '') => String(value).replace(/\s+/g, ' ').trim();
+
+const formatPhoneDisplay = (value = '') => {
+  const digits = String(value).replace(/\D/g, '');
+
+  if (digits.length === 10) {
+    return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+  }
+
+  return normalizeText(value);
+};
 
 const orderPoints = [
   'Fill in the student’s correct information.',
@@ -40,7 +77,23 @@ const normalizeWhatsAppNumber = (value = '') => {
   return digits;
 };
 
-const validateForm = (formData) => {
+const isValidEmailAddress = (value = '') => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+
+const isValidIndianWhatsAppNumber = (value = '') => /^[6-9]\d{9}$/.test(normalizeWhatsAppNumber(value));
+
+const isValidTransactionReference = (value = '') => {
+  const reference = value.trim();
+
+  return (
+    reference.length >= 8 &&
+    reference.length <= 22 &&
+    /^[A-Za-z0-9]+$/.test(reference)
+  );
+};
+
+const isValidStudentClass = (value = '') => STUDENT_CLASS_OPTIONS.includes(value);
+
+const validateForm = (formData, { upiDetailsAvailable = true } = {}) => {
   const errors = {};
 
   if (!formData.studentName.trim()) {
@@ -49,17 +102,37 @@ const validateForm = (formData) => {
     errors.studentName = 'Student name must be at least 2 characters long.';
   }
 
+  if (!formData.studentClass.trim()) {
+    errors.studentClass = 'Student class is required.';
+  } else if (formData.studentClass.trim().length > 50) {
+    errors.studentClass = 'Student class must be 50 characters or fewer.';
+  } else if (!isValidStudentClass(formData.studentClass.trim())) {
+    errors.studentClass = 'Select a valid student class.';
+  }
+
+  if (formData.isSubhosStudent !== 'Yes' && formData.isSubhosStudent !== 'No') {
+    errors.isSubhosStudent = 'Please select Yes or No.';
+  }
+
   if (!formData.email.trim()) {
     errors.email = 'Email address is required.';
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+  } else if (!isValidEmailAddress(formData.email)) {
     errors.email = 'Enter a valid email address.';
   }
 
-  const normalizedWhatsapp = normalizeWhatsAppNumber(formData.whatsappNumber);
   if (!formData.whatsappNumber.trim()) {
     errors.whatsappNumber = 'WhatsApp number is required.';
-  } else if (!/^[6-9]\d{9}$/.test(normalizedWhatsapp)) {
+  } else if (!isValidIndianWhatsAppNumber(formData.whatsappNumber)) {
     errors.whatsappNumber = 'Enter a valid 10-digit Indian WhatsApp number.';
+  }
+
+  if (!formData.paymentMethod) {
+    errors.paymentMethod = 'Please select a payment method.';
+  } else if (!PAYMENT_METHOD_OPTIONS.includes(formData.paymentMethod)) {
+    errors.paymentMethod = 'Please select a valid payment method.';
+  } else if (formData.paymentMethod === BOOK_ORDER_PAYMENT_METHOD_UPI && !upiDetailsAvailable) {
+    errors.paymentMethod =
+      'UPI ID and phone payment details are currently unavailable. Please select QR payment.';
   }
 
   const utr = formData.utrNumber.trim();
@@ -92,8 +165,12 @@ const submitBookOrder = async (formData, signal) => {
 
   const requestBody = new URLSearchParams({
     studentName: formData.studentName,
+    studentClass: formData.studentClass,
+    isSubhosStudent: formData.isSubhosStudent,
     email: formData.email,
     whatsappNumber: formData.whatsappNumber,
+    bookPrice: formData.bookPrice,
+    paymentMethod: formData.paymentMethod,
     utrNumber: formData.utrNumber,
     consentConfirmed: 'true',
   });
@@ -191,15 +268,22 @@ const submitBookOrder = async (formData, signal) => {
 
 const BookOrderPageContent = () => {
   const studentNameRef = useRef(null);
+  const studentClassRef = useRef(null);
+  const studentAtInstituteYesRef = useRef(null);
   const emailRef = useRef(null);
   const whatsappRef = useRef(null);
+  const paymentMethodQrRef = useRef(null);
   const utrRef = useRef(null);
   const consentRef = useRef(null);
+  const copyResetTimerRef = useRef(null);
   const fieldRefs = useMemo(
     () => ({
       studentName: studentNameRef,
+      studentClass: studentClassRef,
+      isSubhosStudent: studentAtInstituteYesRef,
       email: emailRef,
       whatsappNumber: whatsappRef,
+      paymentMethod: paymentMethodQrRef,
       utrNumber: utrRef,
       consentConfirmed: consentRef,
     }),
@@ -213,11 +297,59 @@ const BookOrderPageContent = () => {
   const [qrFailed, setQrFailed] = useState(false);
   const [showResetPrompt, setShowResetPrompt] = useState(false);
   const [successData, setSuccessData] = useState(null);
+  const [copiedField, setCopiedField] = useState('');
   const requestControllerRef = useRef(null);
+  const bookPrice = normalizeText(BOOK_ORDER_PRICE);
+  const isBookPriceConfigured = Boolean(bookPrice);
+  const upiDetailsAvailable = Boolean(BOOK_ORDER_UPI_ID || BOOK_ORDER_UPI_PHONE);
+  const formattedUpiPhone = formatPhoneDisplay(BOOK_ORDER_UPI_PHONE);
+  const showBookPriceMessage = !isBookPriceConfigured;
+  const canSubmit = useMemo(() => {
+    const normalizedStudentName = normalizeText(formData.studentName);
+    const normalizedStudentClass = normalizeText(formData.studentClass);
+    const normalizedEmail = normalizeText(formData.email);
+    const normalizedWhatsApp = normalizeWhatsAppNumber(formData.whatsappNumber);
+    const normalizedUtr = normalizeText(formData.utrNumber);
+    const isBasicFormValid =
+      normalizedStudentName.length >= 2 &&
+      isValidStudentClass(normalizedStudentClass) &&
+      (formData.isSubhosStudent === 'Yes' || formData.isSubhosStudent === 'No') &&
+      isValidEmailAddress(normalizedEmail) &&
+      isValidIndianWhatsAppNumber(normalizedWhatsApp) &&
+      PAYMENT_METHOD_OPTIONS.includes(formData.paymentMethod) &&
+      isValidTransactionReference(normalizedUtr) &&
+      formData.consentConfirmed === true;
+
+    const isSelectedPaymentMethodAvailable =
+      formData.paymentMethod === BOOK_ORDER_PAYMENT_METHOD_QR ||
+      (formData.paymentMethod === BOOK_ORDER_PAYMENT_METHOD_UPI && upiDetailsAvailable);
+
+    return (
+      isBasicFormValid &&
+      isSelectedPaymentMethodAvailable &&
+      isBookPriceConfigured &&
+      !isSubmitting
+    );
+  }, [
+    formData.studentName,
+    formData.studentClass,
+    formData.isSubhosStudent,
+    formData.email,
+    formData.whatsappNumber,
+    formData.paymentMethod,
+    formData.utrNumber,
+    formData.consentConfirmed,
+    isBookPriceConfigured,
+    isSubmitting,
+    upiDetailsAvailable,
+  ]);
 
   useEffect(() => {
     return () => {
       requestControllerRef.current?.abort?.();
+      if (copyResetTimerRef.current) {
+        clearTimeout(copyResetTimerRef.current);
+      }
     };
   }, []);
 
@@ -229,12 +361,20 @@ const BookOrderPageContent = () => {
     setQrFailed(false);
     setShowResetPrompt(false);
     setSuccessData(null);
+    setCopiedField('');
+    if (copyResetTimerRef.current) {
+      clearTimeout(copyResetTimerRef.current);
+      copyResetTimerRef.current = null;
+    }
   }, []);
 
   const isFormDirty =
     formData.studentName.trim() ||
+    formData.studentClass.trim() ||
+    formData.isSubhosStudent ||
     formData.email.trim() ||
     formData.whatsappNumber.trim() ||
+    formData.paymentMethod ||
     formData.utrNumber.trim() ||
     formData.consentConfirmed;
 
@@ -255,6 +395,27 @@ const BookOrderPageContent = () => {
     setShowResetPrompt(false);
   };
 
+  const handleCopyToClipboard = async (value, field) => {
+    if (!value || typeof navigator === 'undefined' || !navigator.clipboard?.writeText) {
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopiedField(field);
+
+      if (copyResetTimerRef.current) {
+        clearTimeout(copyResetTimerRef.current);
+      }
+
+      copyResetTimerRef.current = window.setTimeout(() => {
+        setCopiedField('');
+      }, 1500);
+    } catch {
+      setCopiedField('');
+    }
+  };
+
   const focusFirstErrorField = (nextErrors) => {
     const firstErrorField = Object.keys(nextErrors)[0];
     const targetRef = fieldRefs[firstErrorField];
@@ -270,13 +431,27 @@ const BookOrderPageContent = () => {
 
     const normalizedFormData = {
       studentName: formData.studentName.trim(),
+      studentClass: formData.studentClass.trim(),
+      isSubhosStudent: formData.isSubhosStudent,
       email: formData.email.trim(),
       whatsappNumber: normalizeWhatsAppNumber(formData.whatsappNumber),
+      bookPrice,
+      paymentMethod: formData.paymentMethod,
       utrNumber: formData.utrNumber.trim(),
       consentConfirmed: formData.consentConfirmed,
     };
 
-    const nextErrors = validateForm(normalizedFormData);
+    if (!isBookPriceConfigured) {
+      setSubmitState({
+        type: 'error',
+        message: 'The book price has not been configured yet.',
+      });
+      return;
+    }
+
+    const nextErrors = validateForm(normalizedFormData, {
+      upiDetailsAvailable,
+    });
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length > 0) {
@@ -411,6 +586,21 @@ const BookOrderPageContent = () => {
         ) : (
           <form className="book-order-form" onSubmit={handleSubmit}>
             <div className="book-order-form-grid">
+              <div className="book-order-price-card book-order-field--full">
+                <span className="book-order-price-label">Book Price</span>
+                {showBookPriceMessage ? (
+                  <p className="book-order-price-message">
+                    The book price has not been configured yet.
+                  </p>
+                ) : (
+                  <strong className="book-order-price-value">{bookPrice}</strong>
+                )}
+                <p className="book-order-price-note">
+                  For book order help, contact:{' '}
+                  <a href={`tel:${BOOK_ORDER_CONTACT_NUMBER_TEL}`}>{BOOK_ORDER_CONTACT_NUMBER_DISPLAY}</a>
+                </p>
+              </div>
+
               <label className="book-order-field">
                 <span>Student Name</span>
                 <input
@@ -428,6 +618,71 @@ const BookOrderPageContent = () => {
                   <small id="book-order-error-studentName">{errors.studentName}</small>
                 ) : null}
               </label>
+
+              <label className="book-order-field">
+                <span>Student Class</span>
+                <select
+                  ref={studentClassRef}
+                  name="studentClass"
+                  value={formData.studentClass}
+                  onChange={handleChange}
+                  aria-invalid={Boolean(errors.studentClass)}
+                  aria-describedby={errors.studentClass ? 'book-order-error-studentClass' : undefined}
+                >
+                  <option value="">Select student class</option>
+                  {STUDENT_CLASS_OPTIONS.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+                {errors.studentClass ? (
+                  <small id="book-order-error-studentClass">{errors.studentClass}</small>
+                ) : null}
+              </label>
+
+              <fieldset className="book-order-radio-fieldset book-order-field--full">
+                <legend>Student at Subho’s Computer Institute?</legend>
+                <div className="book-order-radio-group">
+                  {['Yes', 'No'].map((option, index) => {
+                    const radioRef = index === 0 ? studentAtInstituteYesRef : undefined;
+                    const isSelected = formData.isSubhosStudent === option;
+
+                    return (
+                      <label
+                        key={option}
+                        className={`book-order-radio-card ${
+                          isSelected ? 'book-order-radio-card--selected' : ''
+                        }`}
+                      >
+                        <input
+                          ref={radioRef}
+                          type="radio"
+                          name="isSubhosStudent"
+                          value={option}
+                          checked={isSelected}
+                          onChange={handleChange}
+                          aria-invalid={Boolean(errors.isSubhosStudent)}
+                          aria-describedby={
+                            errors.isSubhosStudent ? 'book-order-error-isSubhosStudent' : undefined
+                          }
+                        />
+                        <span className="book-order-radio-title">{option}</span>
+                        <span className="book-order-radio-copy">
+                          {option === 'Yes'
+                            ? 'I already study at Subho’s Computer Institute.'
+                            : 'I am not currently enrolled at Subho’s Computer Institute.'}
+                        </span>
+                      </label>
+                    );
+                  })}
+                </div>
+                {errors.isSubhosStudent ? (
+                  <small id="book-order-error-isSubhosStudent" className="book-order-radio-error">
+                    {errors.isSubhosStudent}
+                  </small>
+                ) : null}
+              </fieldset>
 
               <label className="book-order-field">
                 <span>Email Address</span>
@@ -469,28 +724,164 @@ const BookOrderPageContent = () => {
                 ) : null}
               </label>
 
-              <div className="book-order-qr-block">
-                <p className="book-order-qr-title">Scan to Pay</p>
-                <p className="book-order-qr-copy">
-                  After completing the payment, enter the transaction reference number below.
-                </p>
-                <div className="book-order-qr-card">
-                  {qrFailed ? (
-                    <div className="book-order-qr-placeholder">
-                      <span className="book-order-qr-placeholder-mark" aria-hidden="true">
-                        QR
-                      </span>
-                      <strong>QR placeholder</strong>
-                      <span>The payment QR image will appear here when added to the site.</span>
-                    </div>
-                  ) : (
-                    <img
-                      src={qrImageSrc}
-                      alt="Scan the QR code to pay for the Subho's Computer Institute book order"
-                      onError={() => setQrFailed(true)}
+              <div className="book-order-payment-section book-order-field--full">
+                <span className="book-order-payment-section-label">Payment Method</span>
+                <div className="book-order-payment-options">
+                  <label
+                    className={`book-order-radio-card book-order-payment-card ${
+                      formData.paymentMethod === BOOK_ORDER_PAYMENT_METHOD_QR
+                        ? 'book-order-radio-card--selected'
+                        : ''
+                    }`}
+                  >
+                    <input
+                      ref={paymentMethodQrRef}
+                      type="radio"
+                      name="paymentMethod"
+                      value={BOOK_ORDER_PAYMENT_METHOD_QR}
+                      checked={formData.paymentMethod === BOOK_ORDER_PAYMENT_METHOD_QR}
+                      onChange={handleChange}
+                      aria-invalid={Boolean(errors.paymentMethod)}
+                      aria-describedby={
+                        errors.paymentMethod ? 'book-order-error-paymentMethod' : undefined
+                      }
                     />
-                  )}
+                    <span className="book-order-radio-title">Scan UPI QR Code</span>
+                    <span className="book-order-radio-copy">
+                      Use the existing QR code to pay through any UPI app.
+                    </span>
+                  </label>
+
+                  <label
+                    className={`book-order-radio-card book-order-payment-card ${
+                      formData.paymentMethod === BOOK_ORDER_PAYMENT_METHOD_UPI
+                        ? 'book-order-radio-card--selected'
+                        : ''
+                    } ${!upiDetailsAvailable ? 'book-order-radio-card--disabled' : ''}`}
+                  >
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      value={BOOK_ORDER_PAYMENT_METHOD_UPI}
+                      checked={formData.paymentMethod === BOOK_ORDER_PAYMENT_METHOD_UPI}
+                      onChange={handleChange}
+                      disabled={!upiDetailsAvailable}
+                      aria-invalid={Boolean(errors.paymentMethod)}
+                      aria-describedby={
+                        errors.paymentMethod ? 'book-order-error-paymentMethod' : undefined
+                      }
+                    />
+                    <span className="book-order-radio-title">Pay using UPI ID / Phone Number</span>
+                    <span className="book-order-radio-copy">
+                      {!upiDetailsAvailable
+                        ? 'UPI ID and phone payment details are currently unavailable. Please use the QR code.'
+                        : 'Use the displayed UPI details below to complete payment.'}
+                    </span>
+                  </label>
                 </div>
+
+                {formData.paymentMethod === BOOK_ORDER_PAYMENT_METHOD_QR ? (
+                  <div className="book-order-qr-block">
+                    <p className="book-order-qr-title">Scan to Pay</p>
+                    <p className="book-order-qr-copy">
+                      Scan the QR code using any UPI application. After payment, enter the UTR or
+                      transaction reference number below.
+                    </p>
+                    <div className="book-order-qr-card">
+                      {qrFailed ? (
+                        <div className="book-order-qr-placeholder">
+                          <span className="book-order-qr-placeholder-mark" aria-hidden="true">
+                            QR
+                          </span>
+                          <strong>QR placeholder</strong>
+                          <span>The payment QR image will appear here when added to the site.</span>
+                        </div>
+                      ) : (
+                        <img
+                          src={qrImageSrc}
+                          alt="Scan the QR code to pay for the Subho's Computer Institute book order"
+                          onError={() => setQrFailed(true)}
+                        />
+                      )}
+                    </div>
+                  </div>
+                ) : null}
+
+                {formData.paymentMethod === BOOK_ORDER_PAYMENT_METHOD_UPI ? (
+                  <div className="book-order-upi-block">
+                    <p className="book-order-qr-title">UPI details</p>
+                    <p className="book-order-qr-copy">
+                      Use the displayed UPI details to complete the payment in your preferred UPI
+                      app.
+                    </p>
+
+                    {BOOK_ORDER_UPI_ID || BOOK_ORDER_UPI_PHONE ? (
+                      <div className="book-order-upi-list">
+                        {BOOK_ORDER_UPI_ID ? (
+                          <div className="book-order-upi-item">
+                            <div className="book-order-upi-item-head">
+                              <span className="book-order-upi-label">UPI ID</span>
+                              <button
+                                type="button"
+                                className="book-order-copy-button"
+                                onClick={() => handleCopyToClipboard(BOOK_ORDER_UPI_ID, 'upiId')}
+                              >
+                                Copy UPI ID
+                              </button>
+                            </div>
+                            <p className="book-order-upi-value">{BOOK_ORDER_UPI_ID}</p>
+                            {copiedField === 'upiId' ? (
+                              <span className="book-order-copy-status" role="status" aria-live="polite">
+                                Copied
+                              </span>
+                            ) : null}
+                          </div>
+                        ) : null}
+
+                        {BOOK_ORDER_UPI_PHONE ? (
+                          <div className="book-order-upi-item">
+                            <div className="book-order-upi-item-head">
+                              <span className="book-order-upi-label">UPI Phone Number</span>
+                              <button
+                                type="button"
+                                className="book-order-copy-button"
+                                onClick={() =>
+                                  handleCopyToClipboard(
+                                    BOOK_ORDER_UPI_PHONE.replace(/\D/g, ''),
+                                    'upiPhone'
+                                  )
+                                }
+                              >
+                                Copy Phone Number
+                              </button>
+                            </div>
+                            <p className="book-order-upi-value">{formattedUpiPhone}</p>
+                            {copiedField === 'upiPhone' ? (
+                              <span className="book-order-copy-status" role="status" aria-live="polite">
+                                Copied
+                              </span>
+                            ) : null}
+                          </div>
+                        ) : null}
+                      </div>
+                    ) : (
+                      <p className="book-order-payment-helper">
+                        UPI ID and phone payment details are currently unavailable. Please use the
+                        QR code.
+                      </p>
+                    )}
+                  </div>
+                ) : null}
+
+                {!formData.paymentMethod ? (
+                  <p className="book-order-payment-helper">Choose a payment method to continue.</p>
+                ) : null}
+
+                {errors.paymentMethod ? (
+                  <small id="book-order-error-paymentMethod" className="book-order-payment-error">
+                    {errors.paymentMethod}
+                  </small>
+                ) : null}
               </div>
 
               <label className="book-order-field book-order-field--full">
@@ -560,8 +951,12 @@ const BookOrderPageContent = () => {
             ) : null}
 
             <div className="book-order-form-actions">
-              <button type="submit" className="book-order-submit-button" disabled={isSubmitting}>
-                SUBMIT BOOK ORDER
+              <button
+                type="submit"
+                className="book-order-submit-button"
+                disabled={!canSubmit}
+              >
+                {isSubmitting ? 'SUBMITTING...' : 'SUBMIT BOOK ORDER'}
               </button>
               <button type="button" className="book-order-cancel-button" onClick={handleReset}>
                 Reset Form

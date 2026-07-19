@@ -292,7 +292,7 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  z-index: 1210;
+  z-index: 10060;
 }
 
 .hamburger span {
@@ -316,6 +316,24 @@
   transform: rotate(-45deg) translate(4px, -5px);
 }
 
+.mobile-menu-backdrop {
+  position: fixed;
+  top: var(--header-total-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(2, 6, 23, 0.58);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 10040;
+}
+
+.mobile-menu-backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .mobile-menu {
   position: fixed;
   top: var(--header-total-height);
@@ -332,7 +350,7 @@
   pointer-events: none;
   transform: translateY(-10px);
   transition: opacity 0.25s ease, transform 0.25s ease;
-  z-index: 1195;
+  z-index: 10050;
 }
 
 .mobile-menu.show {
@@ -478,4 +496,11 @@
     transition: none !important;
     animation: none !important;
   }
+}
+
+body.mobile-nav-open .app-download-float,
+body.mobile-nav-open .whatsapp-float {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px) scale(0.98);
 }

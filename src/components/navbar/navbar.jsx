@@ -110,8 +110,10 @@ const Navbar = () => {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
+    document.body.classList.toggle('mobile-nav-open', menuOpen);
     return () => {
       document.body.style.overflow = '';
+      document.body.classList.remove('mobile-nav-open');
     };
   }, [menuOpen]);
 
@@ -345,6 +347,16 @@ const Navbar = () => {
             <span></span>
           </button>
         </div>
+
+        <div
+          className={`mobile-menu-backdrop ${menuOpen ? 'show' : ''}`}
+          aria-hidden="true"
+          onClick={() => {
+            setMenuOpen(false);
+            setDesktopDropdown(null);
+            setMobileDropdown(null);
+          }}
+        />
 
         <div className={`mobile-menu ${menuOpen ? 'show' : ''}`} role="menu" aria-hidden={!menuOpen}>
           {navItems.map((item) => {
